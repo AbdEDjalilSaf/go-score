@@ -6,7 +6,7 @@ import Header from "@/app/pages/homePage/header/page"
 //   ssr: true,
 //   loading: () => <div className="h-16 border-b"></div>,
 // });
-import Footer from "@/app/pages/homePage/footer/page"
+import Footer from "@/app/pages/homePage/footer/page" 
 // const Footer = dynamic(() => import("@/app/pages/homePage/footer/page"), {
 //   ssr: true,
 //   loading: () => <div className="h-40 bg-primary"></div>,
