@@ -1,0 +1,60 @@
+{
+    "footer": {
+      "about": {
+        "text": "منصة تعليمية متخصصة في تقديم اختبارات تجريبية وتدريبات متنوعة لمساعدة الطلاب على التفوق"
+      },
+      "quickLinks": {
+        "title": "روابط سريعة",
+        "links": [
+          {
+            "name": "الرئيسية",
+            "href": "#"
+          },
+          {
+            "name": "عن المنصة",
+            "href": "#"
+          },
+          {
+            "name": "الاختبارات",
+            "href": "#"
+          },
+          {
+            "name": "المدونة",
+            "href": "#"
+          }
+        ]
+      },
+      "contact": {
+        "title": "تواصل معنا",
+        "email": "info@ekhtibarat.com",
+        "phone": "+966 12 345 6789"
+      },
+      "social": {
+        "title": "تابعنا",
+        "links": [
+          {
+            "name": "Facebook",
+            "href": "#"
+          },
+          {
+            "name": "Twitter",
+            "href": "#"
+          },
+          {
+            "name": "Instagram",
+            "href": "#"
+          },
+          {
+            "name": "YouTube",
+            "href": "#"
+          },
+          {
+            "name": "Snapchat",
+            "href": "#"
+          }
+        ]
+      }
+    }
+  }
+  
+  
