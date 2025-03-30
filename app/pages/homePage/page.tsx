@@ -16,6 +16,7 @@ import {
   Lightbulb,
   Atom,
 } from "lucide-react"
+import Link from "next/link"
 
 
 const page = () => {
@@ -31,7 +32,7 @@ const page = () => {
            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
              <div className="flex flex-col justify-center space-y-4 text-right">
                <div className="space-y-2">
-                 <h1 className="text-3xl font-bold tracking-tighter mb-7  sm:text-5xl xl:text-6xl/none text-primary">
+                 <h1 className="text-3xl font-bold tracking-tighter mb-7   sm:text-5xl xl:text-6xl/none text-primary">
                    حياك في منصة اختبارات!
                  </h1>
                  <p className="max-w-[600px] text-muted-foreground md:text-xl">المنصة التي تدربك على القدرات بذكاء</p>
@@ -63,7 +64,7 @@ const page = () => {
                    alt="Hero"
                    layout="fill"
                    objectFit="cover"
-                   className="rounded-xl"
+                   className="rounded-xl "
                  />
              </div>
            </div>
@@ -79,7 +80,7 @@ const page = () => {
              </h2>
            </div>
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-             <Card className="overflow-hidden transition-all hover:shadow-lg">
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <BookOpen className="h-6 w-6 text-primary" />
@@ -89,8 +90,8 @@ const page = () => {
                    اختبارات تحاكي اختبارات بشكل كامل تكون الأسئلة والتوقيت لقياس مدى استعدادك
                  </p>
                </CardContent>
-             </Card>
-             <Card className="overflow-hidden transition-all hover:shadow-lg">
+             </Card></Link>
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <Award className="h-6 w-6 text-primary" />
@@ -100,8 +101,8 @@ const page = () => {
                    تدرب بذكاء على أسئلة تغطي كافة جوانب ومهارات اختبارك لتحسين إتقان المهارات
                  </p>
                </CardContent>
-             </Card>
-             <Card className="overflow-hidden transition-all hover:shadow-lg">
+             </Card></Link>
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <BarChart2 className="h-6 w-6 text-primary" />
@@ -109,8 +110,8 @@ const page = () => {
                  <h3 className="text-xl font-bold">تحليل الأداء</h3>
                  <p className="text-muted-foreground">تعرف على أماكن قوتك ونقاط ضعفك واعمل على تحسينها</p>
                </CardContent>
-             </Card>
-             <Card className="overflow-hidden transition-all hover:shadow-lg">
+             </Card></Link>
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <Users className="h-6 w-6 text-primary" />
@@ -118,7 +119,7 @@ const page = () => {
                  <h3 className="text-xl font-bold">تحدي أصدقاءك</h3>
                  <p className="text-muted-foreground">تنافس واحصل الترتيب على اختبارات افتراضية مع الأصدقاء</p>
                </CardContent>
-             </Card>
+             </Card></Link>
            </div>
            <div className="flex justify-center mt-10">
            <Button className="bg-primary hover:bg-primary/90 text-base sm:text-lg px-8 py-4 h-auto min-w-[220px] font-bold">
@@ -276,7 +277,7 @@ const page = () => {
        </section>
 
        {/* CTA Section */}
-       <section className="py-12 md:py-20 bg-primary text-primary-foreground">
+       <section className="py-12 md:py-20 bg-primary border-b-[0.5px] border-white border-solid text-primary-foreground">
          <div className="container px-4 md:px-6 text-center">
            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-4">ابدأ رحلتك التعليمية معنا اليوم</h2>
            <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl mb-6">
