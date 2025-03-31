@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import type { StaticImageData } from 'next/image';
 import Image from "next/image"
 import Link from "next/link"
 import { Menu } from "lucide-react"
@@ -27,7 +28,7 @@ interface HeaderProps {
       text: string
     }
   }
-  Logo: any
+  Logo: StaticImageData
 }
 
 export default function Header({ header, deviceHeader , Logo }: HeaderProps) {

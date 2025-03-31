@@ -123,12 +123,12 @@ const blogData = data.cards.filter((card) => card.role === activeCategory);
       <footer className="bg-gray-100 py-8">
         <div className="container mx-auto px-4">
           <h3 className="text-lg font-bold text-center mb-6">الروابط المهمة</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-1 place-items-center md:place-items-start xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
             {data.footerLinks.map((link) => (
               <Link
                 key={link.id}
                 href={link.url}
-                className="bg-purple-700 w-[70%] text-white text-base p-3 rounded-full  hover:bg-purple-800"
+                className="bg-purple-700  w-[70%] text-white text-base p-3 rounded-full  hover:bg-purple-800"
               >
                 {link.title}
               </Link>

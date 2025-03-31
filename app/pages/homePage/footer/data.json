@@ -7,19 +7,23 @@
         "title": "روابط سريعة",
         "links": [
           {
-            "name": "الرئيسية",
-            "href": "#"
+            "name": "من نحن ",
+            "href": "/pages/homePage/aboutUs"
           },
           {
-            "name": "عن المنصة",
-            "href": "#"
-          },
-          {
-            "name": "الاختبارات",
-            "href": "#"
+            "name": "الشروط والأحكام",
+            "href": "/pages/homePage/term-conditions"
           },
           {
             "name": "المدونة",
+            "href": "#"
+          },
+          {
+            "name": "اتصل بنا",
+            "href": "#"
+          },
+          {
+            "name": "كن شريكاً",
             "href": "#"
           }
         ]
@@ -52,9 +56,11 @@
             "name": "Snapchat",
             "href": "#"
           }
+         
         ]
       }
     }
   }
   
+
   
