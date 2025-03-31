@@ -11,7 +11,7 @@
         },
         {
           "name": "المدونة",
-          "href": "#"
+          "href": "/pages/blogPage"
         },
         {
           "name": "المسارات",
@@ -30,7 +30,7 @@
       "navigation": [
         {
           "name": "الرئيسية",
-          "href": "#"
+          "href": "/"
         },
         {
           "name": "الأسئلة الشائعة",
@@ -38,7 +38,7 @@
         },
         {
           "name": "المدونة",
-          "href": "#"
+          "href": "/pages/blogPage"
         },
         {
           "name": "المسارات",

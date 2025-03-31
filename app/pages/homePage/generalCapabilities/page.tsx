@@ -76,12 +76,12 @@ export default function page() {
               <h3 className="text-xl font-bold text-gray-800 mb-6 text-right">{section.title}</h3>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {section.categories.map((category, categoryIndex) => (
-                  <Button key={categoryIndex} variant="outline" className="rounded-md py-2 px-4 text-sm">
+                  <Button key={categoryIndex} variant="outline" className="rounded-full text-base px-6 py-3 h-auto mt-4 hover:bg-primary hover:text-white">
                     {category}
                   </Button>
                 ))}
               </div>
-            </div>
+            </div> 
           ))}
         </div>
       </section>

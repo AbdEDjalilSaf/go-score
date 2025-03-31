@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60 text-sm">
-          <p>جميع الحقوق محفوظة © {new Date().getFullYear()} منصة اختبارات</p>
+          <p>جميع الحقوق محفوظة © {new Date().getFullYear()} منصة GoScore </p>
         </div>
       </div>
     </footer>
