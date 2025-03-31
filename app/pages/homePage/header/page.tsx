@@ -11,7 +11,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 
 interface HeaderProps {
   header: {
-    navigation: {
+    navig: {
       name: string
       href: string
     }[]
@@ -20,7 +20,7 @@ interface HeaderProps {
     }
   }
   deviceHeader: {
-    navigation: {
+    navig: {
       name: string
       href: string
     }[]
@@ -51,7 +51,7 @@ export default function Header({ header, deviceHeader , Logo }: HeaderProps) {
               <SheetTitle className="text-right "></SheetTitle>
               {/* <SheetTitle className="text-right">القائمة</SheetTitle> */}
               <nav className="flex flex-col gap-4 mt-8">
-                {deviceHeader.navigation.map((item, index) => (
+                {deviceHeader.navig.map((item, index) => (
                   <Link
                     key={index}
                     href={item.href}
@@ -76,9 +76,9 @@ export default function Header({ header, deviceHeader , Logo }: HeaderProps) {
         </div>
 
 
-        {/* Desktop Navigation */}
+        {/* Desktop navig */}
         <nav className="hidden md:flex items-center gap-6">
-          {header.navigation.map((item, index) => (
+          {header.navig.map((item, index) => (
             <Link key={index} href={item.href} className="text-sm font-medium hover:text-primary">
               {item.name}
             </Link>
@@ -105,7 +105,7 @@ export default function Header({ header, deviceHeader , Logo }: HeaderProps) {
               <SheetTitle className="text-right "></SheetTitle>
               {/* <SheetTitle className="text-right">القائمة</SheetTitle> */}
               <nav className="flex flex-col gap-4 mt-8">
-                {deviceHeader.navigation.map((item, index) => (
+                {deviceHeader.navig.map((item, index) => (
                   <Link
                     key={index}
                     href={item.href}

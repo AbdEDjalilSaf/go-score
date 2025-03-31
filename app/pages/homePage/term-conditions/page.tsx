@@ -18,7 +18,7 @@ export default function TermsAndConditions() {
           </svg>
         </div>
       </div>
-
+ 
       {/* Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">

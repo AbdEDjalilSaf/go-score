@@ -1,6 +1,6 @@
 {
     "header": {
-      "navigation": [
+      "navig": [
         {
           "name": "الرئيسية",
           "href": "/"
@@ -27,7 +27,7 @@
       }
     },
     "deviceHeader": {
-      "navigation": [
+      "navig": [
         {
           "name": "الرئيسية",
           "href": "/"
