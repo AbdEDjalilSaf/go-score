@@ -1,3 +1,5 @@
+
+import { Suspense } from "react"
 import HomePage from "@/app/pages/homePage/page"
 // import dynamic from "next/dynamic";
 // const HomePage = dynamic(() => import("@/app/pages/homePage/page"), {
@@ -9,8 +11,9 @@ import HomePage from "@/app/pages/homePage/page"
 
 export default function Home() {
   return (
-     
-<HomePage />
+<Suspense fallback={<div>Loading...</div>}>
+  <HomePage />
+</Suspense>
 
   )
 }

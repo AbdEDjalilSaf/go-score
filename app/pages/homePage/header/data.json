@@ -1,13 +1,13 @@
 {
     "header": {
-      "navig": [
+      "navigation": [
         {
           "name": "الرئيسية",
           "href": "/"
         },
         {
           "name": "الأسئلة الشائعة",
-          "href": "#"
+          "href": "/pages/homePage/f&Question"
         },
         {
           "name": "المدونة",
@@ -27,14 +27,14 @@
       }
     },
     "deviceHeader": {
-      "navig": [
+      "navigation": [
         {
           "name": "الرئيسية",
           "href": "/"
         },
         {
           "name": "الأسئلة الشائعة",
-          "href": "#"
+          "href": "/pages/homePage/f&Question"
         },
         {
           "name": "المدونة",
@@ -58,7 +58,7 @@
         },
         {
           "name": "اتصل بنا",
-          "href": "#"
+          "href": "/pages/homePage/contactUs"
         },
         {
           "name": "كن شريكًا",

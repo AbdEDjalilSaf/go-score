@@ -1,3 +1,4 @@
+import React, {Suspense} from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
@@ -59,6 +60,7 @@ const page = () => {
                </div>
              </div>
              <div className="relative aspect-video overflow-hidden rounded-xl lg:aspect-square">
+             <Suspense fallback={<div>Loading...</div>}>
                  <Image
                    src={Landin}
                    alt="Hero"
@@ -66,6 +68,7 @@ const page = () => {
                    objectFit="cover"
                    className="rounded-xl "
                  />
+                 </Suspense>
              </div>
            </div>
          </div>
@@ -227,6 +230,7 @@ const page = () => {
              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
                
                  <div  className="flex items-center justify-center">
+                 <Suspense fallback={<div>Loading...</div>}>
                    <Image
                      src={OneSupport}
                      alt="Partner"
@@ -234,8 +238,10 @@ const page = () => {
                      height={80}
                      className="opacity-70 hover:opacity-100 transition-opacity"
                    />
+                   </Suspense>
                  </div>
                  <div  className="flex items-center justify-center">
+                 <Suspense fallback={<div>Loading...</div>}>
                    <Image
                      src={TwoSupport}
                      alt="Partner"
@@ -243,8 +249,10 @@ const page = () => {
                      height={80}
                      className="opacity-70 hover:opacity-100 transition-opacity"
                    />
+                   </Suspense>
                  </div>
                  <div  className="flex items-center justify-center">
+                 <Suspense fallback={<div>Loading...</div>}>
                    <Image
                      src={ThreeSupport}
                      alt="Partner"
@@ -252,8 +260,10 @@ const page = () => {
                      height={80}
                      className="opacity-70 hover:opacity-100 transition-opacity"
                    />
+                   </Suspense>
                  </div>
                  <div  className="flex items-center justify-center">
+                 <Suspense fallback={<div>Loading...</div>}>
                    <Image
                      src={FourSupport}
                      alt="Partner"
@@ -261,8 +271,10 @@ const page = () => {
                      height={80}
                      className="opacity-70 hover:opacity-100 transition-opacity"
                    />
+                   </Suspense>
                  </div>
                  <div  className="flex items-center justify-center">
+                 <Suspense fallback={<div>Loading...</div>}>
                    <Image
                      src={FiveSupport}
                      alt="Partner"
@@ -270,6 +282,7 @@ const page = () => {
                      height={80}
                      className="opacity-70  hover:opacity-100 transition-opacity"
                    />
+                   </Suspense>
                  </div>
              </div>
            </div>

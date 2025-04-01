@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Youtube, SnailIcon as Snapchat } from "lucide-react"
@@ -24,6 +25,7 @@ export default function Footer() {
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
+          <Suspense fallback={<div>Loading...</div>}>
             <Image
               src={SecondLogo}
               alt="اختبارات"
@@ -31,6 +33,7 @@ export default function Footer() {
               height={40}
               className="h-20 w-auto"
             />
+            </Suspense>
             <p className="text-primary-foreground/80 text-sm">{footer.about.text}</p>
           </div>
           <div className="space-y-4">
