@@ -45,18 +45,22 @@ const page = () => {
                </p>
                <div className="flex flex-col sm:flex-row gap-3 mt-4">
                  {/* <Button className="bg-primary hover:bg-primary/90">تدرب على اختبار القدرات</Button> */}
+                 <Link href="/pages/homePage/generalCapabilities">
                  <Button className="bg-primary hover:bg-primary/90 text-base sm:text-lg px-6 py-3 h-auto min-w-[180px]">
                    تدرب على اختبار القدرات
                  </Button>
+                 </Link>
                  {/* <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
                    تدرب على اختبار التحصيلي
                  </Button> */}
+                 <Link href="/pages/homePage/academicAchievement">
                  <Button
                    variant="outline"
                    className="border-primary text-primary hover:bg-primary/10 text-base sm:text-lg px-6 py-3 h-auto min-w-[180px]"
                  >
                    تدرب على اختبار التحصيلي
                  </Button>
+                 </Link>
                </div>
              </div>
              <div className="relative aspect-video overflow-hidden rounded-xl lg:aspect-square">
@@ -83,7 +87,7 @@ const page = () => {
              </h2>
            </div>
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-600">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <BookOpen className="h-6 w-6 text-primary" />
@@ -94,7 +98,7 @@ const page = () => {
                  </p>
                </CardContent>
              </Card></Link>
-             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-600">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <Award className="h-6 w-6 text-primary" />
@@ -105,7 +109,7 @@ const page = () => {
                  </p>
                </CardContent>
              </Card></Link>
-             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-600">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <BarChart2 className="h-6 w-6 text-primary" />
@@ -114,7 +118,7 @@ const page = () => {
                  <p className="text-muted-foreground">تعرف على أماكن قوتك ونقاط ضعفك واعمل على تحسينها</p>
                </CardContent>
              </Card></Link>
-             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg">
+             <Link href="/pages/homePage/generalCapabilities"><Card className="overflow-hidden transition-all hover:shadow-lg hover:shadow-purple-600">
                <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
                  <div className="rounded-full bg-primary/10 p-3">
                    <Users className="h-6 w-6 text-primary" />
@@ -157,7 +161,8 @@ const page = () => {
      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
          {/* Card 1 */}
-         <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+         <Link href="/pages/homePage/generalCapabilities">
+         <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg hover:shadow-purple-600 transition-shadow">
            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-purple-100 text-purple-600 mb-4">
              <Brain className="h-7 w-7" />
            </div>
@@ -166,9 +171,9 @@ const page = () => {
              يقيس القدرة التحليلية والاستدلالية لدى الطالب، ويركز على قياس قدرة الطالب على فهم النصوص وتحليلها والاستنتاج منها
            </p>
          </div>
-
+         </Link>
          {/* Card 2 */}
-         <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+         <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg hover:shadow-purple-600 transition-shadow">
            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-purple-100 text-purple-600 mb-4">
            <Lightbulb className="h-7 w-7 " />
            </div>
@@ -179,7 +184,9 @@ const page = () => {
          </div>
 
          {/* Card 3 */}
-         <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+         {/* <Link href="/pages/homePage/generalCapabilities"> */}
+         <Link href="/pages/homePage/academicAchievement">
+         <div className="bg-white rounded-lg shadow-md p-6 lg:h-[208px] hover:shadow-lg hover:shadow-purple-600 transition-shadow">
            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-purple-100 text-purple-600 mb-4">
              <Atom className="h-6 w-6" />
            </div>
@@ -188,6 +195,7 @@ const page = () => {
              يقيس مستوى تحصيل الطالب في المواد الدراسية الأساسية
            </p>
          </div>
+         </Link>
        </div>
      </main>
            <div className="text-center mt-10">

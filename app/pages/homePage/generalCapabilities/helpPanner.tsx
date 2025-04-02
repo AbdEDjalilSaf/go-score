@@ -1,13 +1,11 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+// import Link from "next/link"
 import { useState, useEffect } from "react"
-import { useMediaQuery } from "./use-mobile"
 import PannerImg from "@/public/whoPanner.jpg"
 
 export default function HelpWhoPanner() {
-  const isMobile = useMediaQuery("(max-width: 768px)")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -19,47 +17,35 @@ export default function HelpWhoPanner() {
   }
 
   return (
-    <div className="relative w-full overflow-hidden  bg-gradient-to-r from-purple-900 to-cyan-800">
-      <div className="container mx-auto md:grid grid-cols-1 items-center gap-6 px-4 py-16 md:grid-cols-2 md:gap-8 md:px-6 md:py-12 lg:gap-12">
-        {/* Image Section - Visible on all screens but positioned differently */}
-        <div className={`${isMobile ? "order-1" : "order-1"} relative mx-auto max-w-md md:mx-0`}>
-          <div className="relative hidden md:block h-[250px] w-full overflow-hidden rounded-lg md:h-[300px] lg:h-[350px]">
-            <Image
-              src={PannerImg}
-              alt="Student learning online"
-              fill
-              className="object-cover "
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Content Section */}
-        <div className={`${isMobile ? "order-2 text-center" : "order-2 text-right"} space-y-4 md:space-y-6`}>
-          <div className="space-y-2">
-            <h2 className="text-xl font-bold text-cyan-300 md:text-2xl lg:text-3xl">اختبار</h2>
-            <h1 className="text-3xl font-bold text-cyan-200 md:text-4xl lg:text-5xl">القدرات العامة</h1>
-          </div>
-
-          <div className="space-y-2 text-white">
-            <p className="text-sm md:text-base lg:text-lg">تدرب على القدرات بالذكاء الاصطناعي في منصة اختبارات</p>
-            <p className="text-sm md:text-base lg:text-lg">
-              أكثر من 20,000 سؤال تدريبي واختبارات تحاكي الاختبار الحقيقي
-            </p>
-            <p className="text-sm md:text-base lg:text-lg">واحصل على توقعات دقيقة لدرجتك في الاختبار الحقيقي</p>
-          </div>
-
-          <div className="pt-2 md:pt-4">
-            <Link
-              href="#"
-              className="inline-block rounded-full bg-rose-500 px-6 py-3 text-center font-medium text-white transition-colors hover:bg-rose-600 focus:outline-none md:px-8 md:py-4"
-            >
-              تدرب على اختبار القدرات
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+       <section className=" bg-gradient-to-r from-purple-900 to-cyan-800 text-white py-12 px-4 md:px-8 lg:px-12">
+            <div className="container mx-auto max-w-6xl gap-16 flex flex-col md:flex-row-reverse items-center">
+              <div className="md:w-1/2 order-1">
+                <Image
+                  src={PannerImg}
+                  alt="طالب يدرس"
+                  width={500}
+                  height={400}
+                  className="rounded-lg hidden md:block"
+                />
+              </div>
+              <div className="md:w-1/2 order-2 mb-8 md:mb-0 md:pr-8">
+                <h1 className="text-center md:text-right">
+                  <div className="text-2xl font-bold mb-2">اختبار</div>
+                  <div className="text-4xl font-bold text-teal-300 mb-4"> القدرات العامة
+                  </div>
+                </h1>
+                <p className="text-lg mb-6 text-center md:text-right">تدرب على القدرات بالذكاء الاصطناعي في منصة اختبارات
+                أكثر من 20,000 سؤال تدريبي واختبارات تحاكي الاختبار الحقيقي
+                واحصل على توقعات دقيقة لدرجتك في الاختبار الحقيقي
+                </p>
+                <div className="flex justify-center md:justify-start">
+                  <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    تدرب على اختبار القدرات
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
   )
 }
 

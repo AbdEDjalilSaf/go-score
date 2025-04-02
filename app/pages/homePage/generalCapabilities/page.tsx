@@ -19,21 +19,6 @@ export default function page() {
     <div dir="rtl" className="min-h-screen bg-white">
       {/* Hero Section */}
       <HelpPanner />
-      {/* <section className="relative bg-gradient-to-r from-purple-900 to-purple-700 text-white py-16">
-        <div className="container mx-auto px-4 flex flex-col items-center text-center">
-          <h1 className="text-2xl md:text-4xl font-bold mb-2">{data.hero.title}</h1>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-teal-300">{data.hero.subtitle}</h2>
-          {data.hero.description.map((paragraph, index) => (
-            <p key={index} className="max-w-2xl mb-2 text-sm md:text-base">
-              {paragraph}
-            </p>
-          ))}
-           <Button className="bg-red-500 hover:bg-red-600 text-white px-10 py-7 rounded-full text-xl mt-8 font-bold">
-              {data.hero.buttonText}
-            </Button>
-        </div>
-        <div className="absolute inset-0 bg-black opacity-30"></div>
-      </section> */}
 
       {/* Features Section */}
       <section className="py-16 bg-white">
