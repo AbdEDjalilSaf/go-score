@@ -20,6 +20,7 @@ interface HeaderProps {
     }[]
     button: {
       text: string
+      href: string
     }
   }
   deviceHeader: {
@@ -93,6 +94,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                       </Link>
                     )
                   })}
+                  <Link href="/login">
                   <Button
                     size="lg"
                     className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
@@ -100,6 +102,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                   >
                     {deviceHeader.button.text}
                   </Button>
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -146,9 +149,11 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
 
         {/* Desktop Button */}
         <div className="hidden md:flex items-center gap-2">
+        <Link href={header.button.href}>
           <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto">
             {header.button.text}
           </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu */}
@@ -201,13 +206,15 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                     </Link>
                   )
                 })}
-                <Button
-                  size="lg"
-                  className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
-                  onClick={() => setOpen(false)}
-                >
-                  {deviceHeader.button.text}
-                </Button>
+                <Link href="/login">
+                  <Button
+                    size="lg"
+                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
+                    onClick={() => setOpen(false)}
+                  >
+                    {deviceHeader.button.text}
+                  </Button>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>

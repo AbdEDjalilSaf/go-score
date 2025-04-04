@@ -1,7 +1,7 @@
 import z from 'zod'
 
 
-
+// contact us =============================
 export const formSchema = z.object({
     email: z.string().email({
       message: "Please enter a valid email address",
@@ -16,7 +16,32 @@ export const formSchema = z.object({
       message: "Message must be at least 10 characters",
     }),
   })
-  
+
+// search المدونة ==========================
 export const searchSchema = z.object({
   query: z.string(),
 })
+
+// login ==========================
+export const loginSchema = z.object({
+  email: z.string().email({ message: "يرجى إدخال عنوان بريد إلكتروني صالح" }),
+  password: z.string().min(8, { message: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل" }),
+})
+
+// sign up ============================
+export const signupSchema = z
+  .object({
+    name: z.string().min(2, { message: "يجب أن يتكون الاسم من حرفين على الأقل" }),
+    email: z.string().email({ message: "يرجى إدخال عنوان بريد إلكتروني صالح" }),
+    password: z
+      .string()
+      .min(8, { message: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل" })
+      .regex(/[a-zA-Z]/, { message: "يجب أن تحتوي على حرف واحد على الأقل" })
+      .regex(/[0-9]/, { message: "يجب أن تحتوي على رقم واحد على الأقل" })
+      .regex(/[^a-zA-Z0-9]/, { message: "يجب أن تحتوي على رمز خاص واحد على الأقل" }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "كلمات المرور غير متطابقة",
+    path: ["confirmPassword"],
+  })

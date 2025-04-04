@@ -117,7 +117,7 @@ export default function Home() {
            
 
               return (
-                <div key={index} className={`border cursor-pointer rounded-lg  p-6  hover:shadow-lg  shadow-${subject.color}-600 text-center transition duration-300`}>
+                <div key={index} className={`border cursor-pointer rounded-lg p-6 hover:shadow-xl ${subject.color} text-center transition duration-300`}>
                   <div className="flex justify-center mb-4">
                     <div className={`w-16 h-16 flex items-center justify-center`}>
                       {iconImgPromise.then((iconImg) => (
@@ -138,7 +138,7 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {data.infoCards.map((card, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden border">
+              <div key={index} className={`bg-white rounded-lg shadow-4xl ${card.color} shadow-md overflow-hidden border`}>
                 <div className={`bg-gradient-to-l ${card.bgColor} p-8 text-white relative h-48`}>
                   <div className="absolute top-4 right-4 text-white">
                     <GraduationCap size={32} />

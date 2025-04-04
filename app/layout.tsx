@@ -13,6 +13,8 @@ import Footer from "@/app/pages/homePage/footer/page"
 //   loading: () => <div className="h-40 bg-primary"></div>,
 // });
 import "./globals.css";
+import ProviderWrapper from './ProviderWrapper'; // Ensure correct path & import
+
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -36,12 +38,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       > */}
       <body className=" bg-background  font-cairo antialiased">
-
+      <ProviderWrapper>
 <Header {...HeaderJson} Logo={Logo} />
 
         {children}
         
 <Footer />
+</ProviderWrapper>
       </body>
     </html>
   );

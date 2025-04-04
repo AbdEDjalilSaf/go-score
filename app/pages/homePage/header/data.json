@@ -23,7 +23,8 @@
         }
       ],
       "button": {
-        "text": "تسجيل الدخول"
+        "text": "تسجيل الدخول",
+        "href":"/login"
       }
     },
     "deviceHeader": {
@@ -66,7 +67,8 @@
         }
       ],
       "button": {
-        "text": "تسجيل الدخول"
+        "text": "تسجيل الدخول",
+        "href":"/login"
       }
     },
     "pathsDropdownItems": [
