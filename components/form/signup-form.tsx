@@ -5,6 +5,11 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot
+ } from "@/components/ui/input-otp"
 import { useState } from "react"
 import Image from "next/image"
 import SignupImg from "@/public/login.jpg"
@@ -12,6 +17,10 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signupSchema } from "@/lib/validation"
+import { useRegister } from "@/app/hooks/useRegister"
+import { useSendConfirmCode } from "@/app/hooks/useSendConfirmCode"
+// import { setCardentials } from "@/features/auth/authSlice"
+import { useDispatch } from "react-redux"
 import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
@@ -21,8 +30,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 type SignupFormValues = z.infer<typeof signupSchema>
 
 export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
-  const [isLoading, setIsLoading] = useState(false)
-
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { register, error } = useRegister();
+  const { sendCode , error: sendCodeError, loading, sent } = useSendConfirmCode();
   // Initialize react-hook-form with zod resolver
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
@@ -30,17 +42,74 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       name: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      code: "",
     },
   })
 
+// async function onConfirmSubmit(data: SignupFormValues) {
+//     setIsLoading(true);
+//     setIsSuccess(true);
+
+//     console.log("Success Status:", isSuccess);
+//     // Simulate API call
+//     // console.log("Form submission started", data.email);
+//     // try {
+//     //    await sendCode( data.email );
+//     //   // console.log("User Data:", userData); // Log the response to verify its structure
+//     //   // if (userData && userData.user) {
+//     //     // dispatch(setCardentials({ ...userData, user: userData.user }));
+//     //   // } else {
+//     //   //   console.error("User data is undefined or missing user property");
+//     //   // }
+//     // } catch (err) {
+//     //   console.error("Sign Up error:", err);
+//     // }
+
+//     // In a real app, you would make an API call here
+//     setTimeout(() => {
+//       setIsLoading(false)
+//       // Handle success or error
+//     }, 1000)
+// }
+
+
   // Handle form submission
-  function onSubmit(data: SignupFormValues) {
-    setIsLoading(true)
+async function onSubmit(data: SignupFormValues) {
+    setIsLoading(true);
+    setIsSuccess(true);
 
+    console.log("Success Status:", isSuccess);
+
+    if(!isSuccess){
+      console.log("Success Status again:", isSuccess);
+      console.log("Form submission started", data.email);
+      try {
+         await sendCode( data.email );
+        // console.log("User Data:", userData); // Log the response to verify its structure
+        // if (userData && userData.user) {
+          // dispatch(setCardentials({ ...userData, user: userData.user }));
+        // } else {
+        //   console.error("User data is undefined or missing user property");
+        // }
+      } catch (err) {
+        console.error("Sign Up error:", err);
+      }
+
+    }else{
     // Simulate API call
-    console.log("Form data:", data)
-
+    console.log("Form submission started", data);
+    try {
+       await register(data.name, data.email, data.password);
+      // console.log("User Data:", userData); // Log the response to verify its structure
+      // if (userData && userData.user) {
+        // dispatch(setCardentials({ ...userData, user: userData.user }));
+      // } else {
+      //   console.error("User data is undefined or missing user property");
+      // }
+    } catch (err) {
+      console.error("Sign Up error:", err);
+    }
+  }
     // In a real app, you would make an API call here
     setTimeout(() => {
       setIsLoading(false)
@@ -48,18 +117,40 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
     }, 1000)
   }
 
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="p-6 md:p-8 rtl">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="p-6 md:p-8 ">
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
                   <h1 className="text-2xl mb-3 font-bold">إنشاء حساب جديد</h1>
                   {/* <p className="text-balance text-muted-foreground">انضم إلى Acme Inc اليوم</p> */}
                 </div>
+{isSuccess ? <div className="text-center flex flex-col justify-center items-center gap-3">
+  <h3> يرجى إدخال الكود الواصل إليكم عبر البريد الإلكتروني </h3>
+<InputOTP maxLength={6} className="flex  flex-row-reverse-reverse gap-7" >
+  <InputOTPGroup>
+        <InputOTPSlot index={5} />
+        <InputOTPSlot index={4} />
+        <InputOTPSlot index={3} />
+      </InputOTPGroup>
+      <InputOTPSeparator />
+      <InputOTPGroup>
+        <InputOTPSlot index={2} />
+        <InputOTPSlot index={1} />
+        <InputOTPSlot index={0} />
+      </InputOTPGroup>     
+    </InputOTP>
 
+    <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "التالي": "إنشاء حساب"}
+      </Button>
+    </div>
+ : 
+<>
                 <FormField
                   control={form.control}
                   name="name"
@@ -109,24 +200,12 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem className="grid gap-2">
-                      <FormLabel htmlFor="confirmPassword">تأكيد كلمة المرور</FormLabel>
-                      <FormControl>
-                        <Input id="confirmPassword" type="password" {...field} dir="ltr" className="text-right" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "جاري إنشاء الحساب..." : "إنشاء حساب"}
+                  {isLoading ? "التالي": "إنشاء حساب"}
                 </Button>
-
+                </>
+              }
+              {error ? <p className="text-red-500 text-sm">{error}</p> : null}
                 <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                   <span className="relative z-10 bg-background px-2 text-muted-foreground">أو المتابعة باستخدام</span>
                 </div>

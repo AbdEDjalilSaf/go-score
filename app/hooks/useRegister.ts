@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import { registerUser } from '../api/auth';
+import { registerUser } from '../api/auth';
 
 
 
@@ -41,13 +41,13 @@ const register = async (fullName:string,email:string,password:string): Promise<v
     // const email = emailElement.value;
     // const password = passwordElement.value;
 
-// const { success, data, error: registrationError }: RegisterResponse = await registerUser(fullName, email, password);
+const { success, data, error: registrationError }: RegisterResponse = await registerUser({fullName, email, password});
       
-//     if (success && data) {
-//       router.push("/request-form");
-//     } else {
-//       setError(registrationError || "Registration failed");
-//     }
+    if (success && data) {
+      router.push("/pages/welcome");
+    } else {
+      setError(registrationError || "Registration failed");
+    }
   };
 
   return { register, error };

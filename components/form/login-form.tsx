@@ -3,6 +3,11 @@
 import type React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot
+} from "@/components/ui/input-otp"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
@@ -10,8 +15,10 @@ import LoginImg from "@/public/login.jpg"
 import Link from "next/link"
 import Image from "next/image"
 import { useForm } from "react-hook-form"
+import { useLogin } from "@/app/hooks/useLogin"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/lib/validation"
+import { useSendConfirmCode } from "@/app/hooks/useSendConfirmCode"
 import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { useDispatch } from "react-redux";
@@ -25,30 +32,95 @@ type LoginFormValues = z.infer<typeof loginSchema>
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch();
-
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { login, error } = useLogin(); // Ensure login accepts arguments or update its implementation
+  const { sendCode , error: sendCodeError, loading, sent } = useSendConfirmCode();
+  
   // Initialize react-hook-form with zod resolver
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
+      code: "", // Added code property
     },
   })
 
+
+//   async function onConfirmSubmit(data: LoginFormValues) {
+//     setIsLoading(true);
+//     setIsSuccess(true);
+
+//     console.log("Success Status:", isSuccess);
+//     // Simulate API call
+//     // console.log("Form submission started", data.email);
+//     // try {
+//     //    await sendCode( data.email );
+//     //   // console.log("User Data:", userData); // Log the response to verify its structure
+//     //   // if (userData && userData.user) {
+//     //     // dispatch(setCardentials({ ...userData, user: userData.user }));
+//     //   // } else {
+//     //   //   console.error("User data is undefined or missing user property");
+//     //   // }
+//     // } catch (err) {
+//     //   console.error("Sign Up error:", err);
+//     // }
+
+//     // In a real app, you would make an API call here
+//     setTimeout(() => {
+//       setIsLoading(false)
+//       // Handle success or error
+//     }, 1000)
+// }
+
+
+
+
 // Handle form submission
 async function onSubmit(data: LoginFormValues) {
-    setIsLoading(true)
-    // dispatch(setCardentials({ ...userData, user: userData.user }));
+  setIsLoading(true);
+  setIsSuccess(true);
 
-    console.log("Form data:", data)
+  console.log("Success Status:", isSuccess);
 
+  if(!isSuccess){
+    console.log("Success Status again:", isSuccess);
+    console.log("Form submission started", data.email);
+    try {
+       await sendCode( data.email );
+      // console.log("User Data:", userData); // Log the response to verify its structure
+      // if (userData && userData.user) {
+        // dispatch(setCardentials({ ...userData, user: userData.user }));
+      // } else {
+      //   console.error("User data is undefined or missing user property");
+      // }
+    } catch (err) {
+      console.error("Sign Up error:", err);
+    }
 
-    // In a real app, you would make an API call here
-    setTimeout(() => {
-      setIsLoading(false)
-      // Handle success or error
-    }, 1000)
+  }else{
+  // Simulate API call
+  console.log("Form submission started", data);
+  try {
+     await login( data.email, data.password, data.code);
+    // console.log("User Data:", userData); // Log the response to verify its structure
+    // if (userData && userData.user) {
+      // dispatch(setCardentials({ ...userData, user: userData.user }));
+    // } else {
+    //   console.error("User data is undefined or missing user property");
+    // }
+  } catch (err) {
+    console.error("Sign Up error:", err);
+  }
 }
+  // In a real app, you would make an API call here
+  setTimeout(() => {
+    setIsLoading(false)
+    // Handle success or error
+  }, 1000)
+}
+
+
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -61,7 +133,28 @@ async function onSubmit(data: LoginFormValues) {
                   <h1 className="text-2xl mb-3 font-bold">مرحبًا بعودتك</h1>
                   {/* <p className="text-balance text-muted-foreground">تسجيل الدخول إلى حساب Acme Inc الخاص بك</p> */}
                 </div>
+{isSuccess ? <div className="text-center flex flex-col justify-center items-center gap-3">
+  <h3> يرجى إدخال الكود الواصل إليكم عبر البريد الإلكتروني </h3>
+  <InputOTP maxLength={6} className="flex  flex-row-reverse-reverse gap-7" >
+  <InputOTPGroup>
+        <InputOTPSlot index={5} />
+        <InputOTPSlot index={4} />
+        <InputOTPSlot index={3} />
+      </InputOTPGroup>
+      <InputOTPSeparator />
+      <InputOTPGroup>
+        <InputOTPSlot index={2} />
+        <InputOTPSlot index={1} />
+        <InputOTPSlot index={0} />
+      </InputOTPGroup>     
+    </InputOTP>
 
+    <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "التالي": "إنشاء حساب"}
+      </Button>
+    </div>
+ : 
+ <>
                 <FormField
                   control={form.control}
                   name="email"
@@ -105,7 +198,9 @@ async function onSubmit(data: LoginFormValues) {
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? "جاري تسجيل الدخول..." : "تسجيل الدخول"}
                 </Button>
-
+                </> 
+            }
+            {error ? <p className="text-red-500 text-sm">{error}</p> : null}
                 <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                   <span className="relative z-10 bg-background px-2 text-muted-foreground">أو المتابعة باستخدام</span>
                 </div>

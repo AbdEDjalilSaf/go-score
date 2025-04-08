@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import { loginUser } from '../api/auth';
+import { loginUser } from '../api/auth';
 
 
 // Define the response type from loginUser function
@@ -23,7 +23,7 @@ export const useLogin = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
-  const login = async (email:string,password:string): Promise<void> => {
+  const login = async (email:string,password:string,code?:string): Promise<void> => {
     setError(null);
     
 
@@ -35,17 +35,17 @@ export const useLogin = () => {
     // const password = passwordElement.value;
 
 
-    console.log("login started", { email, password });
+    console.log("login started", { email, password, code });
 
-    // const { success, data, error: loginError }: LoginResponse = await loginUser(email, password);
+    const { success, data, error: loginError }: LoginResponse = await loginUser(email, password,code);
 
-    // console.log("Login response:", { success, data, loginError });
+    console.log("Login response:", { success, data, loginError });
 
-    // if (success && data) {
-    //   router.push("/welcome");
-    // } else {
-    //   setError(loginError || "Login failed");
-    // }
+    if (success && data) {
+      router.push("/welcome");
+    } else {
+      setError(loginError || "Login failed");
+    }
   };
 
   
