@@ -4,8 +4,8 @@ import { setCardentials, logout } from '@/features/auth/authSlice';
 
 interface AuthState {
     auth: {
-        token: string;
-        user: string;
+        accessToken: string;
+        name: string;
     };
 }
 
@@ -13,7 +13,7 @@ const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:3000',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
-        const token = (getState() as AuthState).auth.token; // Custom type assertion
+        const token = (getState() as AuthState).auth.accessToken; // Custom type assertion
         if (token) {
             headers.set('authorization', `Bearer ${token}`);
         }
@@ -33,7 +33,7 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) =>{
         //     credentials: 'include'
         // });
         if(refreshResult?.data){
-            const user = api.getState().auth.user as { user: string; token: string };
+            const user = api.getState().auth.name as { name: string; accessToken: string };
             // store the new token 
             api.dispatch(setCardentials({ ...(refreshResult.data as object), user }));
             // retry the original request with the new access token

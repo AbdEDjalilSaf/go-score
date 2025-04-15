@@ -4,8 +4,8 @@ import { selectCurrentToken } from "./authSlice";
 
 
 export const requireAuth = () => {
-    const token = useSelector(selectCurrentToken);
-    if(!token){
+    const accessToken = useSelector(selectCurrentToken);
+    if(!accessToken){
         throw new Error('Unauthorized');
     }
 }

@@ -13,10 +13,11 @@ services:
     volumes:
       - sqlserver_data:/var/opt/mssql
   web:
-    # build: .
+    restart: on-failure
     image: go-score
     ports:
       - 8080:8080
       - 8081:8081
 # http://localhost:8080/swagger/index.html
 # https://localhost:8081/swagger/index.html
+# Passw0rd#

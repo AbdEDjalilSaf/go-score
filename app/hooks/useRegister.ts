@@ -2,21 +2,22 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { registerUser } from '../api/auth';
-
+import { registerUser } from "@/app/api/auth";
+import { setCardentials } from "@/features/auth/authSlice"
+import { useDispatch } from "react-redux"
 
 
 // Define the response type from registerUser function
 interface RegisterResponse {
-  success: boolean;
+  succeeded: boolean;
   data?: {
     user?: {
       id: string;
-      fullName: string;
       email: string;
       // Add other user properties as needed
     };
-    token?: string;
+    accessToken?: string;
+    name: string;
   };
   error?: string;
 }
@@ -24,31 +25,37 @@ interface RegisterResponse {
 export const useRegister = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch()
+  
 
-const register = async (fullName:string,email:string,password:string): Promise<void> => {
+const register = async(name:string,password:string,email:string,code:string): Promise<void> => {
   setError(null);
     
-
-    // Type assertions for DOM elements
-    // const fullNameElement = document.getElementById('fullName') as HTMLInputElement;
-    // const emailElement = document.getElementById('email') as HTMLInputElement;
-    // const passwordElement = document.getElementById('password') as HTMLInputElement;
     
-    console.log("register started", { fullName, email, password });
+    // console.log("register started", { name, email, password, code });
+
+const { succeeded, data, error: registrationError }: RegisterResponse = await registerUser(name, password, email, code);
+
+// const userData = data;
+console.log("User Sign Up Data:", data,"=====", data?.name,"++++++++", data?.accessToken ); // Log the response to verify its structure
+if (data) {
+  dispatch(setCardentials({ accessToken: data.accessToken, name: data?.name }));
+} else {
+  console.error("userData is undefined");
+}
 
 
-    // const fullName = fullNameElement.value;
-    // const email = emailElement.value;
-    // const password = passwordElement.value;
 
-const { success, data, error: registrationError }: RegisterResponse = await registerUser({fullName, email, password});
-      
-    if (success && data) {
-      router.push("/pages/welcome");
+      if(error){ 
+        console.log("error", error);
+      }
+    if (succeeded && data) {
+      router.push("/pages/blogPage");
     } else {
-      setError(registrationError || "Registration failed");
+      setError(registrationError || "Reason failed");
     }
   };
 
   return { register, error };
 };
+

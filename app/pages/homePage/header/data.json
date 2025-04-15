@@ -24,7 +24,9 @@
       ],
       "button": {
         "text": "تسجيل الدخول",
-        "href":"/login"
+        "href":"/login",
+        "textLogin": "الدخول",
+        "hrefLogin": "/login"
       }
     },
     "deviceHeader": {
@@ -68,7 +70,9 @@
       ],
       "button": {
         "text": "تسجيل الدخول",
-        "href":"/login"
+        "href":"/login",
+        "textLogin": "الدخول",
+        "hrefLogin": "/login"
       }
     },
     "pathsDropdownItems": [

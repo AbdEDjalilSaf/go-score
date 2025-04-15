@@ -10,6 +10,8 @@ import SecondLogo from "@/public/SecondLogo.png"
 export default function Footer() {
   const { footer } = footerData
 
+
+
   // Map social icons to their components
   const socialIcons = {
     Facebook: Facebook,

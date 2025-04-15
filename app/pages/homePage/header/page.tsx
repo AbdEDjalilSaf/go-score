@@ -6,7 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import data from "./data.json"
 import { ChevronDown, Menu } from "lucide-react"
-
+import { useSelector } from 'react-redux'
+import { selectCurrentToken, selectCurrentUser } from '@/features/auth/authSlice';
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -30,6 +31,7 @@ interface HeaderProps {
     }[]
     button: {
       text: string
+      textLogin: string
     }
   }
   Logo: StaticImageData
@@ -38,8 +40,10 @@ interface HeaderProps {
 
 
 export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
-  const [open, setOpen] = useState(false)
-  const [videOpen, setVideOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [videOpen, setVideOpen] = useState(false);
+  const token = useSelector(selectCurrentToken);
+  
 
   return (
     <header className="sticky top-0 px-4 lg:px-36 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -95,6 +99,14 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                     )
                   })}
                   <Link href="/login">
+                  {token ? 
+                  <Button
+                    size="lg"
+                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
+                    onClick={() => setVideOpen(false)}
+                  >
+                    {deviceHeader.button.textLogin}
+                  </Button>  : 
                   <Button
                     size="lg"
                     className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
@@ -102,6 +114,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                   >
                     {deviceHeader.button.text}
                   </Button>
+                  }
                   </Link>
                 </nav>
               </SheetContent>
@@ -207,6 +220,14 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                   )
                 })}
                 <Link href="/login">
+                {token ? 
+                  <Button
+                    size="lg"
+                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
+                    onClick={() => setVideOpen(false)}
+                  >
+                    {deviceHeader.button.textLogin}
+                  </Button> :
                   <Button
                     size="lg"
                     className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
@@ -214,6 +235,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                   >
                     {deviceHeader.button.text}
                   </Button>
+                  }
                 </Link>
               </nav>
             </SheetContent>

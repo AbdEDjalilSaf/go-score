@@ -1,7 +1,7 @@
 'use client';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { user: null, token: null };
+const initialState = { name: null, accessToken: null };
 
 const userSlice = createSlice({
   name: 'user',
@@ -11,12 +11,12 @@ const userSlice = createSlice({
         // const { user, token } = action.payload;
         // state.user = user;
         // state.token = token;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.name = action.payload.user;
+      state.accessToken = action.payload.token;
     },
     logout: (state , action) => {
-      state.user = null;
-      state.token = null;
+      state.name = null;
+      state.accessToken = null;
     },
   },
 });
@@ -24,6 +24,6 @@ const userSlice = createSlice({
 export const { setCardentials, logout } = userSlice.actions;
 export default userSlice.reducer;
 
-export const selectCurrentUser = (state: any) => state.auth.user;
-export const selectCurrentToken = (state: any) => state.auth.token;
+export const selectCurrentUser = (state: any) => state.auth.name;
+export const selectCurrentToken = (state: any) => state.auth.accessToken;
 

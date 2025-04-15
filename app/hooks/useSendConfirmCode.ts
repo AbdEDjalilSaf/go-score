@@ -6,7 +6,7 @@ import { sendConfirmCode } from "@/app/api/auth"
 
 // Define the response type from sendConfirmationCode function
 interface ConfirmCodeResponse {
-  success: boolean
+  succeeded: boolean
   data?: {
     message?: string
     expiresIn?: number
@@ -22,15 +22,16 @@ export const useSendConfirmCode = () => {
 
   const sendCode = async (email: string): Promise<void> => {
     setError(null)
-    setLoading(true)
+    setLoading(true)  
     setSent(false)
 
     console.log("sendCode started",  email );
 
     try {
-      const { success, data, error: sendCodeError }: ConfirmCodeResponse = await sendConfirmCode( email );
+      const { succeeded, data, error: sendCodeError }: ConfirmCodeResponse = await sendConfirmCode( email );
+      console.log("Form submission started", succeeded);
 
-      if (success && data) {
+      if (succeeded && data) {
         setSent(true)
         // Optionally redirect or just stay on the same page
       } else {
