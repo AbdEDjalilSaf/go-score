@@ -1,0 +1,40 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "title": "معلوماتي",
+      "icon": "Info"
+    },
+    {
+      "id": 2,
+      "title": "التحليلات",
+      "icon": "ChartNoAxesCombined"
+    },
+    {
+      "id": 3,
+      "title": "محاكي الاختبار",
+      "icon": "FileText"
+    },
+    {
+      "id": 4,
+      "title": "الاشتركات",
+      "icon": "ShieldCheck"
+    },
+    {
+      "id": 5,
+      "title": "الدعم الفني",
+      "icon": "HelpCircle"
+    },
+    {
+      "id": 6,
+      "title": "المدربون",
+      "icon": "Users"
+    }
+  ],
+  "userInfo": {
+    "name": "nooduhk saf",
+    "avatar": "/placeholder.svg?height=80&width=80",
+    "hasTraining": true,
+    "title":"تدرب بذكاء"
+  }
+}

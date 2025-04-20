@@ -14,6 +14,7 @@ import Footer from "@/app/pages/homePage/footer/page"
 // });
 import "./globals.css";
 import ProviderWrapper from './ProviderWrapper'; // Ensure correct path & import
+// import '@fontsource/cairo/700.css'; // Normal weight
 
 
 const cairo = Cairo({
@@ -21,6 +22,8 @@ const cairo = Cairo({
   display: "swap",
   variable: "--font-cairo",
 });
+
+// className={`${cairo.variable}`}
 
 export const metadata: Metadata = {
   title: "افضل موقع للتدرب على الاختبارات|GoScore",

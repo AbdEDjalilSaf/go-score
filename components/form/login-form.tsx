@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -15,6 +16,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/lib/validation"
 import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import Cookies from "js-cookie"
+import { useRouter } from "next/navigation"
+
 
 
 
@@ -23,7 +27,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 type LoginFormValues = z.infer<typeof loginSchema>
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
-  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { login, error } = useLogin(); // Ensure login accepts arguments or update its implementation
   
@@ -37,16 +43,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   })
 
 
-
-
 // Handle form submission
 async function onSubmit(data: LoginFormValues) {
   setIsLoading(true);
   setIsSuccess(true);
 
-  // console.log("Success Status:", isSuccess);
-
-  
   // Simulate API call
   // console.log("Form submission started", data);
   try {
@@ -63,7 +64,16 @@ async function onSubmit(data: LoginFormValues) {
   }, 1000)
 }
 
+ useEffect(() => {
+    const token = Cookies.get("accessToken")
+    setIsLoggedIn(!!token)
+    isLoggedIn ? router.push("/dashboard/dashStudent") : ""
 
+  }, [isLoggedIn])
+
+// useEffect(() => {
+//   const token = Cookies.get("accessToken")
+// },[token]);
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

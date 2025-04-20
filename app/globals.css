@@ -137,6 +137,10 @@
 .font-cairo {
   font-family: var(--font-cairo);
 }
+/* 
+body {
+  font-family: 'Cairo', sans-serif;
+} */
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

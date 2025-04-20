@@ -1,17 +1,18 @@
 "use client"
 
-import { useState, Suspense } from "react"
+import { useState, Suspense, useEffect } from "react"
 import type { StaticImageData } from "next/image"
 import Image from "next/image"
 import Link from "next/link"
 import data from "./data.json"
 import { ChevronDown, Menu } from "lucide-react"
-import { useSelector } from 'react-redux'
-import { selectCurrentToken, selectCurrentUser } from '@/features/auth/authSlice';
+// import { useSelector } from 'react-redux'
+// import { selectCurrentToken, selectCurrentUser } from '@/features/auth/authSlice';
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Cookies from "js-cookie"
 
 interface HeaderProps {
   header: {
@@ -37,13 +38,16 @@ interface HeaderProps {
   Logo: StaticImageData
 }
 
-
-
 export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
-  const [open, setOpen] = useState(false);
-  const [videOpen, setVideOpen] = useState(false);
-  const token = useSelector(selectCurrentToken);
-  
+  const [open, setOpen] = useState(false)
+  const [videOpen, setVideOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // Use useEffect to check for token on the client side only
+  useEffect(() => {
+    const token = Cookies.get("accessToken")
+    setIsLoggedIn(!!token)
+  }, [])
 
   return (
     <header className="sticky top-0 px-4 lg:px-36 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -98,23 +102,14 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                       </Link>
                     )
                   })}
-                  <Link href="/login">
-                  {token ? 
-                  <Button
-                    size="lg"
-                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
-                    onClick={() => setVideOpen(false)}
-                  >
-                    {deviceHeader.button.textLogin}
-                  </Button>  : 
-                  <Button
-                    size="lg"
-                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
-                    onClick={() => setVideOpen(false)}
-                  >
-                    {deviceHeader.button.text}
-                  </Button>
-                  }
+                  <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"}>
+                    <Button
+                      size="lg"
+                      className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
+                      onClick={() => setVideOpen(false)}
+                    >
+                      {isLoggedIn ? deviceHeader.button.textLogin : deviceHeader.button.text}
+                    </Button>
                   </Link>
                 </nav>
               </SheetContent>
@@ -142,7 +137,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     {data.pathsDropdownItems.map((pathItem, pathIndex) => (
-                      <DropdownMenuItem key={pathIndex} asChild >
+                      <DropdownMenuItem key={pathIndex} asChild>
                         <Link href={pathItem.href} className="w-full flex justify-end cursor-pointer">
                           {pathItem.name}
                         </Link>
@@ -162,10 +157,10 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
 
         {/* Desktop Button */}
         <div className="hidden md:flex items-center gap-2">
-        <Link href={header.button.href}>
-          <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto">
-            {header.button.text}
-          </Button>
+          <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"}>
+            <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto">
+              {isLoggedIn ? deviceHeader.button.textLogin : header.button.text}
+            </Button>
           </Link>
         </div>
 
@@ -219,23 +214,14 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                     </Link>
                   )
                 })}
-                <Link href="/login">
-                {token ? 
+                <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"}>
                   <Button
                     size="lg"
-                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
-                    onClick={() => setVideOpen(false)}
-                  >
-                    {deviceHeader.button.textLogin}
-                  </Button> :
-                  <Button
-                    size="lg"
-                    className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
+                    className="bg-primary  rounded-full text-base px-6 py-3 h-auto mt-4"
                     onClick={() => setOpen(false)}
                   >
-                    {deviceHeader.button.text}
+                    {isLoggedIn ? deviceHeader.button.textLogin : deviceHeader.button.text}
                   </Button>
-                  }
                 </Link>
               </nav>
             </SheetContent>
@@ -245,4 +231,3 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
     </header>
   )
 }
-
