@@ -31,7 +31,11 @@ export default function RightMenu() {
 const makeCookies = (name: string) => {
   if(Cookies.get("nameLink")){
     Cookies.remove("nameLink");
-    Cookies.set("nameLink", name);
+    Cookies.set("nameLink", name, {
+      expires: 1, // Token expires in 1 days
+      path: "/", // Available across the entire site
+      sameSite: "strict", // Restrict to same site to prevent CSRF
+    });
     window.location.reload();
   }else{
     Cookies.set("nameLink", name);
@@ -43,7 +47,7 @@ const makeCookies = (name: string) => {
 
 useEffect(() => {
   const checkScreenSize = () => {
-    setIsMobile(window.innerWidth < 768)
+    setIsMobile(window.innerWidth < 900)
   }
 
   // Initial check
@@ -71,14 +75,14 @@ useEffect(() =>{
   return (
     <>
       {isMobile && (
-        <Button variant="outline" className="self-end mb-2 bg-white" onClick={toggleMenu}>
+        <Button variant="outline" className="self-end sl:hidden  mb-2 bg-white" onClick={toggleMenu}>
           القائمة
           <ChevronRight className="mr-2 h-4 w-4" />
         </Button>
       )}
 
       <Card
-        className={`w-full md:w-80 bg-white shadow-xl transition-all duration-300 ${isMobile && !isMenuOpen ? "hidden" : "block"}`}
+        className={`w-full lg:w-80 bg-white shadow-xl transition-all duration-300 ${isMobile && !isMenuOpen ? "hidden" : "block"}`}
       >
         <CardContent className="p-4">
           <div className="flex flex-col items-center mb-6 mt-4">
@@ -92,10 +96,12 @@ useEffect(() =>{
             </div>
             <h3 className="text-lg font-medium text-gray-800">{menuData.userInfo.name}</h3>
 
-            <Tabs defaultValue="دورات" className="w-full mt-3">
+            <Tabs defaultValue="قدرات" className="w-full mt-3">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="دورات">دورات</TabsTrigger>
-                <TabsTrigger value="اختباراتي">اختباراتي</TabsTrigger>
+                <TabsTrigger value="تحصيلي">تحصيلي</TabsTrigger>
+                <TabsTrigger value="قدرات">قدرات</TabsTrigger>
+                {/* <TabsTrigger value="موهبة">موهبة</TabsTrigger> */}
+                {/* <TabsTrigger value="قدرات">قدرات</TabsTrigger> */}
               </TabsList>
             </Tabs>
 

@@ -49,6 +49,15 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
     setIsLoggedIn(!!token)
   }, [])
 
+  // const clearCookies = ()=>{
+  //   if(Cookies.get("nameLink")){
+  //     Cookies.remove("nameLink");
+  //     console.log(" more butter");
+  //     window.location.reload();
+  //   }
+    
+  // }
+
   return (
     <header className="sticky top-0 px-4 lg:px-36 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -96,17 +105,22 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                         key={index}
                         href={item.href}
                         className="text-lg font-medium py-2 hover:text-primary text-right"
-                        onClick={() => setVideOpen(false)}
+                        onClick={() => {setVideOpen(false)
+                          
+                        }
+                        }
                       >
                         {item.name}
                       </Link>
                     )
                   })}
-                  <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"}>
+                  <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"} >
                     <Button
                       size="lg"
                       className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
-                      onClick={() => setVideOpen(false)}
+                      onClick={() => setVideOpen(false)
+                        
+                      }
                     >
                       {isLoggedIn ? deviceHeader.button.textLogin : deviceHeader.button.text}
                     </Button>
@@ -157,8 +171,8 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
 
         {/* Desktop Button */}
         <div className="hidden md:flex items-center gap-2">
-          <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"}>
-            <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto">
+          <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"} >
+            <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto" >
               {isLoggedIn ? deviceHeader.button.textLogin : header.button.text}
             </Button>
           </Link>
@@ -214,11 +228,13 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                     </Link>
                   )
                 })}
-                <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"}>
+                <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"} >
                   <Button
                     size="lg"
                     className="bg-primary  rounded-full text-base px-6 py-3 h-auto mt-4"
-                    onClick={() => setOpen(false)}
+                    onClick={() => setOpen(false)
+                      
+                    }
                   >
                     {isLoggedIn ? deviceHeader.button.textLogin : deviceHeader.button.text}
                   </Button>

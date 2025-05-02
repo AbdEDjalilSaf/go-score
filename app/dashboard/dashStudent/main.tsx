@@ -20,7 +20,7 @@ import ExamSimulator from './pages/exam-simulator/page'
 import Support from './pages/support/page'
 import Teachers from './pages/teachers/page'
 import SmartTraining from './pages/smartTraining/page'
-
+import GlobalTestPage from './pages/globalTestPage/page'
 
 const Main = () => {
 const [nameGetLink, setNameGetLink] = useState<string>("");
@@ -37,13 +37,16 @@ useEffect(() =>{
    
 {nameGetLink == "معلوماتي" ? <Info /> : nameGetLink == "التحليلات" ? <Analytics /> :  nameGetLink == "محاكي الاختبار" ? <ExamSimulator /> : nameGetLink == "الدعم الفني" ? <Support /> : nameGetLink == "المدربون" ? <Teachers /> : nameGetLink == "تدرب بذكاء" ? <SmartTraining /> : 
 <>
-<div>
+{/* <div>
  <h1 className="text-2xl font-bold text-purple-800 mb-4">تدرب بذكاء</h1>
     <p className="text-gray-700">
         اختر القسم الذي تريد التدرب عليه وحدد نوع الأسئلة التي تودها ثم اضغط على (ابدأ التدريب) لبدء التدرب الذكي في
         تدريبك
     </p>
-    </div>
+    </div> */}
+
+    <GlobalTestPage />
+    
 </> }
 
     {/* <Router>
