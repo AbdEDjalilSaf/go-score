@@ -1,15 +1,24 @@
 {
     "hero": {
-        "title": " مدرب القدرات الذكي",
+        "title": "معلومات التعلم",
         "description": [
           " دع الذكاء الاصطناعي يكتشف نقاط ضعفك من خلال تدريبك على أحدث أسئلة القدرات بتقنيات مبتكرة ويساعدك في تحسين مستواك حتى تصل .."
         ],
-        "buttonText": "تدرب بذكاء"
+        "buttonText": "تدرب بذكاء",
+        "typeSctionOne": "قدرات",
+        "typeSctionTwo": "تحصيلي"
       },
-      "evluate": {
-        "rating": 0,
-        "points": 0,
-        "rank": 0,
+      "evluateOne": {
+        "rating": 56,
+        "points": 768,
+        "rank": 432,
+        "name": "للمشتركين",
+        "achievement": "قدرات"
+      },
+       "evluateTwo": {
+        "rating": 234,
+        "points": 243,
+        "rank": 4321,
         "name": "للمشتركين",
         "achievement": "تحصيلي"
       },
@@ -19,7 +28,7 @@
           "expiryDate": "25/03/2035"
         
       },
-      "resultCards": [
+      "resultCardsOne": [
       {
         "title": "القسم الكمي",
         "questions": 37,
@@ -29,6 +38,36 @@
       },
       {
         "title": "القسم اللفظي",
+        "questions": 6,
+        "correctAnswers": 2,
+        "incorrectAnswers": 4,
+        "forParticipants": true
+      }
+    ],
+      "resultCardsTwo": [
+      {
+        "title": "الرياضيات",
+        "questions": 37,
+        "correctAnswers": 14,
+        "incorrectAnswers": 23,
+        "forParticipants": true
+      },
+      {
+        "title": "علم الاحياء",
+        "questions": 6,
+        "correctAnswers": 2,
+        "incorrectAnswers": 4,
+        "forParticipants": true
+      },
+       {
+        "title": "الفيزياء",
+        "questions": 37,
+        "correctAnswers": 14,
+        "incorrectAnswers": 23,
+        "forParticipants": true
+      },
+      {
+        "title": "علم الكيمياء",
         "questions": 6,
         "correctAnswers": 2,
         "incorrectAnswers": 4,

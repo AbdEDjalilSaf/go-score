@@ -4,6 +4,8 @@ import Panne from "@/public/pannDash.jpg"
 import data from './data.json';
 import { LockIcon } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { useDispatch, useSelector } from 'react-redux';
+import { changeBackground,changeTitleGlobal } from '@/features/auth/authSlice';
 // import { DoorClosedIcon as LockClosedIcon } from 'lucide-react';
 // import { TrainerBanner } from './components/TrainerBanner';
 // import { LearningInfo } from './components/LearningInfo';
@@ -55,7 +57,8 @@ const [isYourRanking, setIsYourRanking] = useState(0);
 const [isYourPoint, setIsYourPoint] = useState(0);
 
 
-
+ const dispatch = useDispatch();
+  const currentTitle = useSelector((state: { background: { name: string } }) => state.background.name);
 
 
   return (
@@ -87,25 +90,25 @@ const [isYourPoint, setIsYourPoint] = useState(0);
           </div>
         
       
-    <div className="bg-white rounded-lg shadow-xl p-6 mb-6">
+    <div className="bg-white  rounded-lg shadow-xl p-6 mb-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">{data.hero.title}</h2>
      
-    <div className="bg-white rounded-lg  p-4 flex flex-col sm:flex-row-reverse items-center justify-between" dir="rtl">
+    <div className="bg-white rounded-lg  p-4 flex flex-col sm:flex-row-reverse  items-center justify-between" dir="rtl">
       <div className="flex items-center gap-4 w-full sm:w-auto mb-4 sm:mb-0">
        
         <div className="flex flex-col  sm:flex-row gap-4 sm:gap-8">
         <div className="text-center flex flex-col justify-center items-center sm:text-right">
             <h3 className="text-purple-800 font-bold text-lg">ترتيبك</h3>
-            <p className="text-gray-700">{data.evluate.rank}</p>
+            <p className="text-gray-700">{currentTitle == "قدرات" ? data.evluateOne.rank : data.evluateTwo.rank}</p>
           </div>
           <div className="text-center flex flex-col justify-center items-center sm:text-right">
             <h3 className="text-purple-800 font-bold text-lg">نقاطك</h3>
-            <p className="text-gray-700">{data.evluate.points}</p>
+            <p className="text-gray-700">{currentTitle == "قدرات" ? data.evluateOne.points : data.evluateTwo.points}</p>
           </div>
          
           <div className="text-center flex flex-col justify-center items-center sm:text-right">
             <h3 className="text-purple-800 font-bold text-lg">التقييم</h3>
-            <p className="text-gray-700">{isSubsEvluate ? data.evluate.rating : "للمشتركين"}</p>
+            <p className="text-gray-700">{isSubsEvluate ? data.evluateOne.rating : "للمشتركين"}</p>
           </div>
           <div className="bg-gray-200 rounded-full p-3 flex flex-row-reverse items-center justify-center">
           <svg
@@ -131,7 +134,7 @@ const [isYourPoint, setIsYourPoint] = useState(0);
         <button className="bg-purple-800 text-white px-4 py-2 rounded-md hover:bg-purple-900 transition-colors">
           التحليلات
         </button>
-        <h2 className="text-orange-500 font-bold text-xl">تحصيلي</h2>
+        <h2 className="text-orange-500 font-bold text-xl">{currentTitle == "قدرات" ? data.hero.typeSctionOne : data.hero.typeSctionTwo}</h2>
       </div>
     </div>
 {/*         
@@ -143,8 +146,10 @@ const [isYourPoint, setIsYourPoint] = useState(0);
           expiryDate={data.subscription.expiryDate} 
         /> */}
       
-<div className='flex flex-col mt-8  md:flex-row gap-3'>
-{data.resultCards.map((resultCard, index) => (
+<div className={currentTitle == "قدرات" ? "flex flex-col mt-8  md:flex-row gap-3" : "flex flex-col mt-8 md:flex-wrap  lg:flex-row gap-4"}>
+  {currentTitle == "قدرات" ?
+  <>
+{data.resultCardsOne.map((resultCard, index) => (
       <Card key={index} className="overflow-hidden w-full gap-2 py-2 shadow-sm">
       <CardHeader className="bg-white p-4 ">
         <h2 className="text-md font-semibold text-gray-800">{resultCard.title}</h2>
@@ -174,6 +179,40 @@ const [isYourPoint, setIsYourPoint] = useState(0);
       </CardContent>
     </Card>
     ))}
+    </> : 
+    <>
+{data.resultCardsTwo.map((resultCard, index) => (
+      <Card key={index} className="overflow-hidden w-full  lg:w-[49%]  gap-2 py-2 shadow-sm">
+      <CardHeader className="bg-white p-4 ">
+        <h2 className="text-md font-semibold text-gray-800">{resultCard.title}</h2>
+      </CardHeader>
+      <CardContent className="p-0">
+        <div className="grid grid-cols-3 text-center">
+          <div className="p-4 border-r border-gray-100">
+            <h3 className="text-sm font-medium text-gray-500">الأسئلة</h3>
+            <p className="text-md font-bold mt-1">{resultCard.questions}</p>
+          </div>
+          <div className="p-4 border-r border-gray-100">
+            <h3 className="text-sm font-medium text-gray-500">الإجابات</h3>
+            <div className="flex justify-center items-center gap-2 mt-1">
+              <span className="text-md font-bold text-green-500">{resultCard.correctAnswers}</span>
+              <span className="text-gray-300">|</span>
+              <span className="text-md font-bold text-red-500">{resultCard.incorrectAnswers}</span>
+            </div>
+          </div>
+          <div className="p-4">
+            <h3 className="text-sm font-medium text-gray-500">النسبة</h3>
+            <div className="flex justify-center items-center gap-1 mt-1">
+              <span className="text-md  font-normal  text-gray-700">للمشتركين</span>
+              {resultCard.forParticipants && <LockIcon className="h-4 w-4 text-gray-500" />}
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+    ))}
+</>
+  }
     </div>
      </div>
 

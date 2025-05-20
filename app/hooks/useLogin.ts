@@ -4,8 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { loginUser } from "../api/auth"
 import Cookies from "js-cookie"
-// import { setCardentials } from "@/features/auth/authSlice"
-// import { useDispatch } from "react-redux"
+import { changeTitleGlobal } from "@/features/auth/authSlice"
+import { useDispatch } from "react-redux"
 
 // Define the response type from loginUser function
 interface LoginResponse {
@@ -24,7 +24,7 @@ interface LoginResponse {
 export const useLogin = () => {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const login = async (email: string, password: string): Promise<void> => {
     setError(null)
@@ -47,7 +47,7 @@ export const useLogin = () => {
     if (succeeded && data && data.accessToken) {
       // Save the access token to cookies
       Cookies.set("accessToken", data.accessToken, {
-        expires: 1, // Token expires in 1 days
+        expires: 7, // Token expires in 1 days
         path: "/", // Available across the entire site
         secure: process.env.NODE_ENV === "production", // Secure in production
         sameSite: "strict", // Restrict to same site to prevent CSRF
@@ -56,7 +56,7 @@ export const useLogin = () => {
       router.push("/dashboard/dashStudent");
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 900);
     } else {
       setError(loginError || "Login failed")
     }

@@ -82,12 +82,12 @@ export default function FAQSection({ data }: FAQSectionProps) {
         </form>
 
         {/* FAQ Items */}
-        <div className="mt-8 space-y-4">
+        <div className="mt-8  space-y-4">
           {filteredItems.map((item) => (
             <div key={item.id} className="border-b border-gray-200 pb-4">
               <button
                 onClick={() => toggleItem(item.id)}
-                className="flex justify-between items-center w-full text-right py-2 text-gray-800 hover:text-purple-700 focus:outline-none"
+                className="flex justify-between flex-row-reverse items-center w-full text-right py-2 text-gray-800 hover:text-purple-700 focus:outline-none"
               >
                 <span className="text-purple-500">
                   {expandedId === item.id ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}

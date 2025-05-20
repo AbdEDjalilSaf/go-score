@@ -1,0 +1,328 @@
+{
+    "title": "تحليلاتي",
+    "capabilities": {
+      "title": "قدرات",
+      "items": [
+        {
+          "name": "الترتيب",
+          "value": 8343
+          
+        },
+        {
+          "name": "نقاطك",
+          "value": 31
+          
+        },
+        {
+          "name": "الاسئلة",
+          "value": 43
+         
+        },
+        {
+          "name": "النسبة ",
+          "value": "للمشتركين " 
+        
+        }
+      ],
+      "expectedGrade": {
+        "title": "الدرجة المتوقعة في الاختبار الحقيقي",
+        "value": "للمشتركين فقط"
+      }
+    },
+    "achievement": {
+      "title": "تحصيلي",
+      "items": [
+        {
+          "name": "الترتيب",
+          "value": 8343
+          
+        },
+        {
+          "name": "نقاطك",
+          "value": 31
+          
+        },
+        {
+          "name": "الاسئلة",
+          "value": 43
+         
+        },
+        {
+          "name": "النسبة ",
+          "value": "للمشتركين " 
+        
+        }
+      ],
+      "expectedGrade": {
+        "title": "الدرجة المتوقعة في الاختبار الحقيقي",
+        "value": "للمشتركين فقط"
+      }
+    },
+    "sections": [
+      {
+        "title": "القسم الكمي",
+        "color": "green",
+        "totalQuestions": 20,
+        "totalAnswers": 14,
+        "participants": 2,
+        "assessments": [
+          {
+            "category": "التعليمات الجبرية",
+            "questions": 12,
+            "answers": 10,
+            "timeAvg": "00:04",
+            "timeTotal": "00:38",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": "التعليمات الحسابية",
+            "questions": 3,
+            "answers": 2,
+            "timeAvg": "00:12",
+            "timeTotal": "00:25",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": "التعليمات الهندسية",
+            "questions": 5,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": "تحليل البيانات",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:11",
+            "timeTotal": "00:21",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": "المقارنات",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:04",
+            "timeTotal": "00:28",
+            "evaluation": "للمشتركين"
+          }
+        ]
+      },
+      {
+        "title": "القسم اللفظي",
+        "color": "purple",
+        "totalQuestions": 8,
+        "totalAnswers": 5,
+        "participants": 2,
+        "assessments": [
+          {
+            "category": "الخط السياقي",
+            "questions": 2,
+            "answers": 2,
+            "timeAvg": "00:12",
+            "timeTotal": "00:24",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " اكمال الجمل",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:12",
+            "timeTotal": "00:19",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " استيعاب المقروء",
+            "questions": 2,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " التاظر اللفظي",
+            "questions": 2,
+            "answers": 1,
+            "timeAvg": "00:11",
+            "timeTotal": "00:22",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " المفردة الشاذة",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:08",
+            "timeTotal": "00:11",
+            "evaluation": "للمشتركين"
+          }
+        ]
+      }
+    ],
+    "sectionsAchevement": [
+      {
+        "title": " علم الاحياء",
+        "color": "green",
+        "totalQuestions": 20,
+        "totalAnswers": 14,
+        "participants": 2,
+        "assessments": [
+          {
+            "category": " احياء 1",
+            "questions": 12,
+            "answers": 10,
+            "timeAvg": "00:04",
+            "timeTotal": "00:38",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " احياء 2",
+            "questions": 3,
+            "answers": 2,
+            "timeAvg": "00:12",
+            "timeTotal": "00:25",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " احياء 3",
+            "questions": 5,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " احياء 4",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:11",
+            "timeTotal": "00:21",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": "علم البيئة",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:04",
+            "timeTotal": "00:28",
+            "evaluation": "للمشتركين"
+          }
+        ]
+      },
+      {
+        "title": " الفيزياء",
+        "color": "purple",
+        "totalQuestions": 8,
+        "totalAnswers": 5,
+        "participants": 2,
+        "assessments": [
+          {
+            "category": " الفيزياء 1",
+            "questions": 2,
+            "answers": 2,
+            "timeAvg": "00:12",
+            "timeTotal": "00:24",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الفيزياء 2 ",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:12",
+            "timeTotal": "00:19",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الفيزياء 3 ",
+            "questions": 2,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          } 
+        ] 
+      },
+      {
+        "title": " الكيمياء",
+        "color": "blue",
+        "totalQuestions": 8,
+        "totalAnswers": 5,
+        "participants": 2,
+        "assessments": [
+          {
+            "category": " الكيمياء 1",
+            "questions": 2,
+            "answers": 2,
+            "timeAvg": "00:12",
+            "timeTotal": "00:24",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الكيمياء 2 ",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:12",
+            "timeTotal": "00:19",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الكيمياء 3 ",
+            "questions": 2,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الكيمياء 4 ",
+            "questions": 2,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الكيمياء 5 ",
+            "questions": 2,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          }
+        ] 
+      },
+      {
+        "title": " الرياضيات",
+        "color": "red",
+        "totalQuestions": 8,
+        "totalAnswers": 5,
+        "participants": 2,
+        "assessments": [
+          {
+            "category": " الرياضيات 1",
+            "questions": 2,
+            "answers": 2,
+            "timeAvg": "00:12",
+            "timeTotal": "00:24",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الرياضيات 2 ",
+            "questions": 1,
+            "answers": 1,
+            "timeAvg": "00:12",
+            "timeTotal": "00:19",
+            "evaluation": "للمشتركين"
+          },
+          {
+            "category": " الرياضيات 3 ",
+            "questions": 2,
+            "answers": 0,
+            "timeAvg": "00:00",
+            "timeTotal": "00:00",
+            "evaluation": "للمشتركين"
+          }   
+        ] 
+      }
+    ]
+  }
+  

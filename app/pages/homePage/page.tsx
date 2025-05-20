@@ -23,17 +23,17 @@ import Link from "next/link"
 const page = () => {
   return (
     <>
-       <div className="flex min-h-screen flex-col">
+       <div className="flex min-h-screen  flex-col">
      
 
      <main className="flex-1">
        {/* Hero Section */}
-       <section className="relative overflow-hidden py-7 md:py-28">
+       <section className="relative flex justify-center items-center overflow-hidden py-7 md:py-28">
          <div className="container px-12">
            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
              <div className="flex flex-col justify-center space-y-4 text-right">
                <div className="space-y-2">
-                 <h1 className="text-3xl font-bold tracking-tighter mb-7   sm:text-5xl xl:text-6xl/none text-primary">
+                 <h1 className="text-3xl font-bold tracking-tighter mb-7  sm:text-5xl xl:text-6xl/none text-primary">
                    حياك في منصة GoScore !
                  </h1>
                  <p className="max-w-[600px] text-muted-foreground md:text-xl">المنصة التي تدربك على القدرات بذكاء</p>
@@ -79,7 +79,7 @@ const page = () => {
        </section>
 
        {/* Features Section */}
-       <section className="bg-muted py-12 md:py-20">
+       <section className="bg-muted flex justify-center items-center py-12 md:py-20">
          <div className="container px-4 md:px-6">
            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">
@@ -137,7 +137,7 @@ const page = () => {
        </section>
 
        {/* About Section */}
-       <section className="py-12 md:py-20">
+       <section className="py-12 flex justify-center items-center md:py-20">
          <div className="container px-4 md:px-6 text-center">
            <p className="mx-auto max-w-3xl text-muted-foreground md:text-lg">
              بنينا مناهج اختبارك بطريقة ذكية عشان تدرس وانت مرتاح وما تكرر عليك المعلومة اللي تعرفها. موقع اختبارات
@@ -152,7 +152,7 @@ const page = () => {
        </section>
 
        {/* Test Types Section */}
-       <section className="py-12 md:py-20 bg-muted">
+       <section className="py-12 flex justify-center items-center md:py-20 bg-muted">
          <div className="container px-4 md:px-6">
            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-10 text-primary">
              اختبارات تساعدك فيها
@@ -205,7 +205,7 @@ const page = () => {
        </section>
 
        {/* Stats Section */}
-       <section className="py-12 md:py-20 bg-gradient-to-b from-white to-muted">
+       <section className="py-12 flex justify-center items-center md:py-20 bg-gradient-to-b from-white to-muted">
          <div className="container px-4 md:px-6">
            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
              <div className="space-y-2">
@@ -229,7 +229,7 @@ const page = () => {
        </section>
 
        {/* Partners Section */}
-       <section className="py-12 md:py-20">
+       <section className="py-12 flex justify-center items-center md:py-20">
          <div className="container px-4 md:px-6">
            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-10 text-primary">
              شركاء نجاحنا
@@ -298,7 +298,7 @@ const page = () => {
        </section>
 
        {/* CTA Section */}
-       <section className="py-12 md:py-20 bg-primary border-b-[0.5px] border-white border-solid text-primary-foreground">
+       <section className="py-12 flex justify-center items-center md:py-20 bg-primary border-b-[0.5px] border-white border-solid text-primary-foreground">
          <div className="container px-4 md:px-6 text-center">
            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-4">ابدأ رحلتك التعليمية معنا اليوم</h2>
            <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl mb-6">

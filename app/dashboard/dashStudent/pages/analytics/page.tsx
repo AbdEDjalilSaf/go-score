@@ -1,11 +1,54 @@
-import React from 'react'
+"use client"
 
-const page = () => {
+import { useState, useEffect } from "react"
+import AnalyticsHeader from "@/app/dashboard/dashStudent/pages/analytics/analytics-header"
+import CapabilitiesSection from "@/app/dashboard/dashStudent/pages/analytics/capabilities-section"
+import AnalyticsHeaderTwo from "@/app/dashboard/dashStudent/pages/analytics/analytics-header-two"
+import AchievementSection from "@/app/dashboard/dashStudent/pages/analytics/achievement-section"
+import AssessmentSection from "@/app/dashboard/dashStudent/pages/analytics/assessment-section"
+import data from "./data.json"
+import Cookies from "js-cookie"
+import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from "@/app/hooks/use-media-query"
+
+export default function AnalyticsDashboard() {
+  const [nameGetLink, setNameGetLink] = useState<string>("");
+  const currentColor = useSelector((state: { background: { name: string } }) => state.background.name);
+
+  useEffect(() =>{
+  // if(Cookies.get("nameType")){
+  //   const cooke = Cookies.get("nameType") || "";
+  //   setNameGetLink(cooke);
+  // }else{
+  //   setNameGetLink("قدرات");
+  // }
+   
+  }, []);
+
+  const [analyticsData, setAnalyticsData] = useState(data)
+  const isMobile = useMediaQuery("(max-width: 768px)")
+
   return (
-    <>
-      <h2>Welcome analytics</h2>
-    </>
+    <div className="min-h-screen bg-white p-4 md:p-6 rtl" dir="rtl">
+{currentColor == 'قدرات' ?
+      <div className="max-w-5xl mx-auto space-y-4">
+        <AnalyticsHeader title={analyticsData.title} />
+        <CapabilitiesSection capabilities={analyticsData.capabilities} />
+
+        {analyticsData.sections.map((section, index) => (
+          <AssessmentSection key={index} section={section} isMobile={isMobile} />
+        ))}
+      </div>
+        :  
+        <div className="max-w-5xl mx-auto space-y-4">
+        <AnalyticsHeaderTwo title={analyticsData.title} />
+        <AchievementSection capabilities={analyticsData.achievement} />
+
+        {analyticsData.sectionsAchevement.map((section, index) => (
+          <AssessmentSection key={index} section={section} isMobile={isMobile} />
+        ))}
+      </div> 
+        }
+    </div>
   )
 }
-
-export default page

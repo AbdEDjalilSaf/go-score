@@ -45,7 +45,7 @@ export const useRegister = () => {
     if (succeeded && data && data.accessToken) {
       // Save the access token to cookies
       Cookies.set("accessToken", data.accessToken, {
-        expires: 1, // Token expires in 1 days
+        expires: 7, // Token expires in 1 days
         path: "/", // Available across the entire site
         secure: process.env.NODE_ENV === "production", // Secure in production
         sameSite: "strict", // Restrict to same site to prevent CSRF
@@ -54,7 +54,7 @@ export const useRegister = () => {
       router.push("/dashboard/dashStudent");
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 900);
     } else {
       setError(registrationError || "Register failed")
     }

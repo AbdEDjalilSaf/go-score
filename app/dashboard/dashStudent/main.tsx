@@ -21,9 +21,15 @@ import Support from './pages/support/page'
 import Teachers from './pages/teachers/page'
 import SmartTraining from './pages/smartTraining/page'
 import GlobalTestPage from './pages/globalTestPage/page'
+import { useSelector } from 'react-redux';
+
 
 const Main = () => {
 const [nameGetLink, setNameGetLink] = useState<string>("");
+const currentTitle = useSelector((state: { background: { titleGlobal: string } }) => state.background.titleGlobal);
+
+// console.log("++++++++++++++++++++ currentTitle ++++++++++++++++++",currentTitle);
+
 
 useEffect(() =>{
 
@@ -35,7 +41,8 @@ useEffect(() =>{
   return (
     <>
    
-{nameGetLink == "معلوماتي" ? <Info /> : nameGetLink == "التحليلات" ? <Analytics /> :  nameGetLink == "محاكي الاختبار" ? <ExamSimulator /> : nameGetLink == "الدعم الفني" ? <Support /> : nameGetLink == "المدربون" ? <Teachers /> : nameGetLink == "تدرب بذكاء" ? <SmartTraining /> : 
+{currentTitle == "معلوماتي" ? <Info /> : currentTitle == "التحليلات" ? <Analytics /> :  currentTitle == "محاكي الاختبار" ? <ExamSimulator /> : currentTitle == "الدعم الفني" ? <Support /> : currentTitle == "المدربون" ? <Teachers /> : currentTitle == "تدرب بذكاء" ? <SmartTraining /> :
+currentTitle == '' ? 
 <>
 {/* <div>
  <h1 className="text-2xl font-bold text-purple-800 mb-4">تدرب بذكاء</h1>
@@ -47,7 +54,7 @@ useEffect(() =>{
 
     <GlobalTestPage />
     
-</> }
+</> : '' }
 
     {/* <Router>
         <Routes>
