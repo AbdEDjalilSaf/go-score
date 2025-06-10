@@ -6,13 +6,12 @@ import Image from "next/image"
 import Link from "next/link"
 import data from "./data.json"
 import { ChevronDown, Menu } from "lucide-react"
-// import { useSelector } from 'react-redux'
-// import { selectCurrentToken, selectCurrentUser } from '@/features/auth/authSlice';
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Cookies from "js-cookie"
+import { useRouter } from "next/navigation"
 import { useDispatch, useSelector } from 'react-redux';
 import { changeBackground,changeTitleGlobal } from '@/features/auth/authSlice';
 
@@ -43,17 +42,28 @@ interface HeaderProps {
 
 export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
   const [open, setOpen] = useState(false)
+  const router = useRouter();
   const [videOpen, setVideOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const dispatch = useDispatch();
-  // const currentColor = useSelector((state: { background: { name: string } }) => state.background.name);
+  const titleGlobal = useSelector((state: { background: { titleGlobal: string } }) => state.background.titleGlobal);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
-  // Use useEffect to check for token on the client side only
-  useEffect(() => {
-    const token = Cookies.get("accessToken")
-    setIsLoggedIn(!!token)
-  }, [])
+
+ useEffect(() => {
+  try {
+    const token = Cookies.get('accessToken');
+    setIsLoggedIn(!!token);
+    if (token) {
+      router.push("/dashboard/dashStudent");
+    }
+  } catch (error) {
+    console.error("Auth check failed:", error);
+    // Handle error (e.g., clear invalid token)
+  }
+}, [isLoggedIn, router]);
+
+
 
   // const clearCookies = ()=>{
   //   if(Cookies.get("nameLink")){
@@ -120,7 +130,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                       </Link>
                     )
                   })}
-                  <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"} >
+                  <Link href={isLoggedIn || titleGlobal ? "/dashboard/dashStudent" : "/login"} >
                     <Button
                       size="lg"
                       className="bg-primary rounded-full text-base px-6 py-3 h-auto mt-4"
@@ -129,7 +139,8 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                       }
                       }
                     >
-                      {isLoggedIn ? deviceHeader.button.textLogin : deviceHeader.button.text}
+                      {isLoggedIn || titleGlobal ? deviceHeader.button.textLogin : deviceHeader.button.text}
+                      
                     </Button>
                   </Link>
                 </nav>
@@ -178,9 +189,9 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
 
         {/* Desktop Button */}
         <div className="hidden md:flex items-center gap-2">
-          <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"} >
+          <Link href={isLoggedIn || titleGlobal ? "/dashboard/dashStudent" : "/login"} >
             <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto" >
-              {isLoggedIn ? deviceHeader.button.textLogin : header.button.text}
+              {isLoggedIn || titleGlobal ? deviceHeader.button.textLogin : header.button.text}
             </Button>
           </Link>
         </div>
@@ -235,7 +246,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                     </Link>
                   )
                 })}
-                <Link href={isLoggedIn ? "/dashboard/dashStudent" : "/login"} >
+                <Link href={isLoggedIn || titleGlobal ? "/dashboard/dashStudent" : "/login"} >
                   <Button
                     size="lg"
                     className="bg-primary  rounded-full text-base px-6 py-3 h-auto mt-4"
@@ -244,7 +255,7 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
                     }
                     }
                   >
-                    {isLoggedIn ? deviceHeader.button.textLogin : deviceHeader.button.text}
+                    {isLoggedIn || titleGlobal ? deviceHeader.button.textLogin : deviceHeader.button.text}
                   </Button>
                 </Link>
               </nav>

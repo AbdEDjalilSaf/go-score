@@ -51,8 +51,24 @@ export default function Home() {
           باقي لديك {data.remainingAttempts} محاولة مجانية في الباقة الأساسية
         </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <QuizSections title={quizData.quantitativeSection.title} categories={quizData.quantitativeSection.categories} id={quizData.quantitativeSection.id} />
-        <QuizSections title={quizData.verbalSection.title} categories={quizData.verbalSection.categories} id={quizData.verbalSection.id} />
+        <QuizSections
+          title={quizData.quantitativeSection.title}
+          categories={quizData.quantitativeSection.categories.map((cat: any) => ({
+            ...cat,
+            text: cat.text ?? cat.name ?? "",
+            selected: cat.selected ?? false,
+          }))}
+          id={quizData.quantitativeSection.id}
+        />
+        <QuizSections
+          title={quizData.verbalSection.title}
+          categories={quizData.verbalSection.categories.map((cat: any) => ({
+            ...cat,
+            text: cat.text ?? cat.name ?? "",
+            selected: cat.selected ?? false,
+          }))}
+          id={quizData.verbalSection.id}
+        />
       </div>
 
       {/* <AdvancedOptions
@@ -68,7 +84,7 @@ export default function Home() {
             <span>خيارات متقدمة</span>
           </div>
          
-            <ChevronUp className="h-5 w-5 text-teal-600" />
+            {/* <ChevronUp className="h-5 w-5 text-teal-600" /> */}
          
         </button>
 
@@ -93,8 +109,17 @@ export default function Home() {
                     className="w-full flex flex-row-reverse border rounded p-2 text-center"
                   />
                 </div>
-                <div className="w-full flex flex-row-reverse">
-                  <RangeSlider  min={1} max={100} value={questionCount} onChange={setQuestionCount} />
+                <div className="w-full relative flex flex-row-reverse">
+                  {/* <RangeSlider  min={1} max={100} value={questionCount} onChange={setQuestionCount} /> */}
+                      <input
+                      type="range"
+                      min={1}
+                      max={100}
+                      value={questionCount}
+                      onChange={e => setQuestionCount(Number.parseInt(e.target.value) || 1)}
+                      className="range text-purple-700 range-primary w-full"
+                    />
+                  
                 </div>
               </div>
               <div className="flex justify-start mt-4">

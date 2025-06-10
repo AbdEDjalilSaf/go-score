@@ -26,7 +26,7 @@ interface AssessmentSectionProps {
 }
 
 export default function AssessmentSection({ section, isMobile }: AssessmentSectionProps) {
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">

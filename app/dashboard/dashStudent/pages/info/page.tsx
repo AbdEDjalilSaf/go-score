@@ -1,19 +1,26 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
+import { useDispatch, useSelector } from 'react-redux';
+import { changeGlobalName } from '@/features/auth/authSlice';
 import React from 'react'
 
 const page = () => {
-
+  const [userName, setUserName] = useState('');
   const [userData, setUserData] = useState({
-    name: "nooduhk saf",
+    name: '',
     password: "••••••••",
     email: "noodsaf01@gmail.com",
     whatsapp: "لا يوجد",
   })
+  const dispatch = useDispatch();
+  const globalEmail = useSelector((state: { background: { globalEmail: string } }) => state.background.globalEmail);
+  const globalPassword = useSelector((state: { background: { globalPassword: string } }) => state.background.globalPassword);
+  const globalWhatsUpPhone = useSelector((state: { background: { globalWhatsUpPhone: string } }) => state.background.globalWhatsUpPhone);
+
 
   const [editMode, setEditMode] = useState({
     name: false,
@@ -27,6 +34,15 @@ const page = () => {
   }
 
   const handleSave = (field: keyof typeof userData, value: string) => {
+    if(field == "name"){
+      localStorage.removeItem("userName");
+      localStorage.setItem("userName",value);
+      setUserName(value);
+      // window.location.reload();
+      dispatch(changeGlobalName(value));
+    
+      // dispatch(changeTitleGlobal('info'));  
+    }
     setUserData({ ...userData, [field]: value })
     setEditMode({ ...editMode, [field]: false })
   }
@@ -34,6 +50,13 @@ const page = () => {
   const handleCancel = (field: keyof typeof userData) => {
     setEditMode({ ...editMode, [field]: false })
   }
+
+useEffect(() =>{
+  const fullName = localStorage.getItem("userName") || '';
+  setUserName(fullName);
+  setUserData(prev => ({ ...prev, name: fullName }));
+  console.log("fullName", fullName);
+}, []);
 
   return (
     <>
@@ -48,7 +71,7 @@ const page = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
                 {editMode.name ? (
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                    <Input defaultValue={userData.name} className="w-full sm:w-auto" id="name-input" />
+                    <Input defaultValue={userName} className="w-full sm:w-auto" id="name-input" />
                     <div className="flex gap-2 mt-2 sm:mt-0">
                       <Button
                         size="sm"
@@ -65,7 +88,7 @@ const page = () => {
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                    <span className="text-sm">{userData.name}</span>
+                    <span className="text-sm">{userName}</span>
                     <Button variant="link" className="text-blue-600 p-0 h-auto" onClick={() => handleEdit("name")}>
                       تعديل
                     </Button>
@@ -80,7 +103,7 @@ const page = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
                 {editMode.password ? (
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                    <Input type="password" defaultValue="password" className="w-full sm:w-auto" id="password-input" />
+                    <Input type="password" defaultValue={globalPassword} className="w-full sm:w-auto" id="password-input" />
                     <div className="flex gap-2 mt-2 sm:mt-0">
                       <Button size="sm" onClick={() => handleSave("password", "••••••••")}>
                         حفظ
@@ -92,7 +115,7 @@ const page = () => {
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                    <span className="text-sm">{userData.password}</span>
+                    <span className="text-sm">{globalPassword}</span>
                     <Button variant="link" className="text-blue-600 p-0 h-auto" onClick={() => handleEdit("password")}>
                       تعديل
                     </Button>
@@ -107,7 +130,7 @@ const page = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
                 {editMode.email ? (
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                    <Input type="email" defaultValue={userData.email} className="w-full sm:w-auto" id="email-input" />
+                    <Input type="email" defaultValue={globalEmail} className="w-full sm:w-auto" id="email-input" />
                     <div className="flex gap-2 mt-2 sm:mt-0">
                       <Button
                         size="sm"
@@ -124,7 +147,7 @@ const page = () => {
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                    <span className="text-sm">{userData.email}</span>
+                    <span className="text-sm">{globalEmail}</span>
                     <Button variant="link" className="text-blue-600 p-0 h-auto" onClick={() => handleEdit("email")}>
                       تعديل
                     </Button>
@@ -139,7 +162,7 @@ const page = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
                 {editMode.whatsapp ? (
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                    <Input type="tel" placeholder="أدخل رقم واتساب" className="w-full sm:w-auto" id="whatsapp-input" />
+                    <Input defaultValue={globalWhatsUpPhone} type="tel" placeholder="أدخل رقم واتساب" className="w-full sm:w-auto" id="whatsapp-input" />
                     <div className="flex gap-2 mt-2 sm:mt-0">
                       <Button
                         size="sm"
@@ -159,7 +182,7 @@ const page = () => {
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
-                    <span className="text-sm">{userData.whatsapp}</span>
+                    <span className="text-sm">{globalWhatsUpPhone}</span>
                     <Button variant="link" className="text-blue-600 p-0 h-auto" onClick={() => handleEdit("whatsapp")}>
                       {userData.whatsapp === "لا يوجد" ? "إضافة" : "تعديل"}
                     </Button>

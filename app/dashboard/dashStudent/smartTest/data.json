@@ -1,0 +1,36 @@
+{
+  "quiz": {
+    "subject": "الفيزياء (2)",
+    "currentQuestion": 1,
+    "totalQuestions": 10,
+    "timeRemaining": "00:03",
+    "question": {
+      "text": "حسب قانون كبلر الثالث فإن الزمن الدوري T لكوكب حول الشمس يتناسب مع بعده عن الشمس r حسب القانون ..",
+      "options": ["T² ∝ 1/r³", "T³ ∝ r²", "T³ ∝ 1/r²", "T² ∝ r³"]
+    },
+    "stats": {
+      "wrongAnswers": 0,
+      "correctAnswers": 0,
+      "earnedPoints": 0
+    },
+    "helpTools": [
+      {
+        "text": "عرض الحل",
+        "type": "solution",
+        "color": "green"
+      },
+      {
+        "text": "حذف إجابة",
+        "type": "eliminate",
+        "color": "red"
+      }
+    ]
+  },
+  "navigation": {
+    "previous": "السابق",
+    "next": "التالي",
+    "confirmAnswer": "تأكيد الإجابة",
+    "reportError": "إبلاغ عن خطأ",
+    "pauseTraining": "إيقاف التدريب"
+  }
+}

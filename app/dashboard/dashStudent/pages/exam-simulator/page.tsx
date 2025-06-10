@@ -1,5 +1,7 @@
 import ExamSimulator from "@/app/dashboard/dashStudent/pages/exam-simulator/CapacitiesFull/exam-simulator"
 import Achivement from "@/app/dashboard/dashStudent/pages/exam-simulator/CapacitiesPart/page"
+import CollectionFull from "@/app/dashboard/dashStudent/pages/exam-simulator/CollectionFull/page"
+import CollectionPart from "@/app/dashboard/dashStudent/pages/exam-simulator/CollectionPart/page"
 import { examData } from "@/app/dashboard/dashStudent/pages/exam-simulator/CapacitiesFull/data/exam-data"
 import { useDispatch, useSelector } from 'react-redux';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -71,7 +73,14 @@ console.log("========================== currentTitle ====================", curr
         //  currentColor == "تحصيلي" && currentTitleLocal == "اختبار كامل" ?
         // <ExamSimulator data={examData} /> 
         :
-        ""
+         currentColor == "تحصيلي" && currentTitleLocal == "اختبار كامل" ?
+         <CollectionFull  />
+
+         :
+        currentColor == "تحصيلي" && currentTitleLocal == "اختبار جزئي" ?
+         <CollectionPart  />
+         :
+         ""
         }
 
       </div>

@@ -35,7 +35,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   name: 'قدرات', // default white background
-  titleGlobal: '',
+  titleGlobal: false,
   testExamlutorTitle: 'اختبار كامل',
   capacitiesFullCheck:false,
   capacitiesPartCheck:false,
@@ -43,7 +43,10 @@ const initialState = {
   achievementBiologyCheck:false,
   achievementMathCheck:false,
   achievementPhysicsCheck:false,
-
+  globalName:'',
+  globalEmail:'',
+  globalPassword:'',
+  globalWhatsUpPhone:'',
 };
 
 export const backgroundSlice = createSlice({
@@ -77,6 +80,18 @@ export const backgroundSlice = createSlice({
     changeAchievementPhysicsCheck: (state, action) => {
       state.achievementPhysicsCheck = action.payload;
     },
+    changeGlobalName: (state, action) => {
+      state.globalName = action.payload;
+    },
+    changeGlobalEmail: (state, action) => {
+      state.globalEmail = action.payload;
+    },
+    changeGlobalPassword: (state, action) => {
+      state.globalPassword = action.payload;
+    },
+    changeGlobalWhatsUpPhone: (state, action) => {
+      state.globalWhatsUpPhone = action.payload;
+    },
   },
 });
 
@@ -90,4 +105,9 @@ export const { changeAchievementChemistryCheck } = backgroundSlice.actions;
 export const { changeAchievementBiologyCheck } = backgroundSlice.actions;
 export const { changeAchievementMathCheck } = backgroundSlice.actions;
 export const { changeAchievementPhysicsCheck } = backgroundSlice.actions;
+export const { changeGlobalName } = backgroundSlice.actions;
+export const { changeGlobalEmail } = backgroundSlice.actions;
+export const { changeGlobalPassword } = backgroundSlice.actions;
+export const { changeGlobalWhatsUpPhone } = backgroundSlice.actions;
+
 export default backgroundSlice.reducer;

@@ -41,7 +41,7 @@ export default function RangeSlider({ min, max, value, onChange }: RangeSliderPr
     if (!trackRef.current) return
 
     const rect = trackRef.current.getBoundingClientRect()
-    const position = e.touches[0].clientX - rect.right
+    const position = e.touches[0].clientX - rect.left
     const percentage = Math.max(0, Math.min(1, position / rect.width))
     const newValue = Math.round(min + percentage * (max - min))
     onChange(newValue)

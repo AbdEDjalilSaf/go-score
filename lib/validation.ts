@@ -1,4 +1,4 @@
-import { Code } from 'lucide-react'
+// import { Code } from 'lucide-react'
 import z from 'zod'
 
 
@@ -26,21 +26,23 @@ export const searchSchema = z.object({
 // login ==========================
 export const loginSchema = z.object({
   email: z.string().email({ message: "يرجى إدخال عنوان بريد إلكتروني صالح" }),
-  password: z.string().min(8, { message: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل" }),
+  password: z.string().min(8, { message: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل" })
+  .regex(/^[^\s]+$/, { message: "لا يمكن أن تحتوي كلمة المرور على مسافات" }), // No spaces allowed,
 
 })
 
-// sign up ============================
-export const signupSchema = z
-  .object({
-    name: z.string().min(2, { message: "يجب أن يتكون الاسم من حرفين على الأقل" }),
-    password: z
-      .string()
-      .min(8, { message: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل" })
-      .regex(/[a-zA-Z]/, { message: "يجب أن تحتوي على حرف واحد على الأقل" })
-      .regex(/[0-9]/, { message: "يجب أن تحتوي على رقم واحد على الأقل" })
-      .regex(/[^a-zA-Z0-9]/, { message: "يجب أن تحتوي على رمز خاص واحد على الأقل" }),
-    email: z.string().email({ message: "يرجى إدخال عنوان بريد إلكتروني صالح" }),
-    code: z.string(),
-  })
+// Define the signup schema ==================================
+export const signupSchema = z.object({
+  firstName: z.string().min(2, { message: "يجب أن يتكون الاسم من حرفين على الأقل" }),
+  lastName: z.string().min(2, { message: "يجب أن يتكون الاسم من حرفين على الأقل" }),
+  password: z
+    .string()
+    .min(8, { message: "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل" })
+    .regex(/[a-zA-Z]/, { message: "يجب أن تحتوي على حرف واحد على الأقل" })
+    .regex(/[0-9]/, { message: "يجب أن تحتوي على رقم واحد على الأقل" })
+    .regex(/[^a-zA-Z0-9]/, { message: "يجب أن تحتوي على رمز خاص واحد على الأقل" })
+    .regex(/^[^\s]+$/, { message: "لا يمكن أن تحتوي كلمة المرور على مسافات" }), // No spaces allowed
+  email: z.string().email({ message: "يرجى إدخال عنوان بريد إلكتروني صالح" }),
+  code: z.string(),
+})
   

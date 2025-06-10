@@ -33,7 +33,13 @@ export default function AnalyticsDashboard() {
 {currentColor == 'قدرات' ?
       <div className="max-w-5xl mx-auto space-y-4">
         <AnalyticsHeader title={analyticsData.title} />
-        <CapabilitiesSection capabilities={analyticsData.capabilities} />
+        <CapabilitiesSection capabilities={{
+          ...analyticsData.capabilities,
+          items: analyticsData.capabilities.items.map((item: any) => ({
+            ...item,
+            total: typeof item.total === "number" ? item.total : (item.total ?? 100)
+          }))
+        }} />
 
         {analyticsData.sections.map((section, index) => (
           <AssessmentSection key={index} section={section} isMobile={isMobile} />
@@ -42,7 +48,13 @@ export default function AnalyticsDashboard() {
         :  
         <div className="max-w-5xl mx-auto space-y-4">
         <AnalyticsHeaderTwo title={analyticsData.title} />
-        <AchievementSection capabilities={analyticsData.achievement} />
+        <AchievementSection capabilities={{
+          ...analyticsData.achievement,
+          items: analyticsData.achievement.items.map((item: any) => ({
+            ...item,
+            total: typeof item.total === "number" ? item.total : 100
+          }))
+        }} />
 
         {analyticsData.sectionsAchevement.map((section, index) => (
           <AssessmentSection key={index} section={section} isMobile={isMobile} />

@@ -12,7 +12,7 @@ import { Info, ChartNoAxesCombined  , FileText, ShieldCheck , HelpCircle, Users,
 import placeInter from "@/public/place-holder.webp"
 import menuData from "@/app/dashboard/dashStudent/rightMenu/data.json"
 import { useDispatch, useSelector } from 'react-redux';
-import { changeBackground,changeTitleGlobal } from '@/features/auth/authSlice';
+import { changeBackground,changeTitleGlobal, changeGlobalName } from '@/features/auth/authSlice';
 // import { cookies } from "next/headers"
 import Cookies from "js-cookie"
 
@@ -31,6 +31,7 @@ export default function RightMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const dispatch = useDispatch();
+  const globalName = useSelector((state: { background: { globalName: string } }) => state.background.globalName);
   const currentColor = useSelector((state: { background: { name: string } }) => state.background.name);
 
 
@@ -56,23 +57,6 @@ const makeCookies = (titleGlobal: string) => {
 
 
 const makeCookiesType = (name: string) => {
-  // if(Cookies.get("nameType")){
-  //   Cookies.remove("nameType");
-  //   Cookies.set("nameType", value, { 
-  //     expires: 1, // Token expires in 1 days
-  //     path: "/", // Available across the entire site
-  //     sameSite: "strict", // Restrict to same site to prevent CSRF
-  //   });
-  //   setTimeout(()=> {
-  //     window.location.reload();
-  //   },500);
-  // }else{
-  //   Cookies.set("nameType", value);
-  //   setTimeout(()=> {
-  //     window.location.reload();
-  //   },500);
-  // }
-  // Cookies.set("nameLink", name);
  
   dispatch(changeBackground(name));
 
@@ -114,6 +98,15 @@ useEffect(() =>{
   setNameGetLink(cooke);
 }, []);
 
+useEffect(() =>{
+const fullName = localStorage.getItem("userName");
+dispatch(changeGlobalName(fullName));
+console.log("fullName", fullName);
+  
+}, []);
+
+
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -141,7 +134,7 @@ useEffect(() =>{
                 className="rounded-full object-cover border-2 border-gray-200"
               />
             </div>
-            <h3 className="text-lg font-medium text-gray-800">{menuData.userInfo.name}</h3>
+            <h3 className="text-lg font-medium text-gray-800">{globalName}</h3>
 
             <Tabs defaultValue="قدرات" className="w-full mt-3">
               <TabsList className="grid w-full grid-cols-2">
@@ -154,7 +147,7 @@ useEffect(() =>{
 
             {menuData.userInfo.hasTraining && (
               <Link className="w-full" href="/dashboard/dashStudent" onClick={() => makeCookies(menuData.userInfo.title)}>
-              <Button className="mt-4 bg-rose-500 hover:bg-rose-600 text-white w-full">
+              <Button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white w-full">
                 <Zap className="h-4 w-4 ml-2" />
                 تدرب بذكاء
               </Button>

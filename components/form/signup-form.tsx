@@ -30,7 +30,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      name: "",
+      firstName: "",
+      lastName: "",
       password: "",
       email: "",
       code: "",
@@ -59,8 +60,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       // Simulate API call
       // console.log("Form submission started", data)
       try {
-       await register(data.name, data.password, data.email, data.code);
-        // if (userData) {
+       await register(data.firstName,data.lastName,data.email, data.password, data.code, data.whatsUpNumber);
 
       } catch (err) {
         console.error("Sign Up error:", err)
@@ -122,12 +122,25 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                   <>
                     <FormField
                       control={form.control}
-                      name="name"
+                      name="firstName"
                       render={({ field }) => (
                         <FormItem className="grid gap-2">
-                          <FormLabel htmlFor="name">الاسم</FormLabel>
+                          <FormLabel htmlFor="firstName">الاسم الاول</FormLabel>
                           <FormControl>
-                            <Input id="name" type="text" placeholder="محمد أحمد" {...field} className="text-right" />
+                            <Input id="firstName" type="text" placeholder="محمد أحمد" {...field} className="text-right" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="lastName"
+                      render={({ field }) => (
+                        <FormItem className="grid gap-2">
+                          <FormLabel htmlFor="lastName">الاسم اللقب</FormLabel>
+                          <FormControl>
+                            <Input id="lastName" type="text" placeholder="الجاسمي " {...field} className="text-right" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

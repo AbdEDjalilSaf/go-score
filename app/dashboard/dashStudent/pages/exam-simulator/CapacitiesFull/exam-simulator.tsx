@@ -77,7 +77,7 @@ export default function ExamSimulator({ data }: ExamSimulatorProps) {
             <span>خيارات متقدمة</span>
           </div>
          
-            <ChevronUp className="h-5 w-5 text-teal-600" />
+            {/* <ChevronUp className="h-5 w-5 text-teal-600" /> */}
          
         </button>
 
@@ -104,7 +104,17 @@ export default function ExamSimulator({ data }: ExamSimulatorProps) {
                   />
                 </div>
                 <div className="w-full flex flex-row-reverse">
-                  <RangeSlider  min={1} max={100} value={questionCount} onChange={setQuestionCount} />
+                  {/* <RangeSlider  min={1} max={100} value={questionCount} onChange={setQuestionCount} /> */}
+
+                    <input
+                      type="range"
+                      min={1}
+                      max={100}
+                      value={questionCount}
+                      onChange={e => setQuestionCount(Number.parseInt(e.target.value) || 1)}
+                      className="range text-purple-700 range-primary w-full"
+                    />
+                    
                 </div>
               </div>
               <div className="flex justify-start mt-4">

@@ -64,16 +64,21 @@ async function onSubmit(data: LoginFormValues) {
   }, 1000)
 }
 
- useEffect(() => {
-    const token = Cookies.get("accessToken")
-    setIsLoggedIn(!!token)
-    isLoggedIn ? router.push("/dashboard/dashStudent") : ""
 
-  }, [isLoggedIn])
+useEffect(() => {
+  try {
+    const token = Cookies.get('accessToken');
+    setIsLoggedIn(!!token);
+    if (token) {
+      router.push("/dashboard/dashStudent");
+    }
+  } catch (error) {
+    console.error("Auth check failed:", error);
+    // Handle error (e.g., clear invalid token)
+  }
+}, [isLoggedIn]);
 
-// useEffect(() => {
-//   const token = Cookies.get("accessToken")
-// },[token]);
+
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

@@ -186,7 +186,7 @@ export default function Component({ title, categories, id }: QuizSectionsProps) 
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-gray-100 rounded-lg">
+    <div className="max-w-[500px] w-[370px] sm:w-[480px] md:w-[300px] xl:w-[350px] lg:w-[320px] mx-auto p-6 bg-gray-100 rounded-lg">
       {/* Header with checkbox and title */}
       <div className="flex items-center gap-3 mb-6">
         <button
@@ -198,7 +198,7 @@ export default function Component({ title, categories, id }: QuizSectionsProps) 
           {selectAll && <Check className="w-4 h-4" />}
         </button>
         <h2 className="text-lg font-semibold text-gray-800" dir="rtl">
-          {title} 
+           {title}
         </h2>
       </div>
 

@@ -70,7 +70,7 @@ export default function Footer() {
                   >
                     <IconComponent className={`h-5 w-5 ${link.name === "Snapchat" ? "mr-4" : ""}`} />
                     <span className="sr-only">{link.name}</span>
-                  </Link>
+                  </Link>  
                 )
               })}
               <Link href="" className="text-primary-foreground/80 hover:text-primary-foreground mr-4">

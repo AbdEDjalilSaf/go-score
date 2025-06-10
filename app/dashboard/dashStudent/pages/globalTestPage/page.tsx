@@ -1,65 +1,36 @@
+"use client"
 import React, { useState } from 'react';
 import Image from "next/image"
 import Panne from "@/public/pannDash.jpg"
 import data from './data.json';
 import { LockIcon } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { useDispatch, useSelector } from 'react-redux';
-import { changeBackground,changeTitleGlobal } from '@/features/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeTitleGlobal } from '@/features/auth/authSlice';
+import Link from "next/link"
+
 // import { DoorClosedIcon as LockClosedIcon } from 'lucide-react';
 // import { TrainerBanner } from './components/TrainerBanner';
 // import { LearningInfo } from './components/LearningInfo';
 // import { SubjectGrid } from './components/SubjectGrid';
 // import { SubscriptionInfo } from './components/SubscriptionInfo';
 
-interface Stats {
-  rating: {
-    title: string;
-    value: number;
-  };
-  points: {
-    title: string;
-    value: number;
-  };
-  rank: {
-    title: string;
-    value: number;
-  };
-  achievementType: {
-    title: string;
-    value: string;
-  };
-}
 
-interface LearningInfoProps {
-  title: string;
-  stats: Stats;
-}
-
-interface TrainerBannerProps {
-    title: string;
-    description: string;
-    buttonText: string;
-  }
-
-  interface StatsCardProps {
-    title: string
-    questions: number
-    correctAnswers: number
-    incorrectAnswers: number
-    forParticipants: boolean
-  }
 
 
 function App() {
 const [isSubsEvluate, setIsSubsEvluate] = useState(false);
-const [isYourRanking, setIsYourRanking] = useState(0);
-const [isYourPoint, setIsYourPoint] = useState(0);
+  const dispatch = useDispatch();
 
 
- const dispatch = useDispatch();
   const currentTitle = useSelector((state: { background: { name: string } }) => state.background.name);
 
+
+  const makeCookies = (name: string) => {
+   
+    dispatch(changeTitleGlobal(name));
+  
+  }
 
   return (
     // <div className="min-h-screen bg-gray-50 text-right" dir="rtl">
@@ -80,10 +51,11 @@ const [isYourPoint, setIsYourPoint] = useState(0);
               <div className="p-6 md:w-[40%]">
                 <h3 className="text-2xl font-bold text-pink-600 mb-4">{data.hero.title}</h3>
                 <p className="text-gray-600 mb-4">{data.hero.description}</p>
-                
+                <Link className="w-full" href="/dashboard/dashStudent" onClick={() => makeCookies('تدرب بذكاء')}>
                 <button className="w-full py-2 px-4 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition-colors">
                   {data.hero.buttonText}
                 </button>
+                </Link>
               </div>
               </div>
             </div>

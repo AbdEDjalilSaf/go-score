@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';   
+// const API_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';   
+const API_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";   
 // process.env.NEXT_PUBLIC_API_URL
 
 
@@ -59,12 +60,12 @@ export const loginUser = async (email: string, password: string): Promise<any> =
 //   [key: string]: any; // Add additional fields as needed
 // }
 
-export const registerUser = async (name: string,password: string,email: string,code: string) => {
+export const registerUser = async (firstName: string,lastName: string,email: string,password: string, code: string, whatsUpNumber: string | null) => {
     try { 
       // console.log("send confirm code started ===================== ", { name, password, email, code });
       const response = await axios.post(
         `${API_URL}/api/Authentication/StudentSignUp`,
-        { name, password, email, code },
+        { firstName,lastName,email, password, code,whatsUpNumber },
         {
           headers: { "Content-Type": "application/json" },
         }

@@ -2,65 +2,81 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { loginUser } from "../api/auth"
-import Cookies from "js-cookie"
-import { changeTitleGlobal } from "@/features/auth/authSlice"
+import { loginUser } from "@/app/api/auth"
+import { changeGlobalEmail,changeTitleGlobal, changeGlobalPassword } from "@/features/auth/authSlice"
 import { useDispatch } from "react-redux"
+import Cookies from "js-cookie"
 
-// Define the response type from loginUser function
 interface LoginResponse {
   succeeded: boolean
   data?: {
-    accessToken?: string
-    name?: {
+    user?: {
       id: string
       email: string
-      // Add other user properties as needed
     }
+    accessToken?: string
+    firstName: string
+    lastName: string
   }
   error?: string
 }
 
-export const useLogin = () => {
+interface UseLoginReturn {
+  login: (email: string, password: string) => Promise<void>
+  error: string | null
+  isLoading: boolean
+}
+
+export const useLogin = (): UseLoginReturn => {
   const router = useRouter()
-  const [error, setError] = useState<string | null>(null)
   const dispatch = useDispatch()
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const login = async (email: string, password: string): Promise<void> => {
     setError(null)
+    setIsLoading(true)
 
-    // console.log("login started", { email, password });
+    try {
+      const { succeeded, data, error: loginError }: LoginResponse = await loginUser(email, password)
 
-    const { succeeded, data, error: loginError }: LoginResponse = await loginUser(email, password)
+      if (succeeded && data?.accessToken) {
+        // Update Redux store
+        dispatch(changeTitleGlobal(true))
+        dispatch(changeGlobalEmail(email))
+        dispatch(changeGlobalPassword(password))
 
-    // const userData = data;
-    console.log("User Data:", data, data?.name, data?.accessToken) // Log the response to verify its structure
+        // Save access token to cookies
+        Cookies.set("accessToken", data.accessToken, {
+          expires: 7, // Token expires in 7 days
+          path: "/",
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+        })
 
-    // if (data) {
-    //   dispatch(setCardentials({ accessToken: data.accessToken, name: data.name }));
-    // } else {
-    //   console.error("userData is undefined");
-    // }
+        // Save user name to localStorage
+        const fullName = `${data.firstName} ${data.lastName}`
+        localStorage.setItem("userName", fullName)
 
-    // console.log("Login response:", { succeeded, data, loginError });
+        // Navigate to dashboard
+        router.push("/dashboard/dashStudent")
 
-    if (succeeded && data && data.accessToken) {
-      // Save the access token to cookies
-      Cookies.set("accessToken", data.accessToken, {
-        expires: 7, // Token expires in 1 days
-        path: "/", // Available across the entire site
-        secure: process.env.NODE_ENV === "production", // Secure in production
-        sameSite: "strict", // Restrict to same site to prevent CSRF
-      });
+        // dispatch(changeGlobalLeftLogoButton('لوحتي التعليمية'));
 
-      router.push("/dashboard/dashStudent");
-      setTimeout(() => {
-        window.location.reload();
-      }, 900);
-    } else {
-      setError(loginError || "Login failed")
+        // setTimeout(()=> {
+        // window.location.reload();
+        // }, 1200);
+
+      } else {
+        setError(loginError || "Login failed. Please try again.")
+      }
+    } catch (err) {
+      console.error("Login error:", err)
+      setError("An unexpected error occurred. Please try again.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  return { login, error }
+  return { login, error, isLoading }
 }
