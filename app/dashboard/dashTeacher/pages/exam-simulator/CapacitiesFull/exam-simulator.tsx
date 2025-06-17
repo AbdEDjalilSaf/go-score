@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ChevronDown, ChevronUp, Lock } from "lucide-react"
 import RangeSlider from "./range-slider"
-import type { ExamData, ExamType } from "@/app/dashboard/dashStudent/pages/exam-simulator/CapacitiesFull/types/exam"
+import type { ExamData, ExamType } from "@/app/dashboard/dashTeacher/pages/exam-simulator/CapacitiesFull/types/exam"
 import Link from "next/link"
 // import { useDispatch, useSelector } from 'react-redux';
 // import { changeTestExamlutor } from '@/features/auth/authSlice';

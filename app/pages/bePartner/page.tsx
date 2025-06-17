@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import beWithSchool from "@/public/beWithSchool.jpg";
 import dealComplete from "@/public/dealComplete.jpg";
 import data from './data.json';
@@ -52,13 +53,16 @@ function App() {
                     </li>
                   ))}
                 </ul>
+                <Link href="/pages/bePartner/schoolPartner">
                 <button className="w-full py-2 px-4 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition-colors">
                   {data.partnerships[0].buttonText}
                 </button>
+                </Link>
               </div>
               </div>
             </div>
           </div>
+
 
         <div className="flex flex-col  gap-8 md:flex-row md:gap-8 lg:gap-12 mt-8">
           {/* Students Partnership */}
@@ -91,9 +95,11 @@ function App() {
                   </li>
                 ))}
               </ul>
+              <Link href="/pages/bePartner/teacherPartner">
               <button className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
                 {data.partnerships[2].buttonText}
               </button>
+              </Link>
             </div>
           </div>
         </div>

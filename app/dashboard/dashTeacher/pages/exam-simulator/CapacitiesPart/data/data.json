@@ -1,0 +1,31 @@
+{
+  "verbalSection": {
+    "title": "القسم اللفظي",
+    "id": "اللفظي",
+    "categories": [
+      { "id": "verbal1", "name": "الخطأ السياقي", "isActive": false },
+      { "id": "verbal2", "name": "إكمال الجمل", "isActive": false },
+      { "id": "verbal3", "name": "استيعاب المقروء", "isActive": false },
+      { "id": "verbal4", "name": "المفردة الناقصة", "isActive": false },
+      { "id": "verbal5", "name": "التناظر اللفظي", "isActive": false }
+    ]
+  },
+  "remainingAttempts": 1,
+  "quantitativeSection": {
+    "title": "القسم الكمي",
+    "id": "الكمي",
+    "categories": [
+      { "id": "quant1", "name": "المسائل الحسابية", "isActive": false },
+      { "id": "quant2", "name": "المسائل الهندسية", "isActive": false },
+      { "id": "quant3", "name": "المقارنات", "isActive": false },
+      { "id": "quant4", "name": "تحليل البيانات", "isActive": false },
+      { "id": "quant5", "name": "المسائل الجبرية", "isActive": false }
+    ]
+  },
+  "testInfo": {
+    "quantitativeSection": "قسمين",
+    "verbalSection": "قسم واحد",
+    "questionsCount": 72,
+    "expectedTime": "01:15 ساعة"
+  }
+}

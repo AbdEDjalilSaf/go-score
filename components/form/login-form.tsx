@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useEffect } from "react"
+// import { useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,7 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/lib/validation"
 import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import Cookies from "js-cookie"
+// import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
 
 
@@ -65,18 +65,7 @@ async function onSubmit(data: LoginFormValues) {
 }
 
 
-useEffect(() => {
-  try {
-    const token = Cookies.get('accessToken');
-    setIsLoggedIn(!!token);
-    if (token) {
-      router.push("/dashboard/dashStudent");
-    }
-  } catch (error) {
-    console.error("Auth check failed:", error);
-    // Handle error (e.g., clear invalid token)
-  }
-}, [isLoggedIn]);
+
 
 
 

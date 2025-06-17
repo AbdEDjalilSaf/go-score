@@ -1,0 +1,20 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "title": "معلوماتي",
+      "icon": "Info"
+    },
+    {
+      "id": 2,
+      "title": "التحليلات",
+      "icon": "ChartNoAxesCombined"
+    }
+  ],
+  "userInfo": {
+    "name": "nooduhk saf",
+    "avatar": "/placeholder.svg?height=80&width=80",
+    "hasTraining": true,
+    "title":"تدرب بذكاء"
+  }
+}

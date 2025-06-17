@@ -1,0 +1,52 @@
+{
+  "exam": {
+    "timeRemaining": "01:45:30",
+    "totalQuestions": 50,
+    "sections": [
+      {
+        "name": "الرياضيات",
+        "completed": true
+      },
+      {
+        "name": "الفيزياء",
+        "completed": false
+      },
+      {
+        "name": "الكيمياء",
+        "completed": false
+      },
+      {
+        "name": "الأحياء",
+        "completed": true
+      },
+      {
+        "name": "اللغة العربية",
+        "completed": false
+      },
+      {
+        "name": "اللغة الإنجليزية",
+        "completed": false
+      },
+      {
+        "name": "التاريخ",
+        "completed": true
+      },
+      {
+        "name": "الجغرافيا",
+        "completed": false
+      }
+    ],
+    "questions": [
+      {
+        "text": "ما هو ناتج العملية الحسابية التالية: 15 + 25 × 2؟",
+        "options": ["65", "80", "55", "70"],
+        "image": true
+      },
+      {
+        "text": "أي من القوانين التالية يصف العلاقة بين القوة والتسارع؟",
+        "options": ["F = ma", "E = mc²", "P = mv", "W = Fd"],
+        "image": false
+      }
+    ]
+  }
+}

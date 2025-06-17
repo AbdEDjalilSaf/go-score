@@ -54,9 +54,9 @@ export default function Header({ header, deviceHeader, Logo }: HeaderProps) {
   try {
     const token = Cookies.get('accessToken');
     setIsLoggedIn(!!token);
-    if (token) {
-      router.push("/dashboard/dashStudent");
-    }
+    // if (token) {
+    //   // router.push("/dashboard/dashStudent");
+    // }
   } catch (error) {
     console.error("Auth check failed:", error);
     // Handle error (e.g., clear invalid token)
