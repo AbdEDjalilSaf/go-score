@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Eleanor Pena",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#01",
+    "address": "TA-107 Newyork",
+    "class": "01",
+    "dateOfBirth": "02/05/2001",
+    "phone": "+123 6988567"
+  },
+  {
+    "id": 2,
+    "name": "Jessia Rose",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#10",
+    "address": "TA-107 Newyork",
+    "class": "02",
+    "dateOfBirth": "03/04/2000",
+    "phone": "+123 8988569"
+  },
+  {
+    "id": 3,
+    "name": "Jenny Wilson",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#04",
+    "address": "Australia, Sydney",
+    "class": "01",
+    "dateOfBirth": "12/05/2001",
+    "phone": "+123 7988566"
+  },
+  {
+    "id": 4,
+    "name": "Guy Hawkins",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#05",
+    "address": "Australia, Sydney",
+    "class": "02",
+    "dateOfBirth": "03/05/2001",
+    "phone": "+123 5988565"
+  },
+  {
+    "id": 5,
+    "name": "Jacob Jones",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#15",
+    "address": "Australia, Sydney",
+    "class": "04",
+    "dateOfBirth": "12/05/2001",
+    "phone": "+123 9988568"
+  },
+  {
+    "id": 6,
+    "name": "Jane Cooper",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#01",
+    "address": "Australia, Sydney",
+    "class": "04",
+    "dateOfBirth": "12/03/2001",
+    "phone": "+123 6988566"
+  },
+  {
+    "id": 7,
+    "name": "Floyd Miles",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#11",
+    "address": "TA-107 Newyork",
+    "class": "01",
+    "dateOfBirth": "03/05/2002",
+    "phone": "+123 5988569"
+  },
+  {
+    "id": 8,
+    "name": "Robert Fox",
+    "avatar": "/placeholder.svg?height=40&width=40",
+    "roll": "#12",
+    "address": "TA-107 Newyork",
+    "class": "03",
+    "dateOfBirth": "15/08/2001",
+    "phone": "+123 4988567"
+  }
+]

@@ -1,0 +1,99 @@
+{
+    "header": {
+      "title": "باقات الاشتراكات",
+      "description": "اختر باقة الاشتراك المناسبة لك"
+    },
+    "plans": [
+      {
+        "name": "الاشتراك الشهري",
+        "price": "$0",
+        "period": "per month/user",
+        "description": "Good for individuals who are just starting out and simply want the essentials.",
+        "buttonText": "Get started",
+        "buttonStyle": "outline",
+        "badge": null,
+        "features": [
+          "1 user",
+          "Unlimited calendars",
+          "Unlimited event types",
+          "Workflows",
+          "Integrate with your favorite apps",
+          "Accept payments via Stripe"
+        ],
+        "featuresTitle": "Free, forever"
+      },
+      {
+        "name": "Teams",
+        "price": "$12",
+        "period": "per month/user",
+        "description": "Highly recommended for small teams who seek to upgrade their time & perform.",
+        "buttonText": "Get started",
+        "buttonStyle": "primary",
+        "badge": "30 days free trial",
+        "features": [
+          "1 team",
+          "Schedule meetings as a team",
+          "Round-Robin, Fixed Round-Robin",
+          "Collective Events",
+          "Advanced Routing Forms",
+          "Team Workflows"
+        ],
+        "featuresTitle": "Free plan features, plus:"
+      },
+      {
+        "name": "Enterprise",
+        "price": "$15k",
+        "period": "per year",
+        "description": "Robust scheduling for larger teams looking to have more control, privacy & security.",
+        "buttonText": "Contact us",
+        "buttonStyle": "outline",
+        "badge": null,
+        "features": [
+          "1 parent team and unlimited sub-teams",
+          "Organization workflows",
+          "Insights - analyze your booking data",
+          "Active directory sync",
+          "24/7 Email, Chat and Phone support",
+          "Sync your HRIS tools"
+        ],
+        "featuresTitle": "Organization plan features, plus:"
+      },
+      {
+        "name": "yearSubscribe",
+        "price": "$15k",
+        "period": "per year",
+        "description": "Robust scheduling for larger teams looking to have more control, privacy & security.",
+        "buttonText": "Contact us",
+        "buttonStyle": "outline",
+        "badge": null,
+        "features": [
+          "1 parent team and unlimited sub-teams",
+          "Organization workflows",
+          "Insights - analyze your booking data",
+          "Active directory sync",
+          "24/7 Email, Chat and Phone support",
+          "Sync your HRIS tools"
+        ],
+        "featuresTitle": "Organization plan features, plus:"
+      },
+      {
+        "name": "mounthSubscribe",
+        "price": "$15k",
+        "period": "per mounth",
+        "description": "Robust scheduling for larger teams looking to have more control, privacy & security.",
+        "buttonText": "Contact us",
+        "buttonStyle": "outline",
+        "badge": null,
+        "features": [
+          "1 parent team and unlimited sub-teams",
+          "Organization workflows",
+          "Insights - analyze your booking data",
+          "Active directory sync",
+          "24/7 Email, Chat and Phone support",
+          "Sync your HRIS tools"
+        ],
+        "featuresTitle": "Organization plan features, plus:"
+      }
+    ]
+  }
+  
