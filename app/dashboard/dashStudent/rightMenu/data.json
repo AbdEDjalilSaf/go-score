@@ -41,6 +41,12 @@
       "link": "/dashboard/dashStudent/pages/teachers",
       "title": "المدربون",
       "icon": "Users"
+    },
+    {
+      "id": 7,
+      "link": "/dashboard/dashStudent/pages/courses",
+      "title": "الكورسات",
+      "icon": "School"
     }
   ],
   "userInfo": {

@@ -122,7 +122,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import pricingData from "./data.json"
-import DashStudent from "@/app/dashboard/dashStudent/dashStudent"
+import DashTeacher from "@/app/dashboard/dashTeacher/dashTeacher"
 
 const PricingSlider = () => {
   const { header, plans } = pricingData
@@ -226,7 +226,7 @@ const PricingSlider = () => {
   }
 
   return (
-    <DashStudent>
+    <DashTeacher>
       <div className="py-8 md:py-16">
         {/* Header */}
         <div className="text-right mb-12 md:mb-16">
@@ -355,7 +355,7 @@ const PricingSlider = () => {
           </div>
         </div>
       </div>
-    </DashStudent>
+    </DashTeacher>
   )
 }
 

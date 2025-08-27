@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 // import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Info, Notebook, HandCoins, Landmark , ChartNoAxesCombined , FileText, ShieldCheck , HelpCircle, Users, ChevronRight, Zap } from "lucide-react"
+import { Info, Notebook, HandCoins, Landmark , ChartNoAxesCombined , FileText, ShieldCheck , HelpCircle, Users, ChevronRight, Zap  } from "lucide-react"
 import placeInter from "@/public/place-holder.webp"
 import menuData from "@/app/dashboard/dashTeacher/rightMenu/data.json"
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,6 +27,7 @@ const iconMap: Record<string, React.ReactNode> = {
   ShieldCheck : <ShieldCheck  className="h-5 w-5" />,
   HelpCircle: <HelpCircle className="h-5 w-5" />,
   Users: <Users className="h-5 w-5" />,
+  
 }
 
 export default function RightMenu() {

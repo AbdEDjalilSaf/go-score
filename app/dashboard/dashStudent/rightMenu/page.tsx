@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 // import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Info, ChartNoAxesCombined ,House , FileText, ShieldCheck , HelpCircle, Users, ChevronRight, Zap } from "lucide-react"
+import { Info, ChartNoAxesCombined ,House , FileText, ShieldCheck , HelpCircle, Users, ChevronRight, Zap , School } from "lucide-react"
 import placeInter from "@/public/place-holder.webp"
 import menuData from "@/app/dashboard/dashStudent/rightMenu/data.json"
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +26,7 @@ const iconMap: Record<string, React.ReactNode> = {
   ShieldCheck : <ShieldCheck  className="h-5 w-5" />,
   HelpCircle: <HelpCircle className="h-5 w-5" />,
   Users: <Users className="h-5 w-5" />,
+  School: <School className="h-5 w-5" />,
 }
 
 export default function RightMenu() {
@@ -155,7 +156,7 @@ console.log("fullName", fullName);
             {menuData.menuItems.map((item) => (
               <Link
                 key={item.id}
-                href={item.link}
+                href={item.link} 
                 onClick={() => makeCookies(item.title)}
                 className={`flex items-center justify-between p-3 rounded-md ${nameGetLink === item.title ? "bg-gray-100 hover:bg-gray-100" : ""} hover:bg-gray-50 transition-colors`}
               >
