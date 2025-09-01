@@ -1,0 +1,85 @@
+{
+    "header": {
+      "navigation": [
+        {
+          "name": "الرئيسية",
+          "href": "/"
+        },
+        {
+          "name": "الأسئلة الشائعة",
+          "href": "/pages/homePage/f&Question"
+        },
+        {
+          "name": "المدونة",
+          "href": "/pages/blogPage"
+        },
+        {
+          "name": "المسارات",
+          "href": "#"
+        },
+        {
+          "name": "الأسعار",
+          "href": "#"
+        }
+      ],
+      "button": {
+        "text": "تسجيل الدخول",
+        "href":"/login",
+        "textLogin": "لوحتي التعليمية",
+        "hrefLogin": "/login"
+      }
+    },
+    "deviceHeader": {
+      "navigation": [
+        {
+          "name": "الرئيسية",
+          "href": "/"
+        },
+        {
+          "name": "الأسئلة الشائعة",
+          "href": "/pages/homePage/f&Question"
+        },
+        {
+          "name": "المدونة",
+          "href": "/pages/blogPage"
+        },
+        {
+          "name": "المسارات",
+          "href": "#"
+        },
+        {
+          "name": "الأسعار",
+          "href": "#"
+        },
+        {
+          "name": "من نحن",
+          "href": "/pages/homePage/aboutUs"
+        },
+        {
+          "name": "الشروط و الاحكام",
+          "href": "/pages/homePage/term-conditions"
+        },
+        {
+          "name": "اتصل بنا",
+          "href": "/pages/homePage/contactUs"
+        },
+        {
+          "name": "كن شريكًا",
+          "href": "/pages/bePartner"
+        }
+      ],
+      "button": {
+        "text": "تسجيل الدخول",
+        "href":"/login",
+        "textLogin": "لوحتي التعليمية",
+        "hrefLogin": "/login"
+      }
+    },
+    "pathsDropdownItems": [
+      { "name": " قدرات", "href": "/paths/programming" },
+      { "name": " تحصيلي", "href": "/paths/design" },
+      { "name": " موهبة ", "href": "/paths/marketing" },
+      { "name": " الرخصة المهنية", "href": "/paths/business" }
+    ]
+
+}

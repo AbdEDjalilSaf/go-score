@@ -1,0 +1,47 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "href": "/dashboard/dashTeacher",
+      "title": "الرئيسية",
+      "icon": "Landmark"
+    },
+    {
+      "id": 2,
+      "href": "/dashboard/dashTeacher/pages/info",
+      "title": "معلوماتي",
+      "icon": "Info"
+    },  
+    {
+      "id": 3,
+      "href": "/dashboard/dashTeacher/pages/courses",
+      "title": "دورات",
+      "icon": "Notebook"
+    },
+    {
+      "id": 4,
+      "href": "/dashboard/dashTeacher/pages/studentsClass",
+      "title": "الطلاب",
+      "icon": "Users"
+    },
+    {
+      "id": 5,
+      "href": "/dashboard/dashTeacher/pages/commission",
+      "title": "العمولة",
+      "icon": "HandCoins"
+    },
+    {
+      "id": 6,
+      "href": "/dashboard/dashTeacher/pages/subscriptions",
+      "title": "الاشتراكات",
+      "icon": "ShieldCheck"
+    }
+    
+  ],
+  "userInfo": {
+    "name": "nooduhk saf",
+    "avatar": "/placeholder.svg?height=80&width=80",
+    "hasTraining": true,
+    "title":"تدرب بذكاء"
+  }
+}

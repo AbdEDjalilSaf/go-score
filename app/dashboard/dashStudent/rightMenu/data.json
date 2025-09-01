@@ -1,0 +1,58 @@
+{
+  "menuItems": [
+    {
+      "id": 0,
+      "link": "/dashboard/dashStudent",
+      "title": "الرئيسية",
+      "icon": "House"
+    },
+    {
+      "id": 1,
+      "link": "/dashboard/dashStudent/pages/info",
+      "title": "معلوماتي",
+      "icon": "Info"
+    },
+    {
+      "id": 2,
+      "link": "/dashboard/dashStudent/pages/analytics",
+      "title": "التحليلات",
+      "icon": "ChartNoAxesCombined"
+    },
+    {
+      "id": 3,
+      "link": "/dashboard/dashStudent/pages/exam-simulator",
+      "title": "محاكي الاختبار",
+      "icon": "FileText"
+    },
+    {
+      "id": 4,
+      "link": "/dashboard/dashStudent/pages/subscriptions",
+      "title": "الاشتركات",
+      "icon": "ShieldCheck"
+    },
+    {
+      "id": 5,
+      "link": "/dashboard/dashStudent/pages/support",
+      "title": "الدعم الفني",
+      "icon": "HelpCircle"
+    },
+    {
+      "id": 6,
+      "link": "/dashboard/dashStudent/pages/teachers",
+      "title": "المدربون",
+      "icon": "Users"
+    },
+    {
+      "id": 7,
+      "link": "/dashboard/dashStudent/pages/courses",
+      "title": "الكورسات",
+      "icon": "School"
+    }
+  ],
+  "userInfo": {
+    "name": "nooduhk saf",
+    "avatar": "/placeholder.svg?height=80&width=80",
+    "hasTraining": true,
+    "title":"تدرب بذكاء"
+  }
+}

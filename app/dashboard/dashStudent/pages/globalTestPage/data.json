@@ -1,0 +1,135 @@
+{
+    "hero": {
+        "title": "معلومات التعلم",
+        "description": [
+          " دع الذكاء الاصطناعي يكتشف نقاط ضعفك من خلال تدريبك على أحدث أسئلة القدرات بتقنيات مبتكرة ويساعدك في تحسين مستواك حتى تصل .."
+        ],
+        "buttonText": "تدرب بذكاء",
+        "typeSctionOne": "قدرات",
+        "typeSctionTwo": "تحصيلي"
+      },
+      "evluateOne": {
+        "rating": 56,
+        "points": 768,
+        "rank": 432,
+        "name": "للمشتركين",
+        "achievement": "قدرات"
+      },
+       "evluateTwo": {
+        "rating": 234,
+        "points": 243,
+        "rank": 4321,
+        "name": "للمشتركين",
+        "achievement": "تحصيلي"
+      },
+      "smallCard": {
+        
+          "title": "معلومات الاشتراك",
+          "expiryDate": "25/03/2035"
+        
+      },
+      "resultCardsOne": [
+      {
+        "title": "القسم الكمي",
+        "questions": 37,
+        "correctAnswers": 14,
+        "incorrectAnswers": 23,
+        "forParticipants": true
+      },
+      {
+        "title": "القسم اللفظي",
+        "questions": 6,
+        "correctAnswers": 2,
+        "incorrectAnswers": 4,
+        "forParticipants": true
+      }
+    ],
+      "resultCardsTwo": [
+      {
+        "title": "الرياضيات",
+        "questions": 37,
+        "correctAnswers": 14,
+        "incorrectAnswers": 23,
+        "forParticipants": true
+      },
+      {
+        "title": "علم الاحياء",
+        "questions": 6,
+        "correctAnswers": 2,
+        "incorrectAnswers": 4,
+        "forParticipants": true
+      },
+       {
+        "title": "الفيزياء",
+        "questions": 37,
+        "correctAnswers": 14,
+        "incorrectAnswers": 23,
+        "forParticipants": true
+      },
+      {
+        "title": "علم الكيمياء",
+        "questions": 6,
+        "correctAnswers": 2,
+        "incorrectAnswers": 4,
+        "forParticipants": true
+      }
+    ],
+        "trainer": {
+          "title": "مدرب القدرات الذكي",
+          "description": "مع الذكاء الاصطناعي اكتشف نقاط ضعفك من خلال تدريبك على أحدث أسئلة القدرات بتقنيات متطورة ومساعدتك في تحسين مستواك حتى تصل",
+          "buttonText": "تدرب بذكاء"
+        },
+        "learningInfo": {
+          "title": "معلومات التعلم",
+          "stats": {
+            "rating": {
+              "title": "التقييم للمشتركين",
+              "value": 0
+            },
+            "points": {
+              "title": "نقاطك",
+              "value": 0
+            },
+            "rank": {
+              "title": "ترتيب",
+              "value": 0
+            },
+            "achievementType": {
+              "title": "التطبيق",
+              "value": "تحصيلي"
+            }
+          }
+        },
+        "subjects": [
+          {
+            "name": "الرياضيات",
+            "questions": 0,
+            "answers": 0,
+            "percentage": 0
+          },
+          {
+            "name": "علم الأحياء",
+            "questions": 0,
+            "answers": 0,
+            "percentage": 0
+          },
+          {
+            "name": "الكيمياء",
+            "questions": 0,
+            "answers": 0,
+            "percentage": 0
+          },
+          {
+            "name": "الفيزياء",
+            "questions": 0,
+            "answers": 0,
+            "percentage": 0
+          }
+        ],
+        "subscription": {
+          "title": "معلومات الاشتراك",
+          "expiryText": "ينتهي اشتراكك بتاريخ:",
+          "expiryDate": "25/09/2025"
+        }
+      
+}

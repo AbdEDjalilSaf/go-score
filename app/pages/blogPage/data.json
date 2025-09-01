@@ -1,0 +1,249 @@
+{
+   
+    "categories": [
+        {
+          "id": 1,
+          "name": "المدونة",
+          "href": "#",
+          "description": "Latest updates in tech, programming, and digital innovation",
+          "articleCount": 42
+        },
+        {
+          "id": 2,
+          "name": "القدرات",
+          "href": "#",
+          "description": "Explore destinations, travel tips, and adventure stories",
+          "articleCount": 28
+        },
+        {
+          "id": 3,
+          "name": "الكمي",
+          "href": "#",
+          "description": "Recipes, restaurant reviews, and culinary experiences",
+          "articleCount": 35
+        },
+        {
+          "id": 4,
+          "name": "اللفظي",
+          "href": "#",
+          "description": "Fashion, culture, and modern living insights",
+          "articleCount": 31
+        }
+        
+      ],
+    "cards": [
+      {
+        "id": 1,
+        "title": "موعد اختبار القدرات",
+        "subtitle": "موعد اختبار القدرات العامة 2025 الورقي والمحوسب في مراكز قياس",
+        "description": "أعلنت هيئة تقويم التعليم والتدريب عن موعد اختبار القدرات العامة الورقي والمحوسب 2025 وستجدون المواعيد بالتفصيل هنا على قناة اختبارات",
+        "category": "تعرف على",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"القدرات",
+        "url": "/capabilities-test-date",
+        "bgColor": "#5e35b1"
+      },
+      {
+        "id": 2,
+        "title": "الاختبار التحصيلي",
+        "subtitle": "ما هو اختبار التحصيل الدراسي وما هي مواد الاختبار؟",
+        "description": "اختبار التحصيلي هو أحد معايير القبول في الجامعات السعودية، وسنتعرف في هذا المقالة على كل ما يخص التحصيلي وأهم النصائح والمصادر والأسئلة",
+        "category": "تعرف على",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"القدرات",
+        "url": "/achievement-test",
+        "bgColor": "#3949ab"
+      },
+      {
+        "id": 3,
+        "title": "موعد اختبار التحصيل",
+        "subtitle": "موعد اختبار التحصيل الدراسي 2025 الورقي والمحوسب في مراكز قياس",
+        "description": "أعلنت هيئة تقويم التعليم والتدريب عن موعد اختبار التحصيل 2025 وستجدون مواعيد الاختبار الورقي وكذلك الآلي هنا",
+        "category": "تعرف على",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"الكمي",
+        "url": "/achievement-test-date",
+        "bgColor": "#00897b"
+      },
+      {
+        "id": 4,
+        "title": "المسائل التحليلية والإحصائية",
+        "subtitle": "ما هي المسائل التحليلية والإحصائية في اختبار القدرات؟",
+        "description": "من أصعب المسائل التحليلية والإحصائية في اختبار القدرات وأهم النصائح والأمثلة وأسئلة هنا",
+        "category": "تعرف على القسم",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"اللفظي",
+        "url": "/analytical-statistical-problems",
+        "bgColor": "#5e35b1"
+      },
+      {
+        "id": 5,
+        "title": "المسائل الجبرية",
+        "subtitle": "ما هي المسائل الجبرية في اختبار القدرات؟",
+        "description": "من أصعب المسائل الجبرية في اختبار القدرات وأهم النصائح والأمثلة وأسئلة هنا",
+        "category": "تعرف على القسم",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"القدرات",
+        "url": "/algebraic-problems",
+        "bgColor": "#3949ab"
+      },
+      {
+        "id": 6,
+        "title": "المسائل الهندسية",
+        "subtitle": "ما هي المسائل الهندسية في اختبار القدرات؟",
+        "description": "من أصعب المسائل الهندسية في اختبار القدرات وأهم النصائح والأمثلة وأسئلة هنا",
+        "category": "تعرف على القسم",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"اللفظي",
+        "url": "/geometric-problems",
+        "bgColor": "#00897b"
+      },
+      {
+        "id": 7,
+        "title": "المقدرة المتميزة",
+        "subtitle": "ما هي المقدرة المتميزة في اختبار القدرات؟",
+        "description": "ستتعرف في هذه المقالة على المقدرة المتميزة في اختبار القدرات وأهم النصائح والتدريبات والأسئلة المتوقعة في القسم",
+        "category": "تعرف على القسم",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"الكمي",
+        "url": "/distinguished-ability",
+        "bgColor": "#fdd835"
+      },
+      {
+        "id": 8,
+        "title": "الارتباط والاختلاف",
+        "subtitle": "ما هو الارتباط والاختلاف في اختبار القدرات؟",
+        "description": "ستتعرف في هذه المقالة على الارتباط والاختلاف في اختبار القدرات وأهم النصائح والتدريبات والأسئلة هنا",
+        "category": "تعرف على القسم",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"الكمي",
+        "url": "/correlation-difference",
+        "bgColor": "#3949ab"
+      },
+      {
+        "id": 9,
+        "title": "المسائل الحسابية",
+        "subtitle": "ما هي المسائل الحسابية في اختبار القدرات؟",
+        "description": "المسائل الحسابية هي أحد أجزاء القسم الكمي في اختبار القدرات وهي تشمل مسائل تتطلب إجراء العمليات الحسابية والإحصائية والجبر والهندسة",
+        "category": "تعرف على القسم",
+        "image": "/placeholder.svg?height=300&width=400",
+        "role":"الكمي",
+        "url": "/arithmetic-problems",
+        "bgColor": "#e0e0e0"
+      }
+    ],
+    "footerLinks": [
+      {
+        "id": 1,
+        "title": "اختبار التحصيل",
+        "url": "/achievement-test"
+      },
+      {
+        "id": 2,
+        "title": "اختبار التحصيل الدراسي",
+        "url": "/academic-achievement-test"
+      },
+      {
+        "id": 3,
+        "title": "إكمال الجمل",
+        "url": "/sentence-completion"
+      },
+      {
+        "id": 4,
+        "title": "اختبار القدرات",
+        "url": "/capabilities-test"
+      },
+      {
+        "id": 5,
+        "title": "اختبار القدرات المحوسب",
+        "url": "/computerized-capabilities-test"
+      },
+      {
+        "id": 6,
+        "title": "استيعاب المقروء",
+        "url": "/reading-comprehension"
+      },
+      {
+        "id": 7,
+        "title": "القراءة والمفردات",
+        "url": "/reading-vocabulary"
+      },
+      {
+        "id": 8,
+        "title": "الاختبار التحصيلي",
+        "url": "/achievement-test-details"
+      },
+      {
+        "id": 9,
+        "title": "التناظر اللفظي",
+        "url": "/verbal-analogy"
+      },
+      {
+        "id": 10,
+        "title": "التحليل المنطقي والاستنتاج",
+        "url": "/logical-analysis-inference"
+      },
+      {
+        "id": 11,
+        "title": "التخمين",
+        "url": "/guessing"
+      },
+      {
+        "id": 12,
+        "title": "القدرات العامة",
+        "url": "/general-capabilities"
+      },
+      {
+        "id": 13,
+        "title": "الخطأ السياقي",
+        "url": "/contextual-error"
+      },
+      {
+        "id": 14,
+        "title": "القسم اللفظي",
+        "url": "/verbal-section"
+      },
+      {
+        "id": 15,
+        "title": "القسم الكمي",
+        "url": "/quantitative-section"
+      },
+      {
+        "id": 16,
+        "title": "المسائل الهندسية",
+        "url": "/geometric-problems"
+      },
+      {
+        "id": 17,
+        "title": "المسائل الحسابية",
+        "url": "/arithmetic-problems"
+      },
+      {
+        "id": 18,
+        "title": "المسائل الجبرية",
+        "url": "/algebraic-problems"
+      },
+      {
+        "id": 19,
+        "title": "موعد اختبار القدرات",
+        "url": "/capabilities-test-date"
+      },
+      {
+        "id": 20,
+        "title": "مركز قياس",
+        "url": "/qiyas-center"
+      },
+      {
+        "id": 21,
+        "title": "المقدرة المتميزة",
+        "url": "/distinguished-ability"
+      },
+      {
+        "id": 22,
+        "title": "هيئة تقويم التعليم والتدريب",
+        "url": "/education-training-evaluation-commission"
+      }
+    ]
+  }
+  
+  

@@ -1,0 +1,86 @@
+{
+  "remainingAttempts": 3,
+  "subjects": [
+    {
+      "id": "biology",
+      "name": "علم الأحياء",
+      "selected": false,
+      "available": false,
+      "subcategories": [
+        { "id": "bio1", "name": "أحياء 1" },
+        { "id": "bio2", "name": "أحياء 2" },
+        { "id": "bio3", "name": "أحياء 3" },
+        { "id": "bio4", "name": "أحياء 4" },
+        { "id": "env", "name": "علم البيئة" }
+      ]
+    },
+    {
+      "id": "math",
+      "name": "الرياضيات",
+      "selected": false,
+      "available": false,
+      "subcategories": [
+        { "id": "math1", "name": "رياضيات 1" },
+        { "id": "math2", "name": "رياضيات 2" },
+        { "id": "math3", "name": "رياضيات 3" }
+      ]
+    },
+    {
+      "id": "chemistry",
+      "name": "الكيمياء",
+      "selected": true,
+      "available": true,
+      "status": "كامل التنسيق",
+      "subcategories": [
+        { "id": "chem1", "name": "كيمياء 1" },
+        { "id": "chem2", "name": "كيمياء 2" },
+        { "id": "chem3", "name": "كيمياء 3" },
+        { "id": "chem4", "name": "كيمياء 4" },
+        { "id": "chem5", "name": "كيمياء 5" }
+      ]
+    },
+    {
+      "id": "physics",
+      "name": "الفيزياء",
+      "selected": false,
+      "available": false,
+      "subcategories": [
+        { "id": "phys1", "name": "الفيزياء (1)" },
+        { "id": "phys2", "name": "الفيزياء (2)" },
+        { "id": "phys3", "name": "فيزياء 3" }
+      ]
+    }
+  ],
+    "verbalSection": {
+    "title": "القسم اللفظي",
+    "id": "اللفظي",
+    "categories": [
+      { "id": "verbal1", "name": "الخطأ السياقي", "isActive": false },
+      { "id": "verbal2", "name": "إكمال الجمل", "isActive": false },
+      { "id": "verbal3", "name": "استيعاب المقروء", "isActive": false },
+      { "id": "verbal4", "name": "المفردة الناقصة", "isActive": false },
+      { "id": "verbal5", "name": "التناظر اللفظي", "isActive": false }
+    ]
+  },
+  "quantitativeSection": {
+    "title": "القسم الكمي",
+    "id": "الكمي",
+    "categories": [
+      { "id": "quant1", "name": "المسائل الحسابية", "isActive": false },
+      { "id": "quant2", "name": "المسائل الهندسية", "isActive": false },
+      { "id": "quant3", "name": "المقارنات", "isActive": false },
+      { "id": "quant4", "name": "تحليل البيانات", "isActive": false },
+      { "id": "quant5", "name": "المسائل الجبرية", "isActive": false }
+    ]
+  },
+  "testInfo": {
+    "title": "معلومات الاختبار",
+    "expectedTime": "02:30 ساعة",
+    "numberOfQuestions": 120,
+    "startButtonText": "ابدأ الاختبار",
+    "labels": {
+      "expectedTime": "الزمن المتوقع",
+      "numberOfQuestions": "عدد الأسئلة"
+    }
+  }
+}

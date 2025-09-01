@@ -1,0 +1,318 @@
+{
+    "user": {
+      "name": "Tina Walker",
+      "role": "Teacher aide",
+      "avatar": "/placeholder.svg?height=32&width=32"
+    },
+    "stats": {
+      "totalStudents": 55,
+      "productivity": "40h",
+      "completedCourses": "4/10"
+    },
+    "pendingHomework": [
+      {
+        "id": 1,
+        "student": {
+          "name": "Alex Johnson",
+          "avatar": "/placeholder.svg?height=32&width=32"
+        },
+        "grade": "8th Grade",
+        "subject": "Algebra",
+        "topic": "Fractional indices",
+        "completion": 92,
+        "status": "Test"
+      },
+      {
+        "id": 2,
+        "student": {
+          "name": "Monika Doki",
+          "avatar": "/placeholder.svg?height=32&width=32"
+        },
+        "grade": "5th Grade",
+        "subject": "Geometry",
+        "topic": "Graphical Method",
+        "completion": 75,
+        "status": "Quiz"
+      },
+      {
+        "id": 3,
+        "student": {
+          "name": "Olivia Williams",
+          "avatar": "/placeholder.svg?height=32&width=32"
+        },
+        "grade": "6th Grade",
+        "subject": "Algebra",
+        "topic": "Square roots",
+        "completion": 65,
+        "status": "Quiz"
+      },
+      {
+        "id": 4,
+        "student": {
+          "name": "James Davis",
+          "avatar": "/placeholder.svg?height=32&width=32"
+        },
+        "grade": "8th Grade",
+        "subject": "Pre-Algebra",
+        "topic": "Signed Integers",
+        "completion": 83,
+        "status": "Project"
+      }
+    ],
+    "lessons": [
+      {
+        "id": 1,
+        "title": "Multiplying decimals",
+        "subject": "Pre-Algebra",
+        "time": "08:00 AM - 10:00 AM",
+        "students": [
+          "/placeholder.svg?height=24&width=24",
+          "/placeholder.svg?height=24&width=24",
+          "/placeholder.svg?height=24&width=24"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Polygon basics",
+        "subject": "Geometry",
+        "time": "1:00 PM - 2:00 PM",
+        "students": [
+          "/placeholder.svg?height=24&width=24",
+          "/placeholder.svg?height=24&width=24",
+          "/placeholder.svg?height=24&width=24"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Equations and Inequalities",
+        "subject": "Algebra",
+        "time": "3:30 PM - 4:30 PM",
+        "students": [
+          "/placeholder.svg?height=24&width=24",
+          "/placeholder.svg?height=24&width=24",
+          "/placeholder.svg?height=24&width=24"
+        ]
+      }
+    ],
+    "upcomingEvents": [
+      {
+        "id": 1,
+        "title": "Good teaching conference",
+        "time": "4:00 PM - 5:00 PM",
+        "date": "16 Aug",
+        "icon": "📚"
+      },
+      {
+        "id": 2,
+        "title": "Transform from Teacher to Coach",
+        "time": "6:00 PM - 7:00 PM",
+        "date": "20 Aug",
+        "icon": "🎯"
+      }
+    ],
+    "tasks": [
+      "To plan and prepare appropriately the assigned cou...",
+      "To implement the designated curriculum completely...",
+      "To check projects and homework (8-9th grade)",
+      "To create suggestion for assignment to lecturer hours",
+      "To plan and implement effective classroom managemen..."
+    ],
+    "course": {
+      "title": "Teaching Character and Creating Positive Classrooms",
+      "duration": "4 weeks",
+      "time": "30 hours",
+      "lessons": "5 tasks",
+      "image": "/placeholder.svg?height=200&width=300"
+    },
+    "calendar": {
+      "currentMonth": "November 2023",
+      "selectedDate": 9,
+      "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      "dates": [
+        { "date": 30, "isCurrentMonth": false },
+        { "date": 31, "isCurrentMonth": false },
+        { "date": 1, "isCurrentMonth": true },
+        { "date": 2, "isCurrentMonth": true },
+        { "date": 3, "isCurrentMonth": true },
+        { "date": 4, "isCurrentMonth": true },
+        { "date": 5, "isCurrentMonth": true },
+        { "date": 6, "isCurrentMonth": true },
+        { "date": 7, "isCurrentMonth": true },
+        { "date": 8, "isCurrentMonth": true },
+        { "date": 9, "isCurrentMonth": true, "isSelected": true },
+        { "date": 10, "isCurrentMonth": true },
+        { "date": 11, "isCurrentMonth": true },
+        { "date": 12, "isCurrentMonth": true },
+        { "date": 13, "isCurrentMonth": true },
+        { "date": 14, "isCurrentMonth": true },
+        { "date": 15, "isCurrentMonth": true },
+        { "date": 16, "isCurrentMonth": true },
+        { "date": 17, "isCurrentMonth": true },
+        { "date": 18, "isCurrentMonth": true },
+        { "date": 19, "isCurrentMonth": true },
+        { "date": 20, "isCurrentMonth": true },
+        { "date": 21, "isCurrentMonth": true },
+        { "date": 22, "isCurrentMonth": true },
+        { "date": 23, "isCurrentMonth": true },
+        { "date": 24, "isCurrentMonth": true },
+        { "date": 25, "isCurrentMonth": true },
+        { "date": 26, "isCurrentMonth": true },
+        { "date": 27, "isCurrentMonth": true },
+        { "date": 28, "isCurrentMonth": true },
+        { "date": 29, "isCurrentMonth": true },
+        { "date": 30, "isCurrentMonth": true },
+        { "date": 1, "isCurrentMonth": false },
+        { "date": 2, "isCurrentMonth": false },
+        { "date": 3, "isCurrentMonth": false }
+      ],
+      "timeSlots": [{ "time": "11:00", "duration": 2 }, { "time": "14:00", "duration": 1 }]
+    },
+    "programPlan": {
+      "title": "Program plan",
+      "items": [
+        {
+          "id": 1,
+          "type": "Lesson",
+          "duration": "40 min",
+          "icon": "📚",
+          "status": "scheduled"
+        },
+        {
+          "id": 2,
+          "type": "Test",
+          "duration": "15 min",
+          "details": "10 questions",
+          "icon": "📚",
+          "status": "scheduled"
+        },
+        {
+          "id": 3,
+          "type": "Homework",
+          "duration": "",
+          "details": "Nothing is here yet",
+          "icon": "📚",
+          "status": "empty"
+        },
+        {
+          "id": 4,
+          "type": "Lesson",
+          "duration": "25 min",
+          "icon": "📚",
+          "status": "scheduled"
+        }
+      ]
+    },
+    "courses": [
+      {
+        "id": 1,
+        "name": "App Design Course",
+        "videos": 15,
+        "price": 120,
+        "sales": 48,
+        "earning": 960,
+        "category": "Design",
+        "color": "bg-cyan-500"
+      },
+      {
+        "id": 2,
+        "name": "Graphic Design",
+        "videos": 10,
+        "price": 80,
+        "sales": 34,
+        "earning": 800,
+        "category": "Design",
+        "color": "bg-purple-500"
+      },
+      {
+        "id": 3,
+        "name": "Design Thinking",
+        "videos": 10,
+        "price": 110,
+        "sales": 25,
+        "earning": 850,
+        "category": "Design",
+        "color": "bg-green-500"
+      },
+      {
+        "id": 4,
+        "name": "Digital Painting",
+        "videos": 8,
+        "price": 45,
+        "sales": 32,
+        "earning": 526,
+        "category": "Art",
+        "color": "bg-blue-500"
+      },
+      {
+        "id": 5,
+        "name": "Logo Design",
+        "videos": 12,
+        "price": 100,
+        "sales": 30,
+        "earning": 820,
+        "category": "Design",
+        "color": "bg-purple-600"
+      },
+      {
+        "id": 6,
+        "name": "History of graphic design",
+        "videos": 6,
+        "price": 60,
+        "sales": 19,
+        "earning": 480,
+        "category": "Theory",
+        "color": "bg-orange-500"
+      }
+    ],
+    "categories": ["All Categories", "Design", "Art", "Theory", "Development", "Marketing"],
+    "sortOptions": ["Name", "Price", "Sales", "Earning", "Videos"],
+    "pagination": {
+      "currentPage": 2,
+      "totalPages": 4,
+      "itemsPerPage": 6
+    },
+    
+    "metrics": [
+      {
+        "id": "sales",
+        "title": "Sales",
+        "subtitle": "Total Sales today",
+        "value": "$500",
+        "percentage": 55,
+        "color": "orange",
+        "bgColor": "bg-orange-100",
+        "progressColor": "stroke-orange-500"
+      },
+      {
+        "id": "profit",
+        "title": "Profit",
+        "subtitle": "Per day ratio",
+        "value": "$150",
+        "percentage": 65,
+        "color": "blue",
+        "bgColor": "bg-blue-100",
+        "progressColor": "stroke-blue-500"
+      },
+      {
+        "id": "visits",
+        "title": "Visits",
+        "subtitle": "Total Visit today",
+        "value": "473",
+        "percentage": 95,
+        "color": "teal",
+        "bgColor": "bg-teal-100",
+        "progressColor": "stroke-teal-500"
+      },
+      {
+        "id": "orders",
+        "title": "Orders",
+        "subtitle": "Total Order today",
+        "value": "35",
+        "percentage": 75,
+        "color": "purple",
+        "bgColor": "bg-purple-100",
+        "progressColor": "stroke-purple-500"
+      }
+    ]
+  }
+  
