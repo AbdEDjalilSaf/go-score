@@ -1517,7 +1517,7 @@ const responseTestLength = useSelector(
                     
                 {data[currentQuestion].choiceResponses.map((option, index) => (
                     <button
-                      key={index}
+                      key={index} 
                       onClick={() => handleAnswerSelect(index)}
                       className={`h-16 text-xl font-bold border-2 rounded-lg transition-all ${
                         selectedAnswer === index
