@@ -284,13 +284,9 @@ const headerInfoExam = () => {
   const router = useRouter()
   const sectionsScrollRef = useRef<HTMLDivElement>(null)
 
-  const responseTestLength = useSelector(
-    (state: { background: { responseTestLength: number } }) => state.background.responseTestLength,
-  )
+  const responseTestLength = useSelector((state: { background: { responseTestLength: number } }) => state.background.responseTestLength)
   const skillIdTest = useSelector((state: { background: { skillIdTest: number[] } }) => state.background.skillIdTest)
-  const timingLeftTest = useSelector(
-    (state: { background: { timingLeftTest: string } }) => state.background.timingLeftTest,
-  )
+  const timingLeftTest = useSelector((state: { background: { timingLeftTest: string } }) => state.background.timingLeftTest)
 
   const getSkillsById = (skills: Skill[], skillIdTest: number[]): Skill[] => {
     if (!skillIdTest || !skills.length) return [];
@@ -301,9 +297,7 @@ const headerInfoExam = () => {
     setTiming(timingLeftTest) 
   }, []) 
 
-  const questionCountTest = useSelector(
-    (state: { background: { questionCountTest: string } }) => state.background.questionCountTest,
-  )
+  const questionCountTest = useSelector((state: { background: { questionCountTest: string } }) => state.background.questionCountTest)
 
   // const dispatch = useDispatch()
 
@@ -474,7 +468,8 @@ useEffect(() => {
   }
 
   const { exam } = examData
-  const questionNumbers = Array.from({ length: Number(Number(questionCountTest) > Number(responseTestLength) ? Number(responseTestLength) : Number(questionCountTest)) }, (_, i) => i + 1)
+  const questionNumbers = Array.from({ length: Number( Number(questionCountTest) > Number(responseTestLength.length) ? Number(responseTestLength.length) : Number(questionCountTest)) }, (_, i) => i + 1)
+  
 
   const getTimerColor = () => {
     if (totalSeconds <= 300) return "text-red-400"
@@ -530,7 +525,7 @@ useEffect(() => {
                   key={skill.id}
                   className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-lg px-3 py-2 flex-shrink-0"
                 >
-                  <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                  {/* <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
                     {skill.completed ? (
                       <svg
                         className="w-4 h-4 text-green-600"
@@ -547,7 +542,7 @@ useEffect(() => {
                     ) : (
                       <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     )}
-                  </div>
+                  </div> */}
                   <span className="text-sm whitespace-nowrap">{skill.value || "لا توجد مواد"}</span>
                 </div>
               ))}

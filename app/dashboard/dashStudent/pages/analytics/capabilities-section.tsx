@@ -30,7 +30,7 @@ export default function CapabilitiesSection({ capabilities }: CapabilitiesSectio
         <div className="flex justify-between items-center gap-2">
           <h2 className="text-orange-500 text-2xl font-bold">{capabilities.title}</h2>
         </div>
-        <button onClick={() => setIsExpanded(!isExpanded)} className="text-amber-500">
+        <button onClick={() => setIsExpanded(!isExpanded)} className="text-amber-500" type="button">
           {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </button>
       </div>

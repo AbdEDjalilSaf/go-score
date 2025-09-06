@@ -33,7 +33,6 @@ export const refreshAuthToken = async (): Promise<boolean> => {
    
         Cookies.remove("adminToken");
         Cookies.set("adminToken", response.data.data, {
-                            expires: 7, // Token expires in 7 days
                             path: "/admin",
                             secure: process.env.NODE_ENV === "production",
                             sameSite: "strict",

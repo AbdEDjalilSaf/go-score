@@ -1366,8 +1366,8 @@ const result = await startTestFetch(requestBody, getHeaders())
           ...prevData,
           remainingAttempts: Math.max(0, prevData.remainingAttempts - 1),
         }))
-       dispatch(changeResponseTestLength(result.data.length))
-       console.log("result.data.length",result.data.length)
+      dispatch(changeResponseTestLength(result.data))
+       console.log("result.data.length",result.data)
 
         router.push(`/dashboard/dashStudent/examGlobalTest?testId=${result.data}`)
       } else {
@@ -1590,14 +1590,6 @@ const result = await startTestFetch(requestBody, getHeaders())
             {isLoading ? "جاري التحضير..." : "ابدأ الاختبار"}
           </button>
         </div>
-
-        {data.remainingAttempts <= 0 && (
-          <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-yellow-600 text-center font-medium">
-              لقد استنفدت جميع المحاولات المجانية. يرجى ترقية باقتك للمتابعة.
-            </p>
-          </div>
-        )}
       </div>
     </div>
   )

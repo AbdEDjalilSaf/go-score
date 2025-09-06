@@ -161,7 +161,7 @@ const register = async (
 
         // Save access token to cookies
         Cookies.set("accessToken", data.jwtAuthResult.accessToken, {
-          expires: 7, // Token expires in 7 days
+          expires: 30, // Token expires in 30 days
           path: "/",
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",

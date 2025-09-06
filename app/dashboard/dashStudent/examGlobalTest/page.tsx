@@ -1009,7 +1009,7 @@
 
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { startTestFetch } from "@/app/dashboard/dashStudent/pages/exam-simulator/CapacitiesFull/exam-simulator"
 import HeaderInfoExam from "./headerInfoExam"
@@ -1045,6 +1045,36 @@ interface choiceResponse {
 //   data: number
 // }
 
+// Create all options including the correct answer
+function createShuffledOptions(questionData) {
+  // Combine choice responses with the correct answer
+  const allOptions = [
+    ...questionData.choiceResponses.map((option, index) => ({
+      value: option.value,
+      originalIndex: index,
+      isCorrect: false
+    })),
+    {
+      value: questionData.answer,
+      originalIndex: questionData.answer,
+      isCorrect: true
+    }
+  ];
+  
+  // Remove duplicates (in case the correct answer is already in choiceResponses)
+  const uniqueOptions = allOptions.filter((option, index, self) => 
+    index === self.findIndex(o => o.value === option.value)
+  );
+  
+  // Shuffle the options
+  return shuffleArray(uniqueOptions);
+}
+
+function shuffleArray(array: any[]) {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
+
 export default function ExamInterface() {
   // All useState hooks first
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -1058,6 +1088,7 @@ export default function ExamInterface() {
   const [testId, setTestId] = useState<number | null>(null)
   const [showExitModal, setShowExitModal] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [shuffledOptionsState, setShuffledOptionsState] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null)
 
   const skillIdTest = useSelector((state: { background: { skillIdTest: number[] } }) => state.background.skillIdTest)
@@ -1252,6 +1283,23 @@ const responseTestLength = useSelector(
   useEffect(() => {
     startTest()
   }, [])
+
+  const shuffledOptions = useMemo(() => {
+    if (!data[currentQuestion]) return [];
+    return createShuffledOptions(data[currentQuestion]);
+  }, [currentQuestion, data]);
+
+  useEffect(() => {
+    if (data[currentQuestion]) {
+      const options = data[currentQuestion].choiceResponses.map((opt: choiceResponse, index: number) => ({
+        value: opt.value,
+        isCorrect: opt.value === data[currentQuestion].answer,
+        originalIndex: index,
+      }));
+  
+      setShuffledOptionsState(shuffleArray(options));
+    }
+  }, [currentQuestion, data]);
 
   // Now handle conditional rendering AFTER all hooks
   if (isLoading) {
@@ -1459,7 +1507,7 @@ const responseTestLength = useSelector(
           <div className="bg-white rounded-lg shadow-lg overflow-hidden border">
             {/* Question Header */}
             <div className="bg-gray-600 text-white px-6 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              {/* <div className="flex items-center gap-4">
                 <button
                   onClick={() => {}}
                   className="flex items-center gap-2 px-4 py-2 bg-gray-500 hover:bg-gray-400 rounded text-sm font-medium"
@@ -1489,7 +1537,7 @@ const responseTestLength = useSelector(
                   </svg>
                   تمييز
                 </button>
-              </div>
+              </div> */}
               {/* <h2 className="text-xl font-bold">السؤال: ({currentQuestion + 1})</h2> */}
             </div>
 
@@ -1526,21 +1574,43 @@ const responseTestLength = useSelector(
                       }`}
                       type="button"
                     >
-                      {option.value}
+                    {option.value}
                     </button> 
                   ))} 
-                  <button
-                    key={data[currentQuestion].answer}
-                    onClick={() => handleAnswerSelect(data[currentQuestion].answer)}
-                    className={`h-16 text-xl font-bold border-2 rounded-lg transition-all ${
-                      selectedAnswer === data[currentQuestion].answer
-                        ? "border-purple-500 bg-purple-50 text-purple-700 shadow-lg"
-                        : "border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700"
-                    }`}
-                    type="button"
-                  >
-                    {data[currentQuestion].answer}
-                  </button>
+                   <button
+                     key={data[currentQuestion].answer}
+                     onClick={() => handleAnswerSelect(data[currentQuestion].answer)}
+                     className={`h-16 text-xl font-bold border-2 rounded-lg transition-all ${
+                       selectedAnswer === data[currentQuestion].answer
+                         ? "border-purple-500 bg-purple-50 text-purple-700 shadow-lg"
+                         : "border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700"
+                     }`}
+                     type="button"
+                   >
+                     {data[currentQuestion].answer}
+                   </button> 
+ 
+{/* <div className="grid gap-4">
+{shuffledOptionsState.map((option, index) => (
+  <button
+    key={`${currentQuestion}-${index}`}
+    onClick={() =>
+      handleAnswerSelect(
+        option.isCorrect ? data[currentQuestion].answer : option.originalIndex
+      )
+    }
+    className={`h-16 text-xl font-bold border-2 rounded-lg transition-all ${
+      selectedAnswer ===
+      (option.isCorrect ? data[currentQuestion].answer : option.originalIndex)
+        ? "border-purple-500 bg-purple-50 text-purple-700 shadow-lg"
+        : "border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700"
+    }`}
+    type="button"
+  >
+    {option.value}
+  </button>
+))}
+    </div>  */}
               </div>
 
               {/* Navigation Buttons */}

@@ -746,7 +746,7 @@ import { useRouter } from "next/navigation"
 import Cookies from "js-cookie"
 import { refreshAuthToken } from "@/app/api/refreshAuthToken"
 import { useDispatch } from "react-redux"
-import { changeSkillIdTest, changeQuestionCountTest, changeTimingLeftTest } from "@/features/auth/authSlice"
+import { changeSkillIdTest, changeQuestionCountTest, changeTimingLeftTest, changeResponseTestLength } from "@/features/auth/authSlice"
 
 
 interface SkillTestStatistic {
@@ -874,6 +874,7 @@ export default function Home() {
 
       if (response.data.succeeded) {
         console.log("Test started successfully:", response.data)
+        dispatch(changeResponseTestLength(response.data.data))
         router.push("/dashboard/dashStudent/examGlobalTest")
       } else {
         setTestStartError(response.data.message || "فشل في بدء الاختبار")

@@ -20,8 +20,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     { name: 'عمليات الدفع', icon: <HandCoins />, path: '/admin/pages/payment-operation' },
     { name: 'قسم الدعم', icon: <BadgeAlert />, path: '/admin/pages/support' },
     { name: 'المدونة', icon: <SquarePen />, path: '/admin/pages/blog' },
-    { name: 'باقات الاشتراكات', icon: <CircleDollarSign />, path: '/admin/subscribes' },
-    { name: 'طلبات الاشتراكات', icon: <MailPlus />, path: '/admin/subscribesٌRequests' },
+    { name: 'باقات الاشتراكات', icon: <CircleDollarSign />, path: '/admin/pages/subscribes' },
+    { name: 'طلبات الاشتراكات', icon: <MailPlus />, path: '/admin/pages/subscribesٌRequests' },
   ];
 
   return (

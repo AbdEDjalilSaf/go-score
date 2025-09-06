@@ -1472,7 +1472,7 @@ import Cookies from "js-cookie"
 import { refreshAuthToken } from "@/app/api/refreshAuthToken"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
-import { changeSkillIdTest, changeQuestionCountTest, changeTimingLeftTest } from "@/features/auth/authSlice"
+import { changeSkillIdTest, changeQuestionCountTest, changeTimingLeftTest, changeResponseTestLength } from "@/features/auth/authSlice"
 
 // Types - Updated to handle the problematic object structure
 interface TestClass {
@@ -1876,6 +1876,7 @@ export default function ExamSimulatorDebug(props: ExamSimulatorProps = {}) {
             ...prevData,
             remainingAttempts: Math.max(0, prevData.remainingAttempts - 1),
           }))
+          dispatch(changeResponseTestLength(response.data.data))
           // Redirect to test page
           router.push(`/dashboard/dashStudent/examGlobalTest?testId=${testIdValue}`)
         } else {
@@ -2167,15 +2168,6 @@ export default function ExamSimulatorDebug(props: ExamSimulatorProps = {}) {
             )}
           </button>
         </div>
-
-        {/* No Attempts Warning */}
-        {data.remainingAttempts <= 0 && (
-          <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-yellow-600 text-center font-medium">
-              لقد استنفدت جميع المحاولات المجانية. يرجى ترقية باقتك للمتابعة.
-            </p>
-          </div>
-        )}
       </div>
     </div>
   )

@@ -224,7 +224,7 @@
 
 "use client"
 import type React from "react"
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import LoginImg from "@/public/login.jpg"
 import Link from "next/link"
 import Image from "next/image"
@@ -232,7 +232,10 @@ import { useForm } from "react-hook-form"
 import { useLogin } from "@/app/hooks/useLogin"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/lib/validation"
+import Cookies from "js-cookie"
 import type * as z from "zod"
+import { refreshAuthToken } from "@/app/api/refreshAuthToken"
+import { useRouter } from "next/router" 
 // import { useRouter } from "next/navigation"
 
 // Infer the type from the schema
@@ -244,7 +247,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   // const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const { login, error } = useLogin()
-
+  const router = useRouter(); 
   // Initialize react-hook-form with zod resolver
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -259,6 +262,20 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
     handleSubmit,
     formState: { errors },
   } = form
+
+useEffect(()=>{
+const returnToken = async() =>{
+  const token = Cookies.get("accessToken");
+if(!token){
+  const refreshSuccess = await refreshAuthToken()
+              if (refreshSuccess) {
+                router.push("/dashboard/dashStudent") // Retry with new token
+              } 
+            }
+}
+returnToken()
+},[])
+
 
   // Handle form submission
   async function onSubmit(data: LoginFormValues) {

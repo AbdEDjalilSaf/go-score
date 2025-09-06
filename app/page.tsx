@@ -347,8 +347,26 @@ import FiveSupport from "@/public/FiveSupport.jpg"
 import Landin from "@/public/Landin.jpg"
 import { BookOpen, Award, BarChart2, Users, Brain, Lightbulb, Atom } from "lucide-react"
 import Link from "next/link"
+import { refreshAuthToken } from "./api/refreshAuthToken"
+import Cookies from "js-cookie"
 
 const page = () => {
+  const returnToken = async() =>{
+    const token = Cookies.get("accessToken");
+    console.log("token +++++++",token)
+    console.log("good token ================")
+
+    const refreshSuccess = await refreshAuthToken()
+                if (refreshSuccess) {
+                console.log("success update token +++",token)
+                setTimeout(()=>{
+                  window.location.reload()
+                },2000)
+                } 
+              
+  }
+  returnToken()
+
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">

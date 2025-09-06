@@ -15,10 +15,10 @@ export default function ArabicToggle() {
   }
   return (
   
-  <div className="w-md mx-auto my-2">
+  <div className="max-w-md mx-auto my-2">
         {/* Main Toggle Button */}
         <div className="bg-purple-700 rounded-full p-1 shadow-lg">
-          <div className="flex relative">
+          <div className="flex flex-wrap relative">
            {/* الطلاب Option */}
             <button
               name="الطلاب"

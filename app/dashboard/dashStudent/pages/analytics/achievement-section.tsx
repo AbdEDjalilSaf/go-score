@@ -29,7 +29,7 @@ export default function AchievementSection({ capabilities }: CapabilitiesSection
         <div className="flex items-center gap-2">
           <h2 className="text-orange-500 text-xl font-bold">{capabilities.title}</h2>
         </div>
-        <button onClick={() => setIsExpanded(!isExpanded)} className="text-amber-500">
+        <button onClick={() => setIsExpanded(!isExpanded)} className="text-amber-500" type="button">
           {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </button>
       </div>

@@ -5455,9 +5455,9 @@ export default function GetAllSkills() {
           </div>
 
           {/* Toggle Buttons */}
-          <div className="w-md mx-auto my-2">
+          <div className="max-w-md mx-auto my-2">
             <div className="bg-purple-700 rounded-full p-1 shadow-lg">
-              <div className="flex relative">
+              <div className="flex flex-wrap relative">
                 <button
                   name="المهارات"
                   onClick={() => {

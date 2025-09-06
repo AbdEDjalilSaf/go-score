@@ -8,7 +8,7 @@ import axios from "axios"
 import Cookies from "js-cookie"
 
 
-const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL || ""
+const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080"
 
 
 // Zod schema for form validation
@@ -107,7 +107,7 @@ export default function LoginForm() {
 
                   Cookies.remove("adminToken");
                   Cookies.set("adminToken", apiResponse.data.jwtAuthResult.accessToken, {
-                    expires: 7, // Token expires in 7 days
+                    expires: 30, // Token expires in 30 days
                     path: "/admin",
                     secure: process.env.NODE_ENV === "production",
                     sameSite: "strict",

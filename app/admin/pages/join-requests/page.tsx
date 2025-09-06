@@ -3430,7 +3430,7 @@ export default function AdminDashboard() {
             {/* Header */}
             <div className="mb-4 sm:mb-6 lg:mb-8">
               <div className="flex flex-col space-y-3 sm:space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-6 md:gap-0 sm:flex-row items-center justify-between">
                   <div className="flex-1 min-w-0">
                     <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-normal text-gray-800 mb-1 sm:mb-2">
                       طلبات الانضمام

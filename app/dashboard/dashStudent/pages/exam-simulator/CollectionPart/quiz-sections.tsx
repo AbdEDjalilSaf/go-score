@@ -1320,7 +1320,7 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import Cookies from "js-cookie"
 import { useDispatch } from "react-redux"
-import { changeSkillIdTest, changeQuestionCountTest, changeTimingLeftTest } from "@/features/auth/authSlice"
+import { changeSkillIdTest, changeQuestionCountTest, changeTimingLeftTest, changeResponseTestLength } from "@/features/auth/authSlice"
 import { refreshAuthToken } from "@/app/api/refreshAuthToken"
 
 interface SkillTestStatistic {
@@ -1475,6 +1475,7 @@ export default function Component() {
 
       if (response.data.succeeded) {
         console.log("Test started successfully:", response.data)
+        dispatch(changeResponseTestLength(response.data.data))
         router.push("/dashboard/dashStudent/examGlobalTest")
         // alert(`تم بدء الاختبار بنجاح! عدد الأسئلة: ${questionCount}، عدد المهارات: ${selectedSkillIds.length}`)
       } else {

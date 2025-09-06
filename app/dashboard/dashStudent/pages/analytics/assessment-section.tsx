@@ -281,7 +281,7 @@ async function getAnalyticalStatistics() {
                             <h2 className="font-bold">{testClass.value}</h2>
                             <span className="text-gray-500 text-sm">إحصائيات التحليل التفصيلي</span>
                           </div>
-                          <button onClick={() => setIsExpanded(!isExpanded)} className="hover:bg-black/5 p-1 rounded">
+                          <button onClick={() => setIsExpanded(!isExpanded)} className="hover:bg-black/5 p-1 rounded" type="button">
                             {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                           </button>
                         </div>
@@ -300,7 +300,7 @@ async function getAnalyticalStatistics() {
                               <span className="text-purple-800">إجمالي الأسئلة</span>
                               <span className="text-teal-500 font-bold">{totalStats.totalQuestions}</span>
                             </div>
-                            <button className="bg-purple-800 text-white px-6 py-1.5 rounded-md text-sm hover:bg-purple-900 transition-colors">
+                            <button className="bg-purple-800 text-white px-6 py-1.5 rounded-md text-sm hover:bg-purple-900 transition-colors" type="button">
                               عرض التفاصيل
                             </button>
                           </div>
@@ -338,7 +338,7 @@ async function getAnalyticalStatistics() {
                                       </span>
                                     </td>
                                     <td className="py-3 px-4 text-center">
-                                      <button className="bg-purple-800 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-900 transition-colors">
+                                      <button className="bg-purple-800 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-900 transition-colors" type="button">
                                         تدرب
                                       </button>
                                     </td>
@@ -370,7 +370,7 @@ async function getAnalyticalStatistics() {
                           <h2 className="font-bold">{testClass.value}</h2>
                           <span className="text-gray-500 text-sm">إحصائيات التحليل التفصيلي</span>
                         </div>
-                        <button onClick={() => setIsExpanded(!isExpanded)} className="hover:bg-black/5 p-1 rounded">
+                        <button onClick={() => setIsExpanded(!isExpanded)} className="hover:bg-black/5 p-1 rounded" type="button">
                           {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                         </button>
                       </div>
@@ -389,7 +389,7 @@ async function getAnalyticalStatistics() {
                             <span className="text-purple-800">إجمالي الأسئلة</span>
                             <span className="text-teal-500 font-bold">{totalStats.totalQuestions}</span>
                           </div>
-                          <button className="bg-purple-800 text-white px-6 py-1.5 rounded-md text-sm hover:bg-purple-900 transition-colors">
+                          <button className="bg-purple-800 text-white px-6 py-1.5 rounded-md text-sm hover:bg-purple-900 transition-colors" type="button">
                             عرض التفاصيل
                           </button>
                         </div>
@@ -427,7 +427,7 @@ async function getAnalyticalStatistics() {
                                     </span>
                                   </td>
                                   <td className="py-3 px-4 text-center">
-                                    <button className="bg-purple-800 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-900 transition-colors">
+                                    <button className="bg-purple-800 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-900 transition-colors" type="button">
                                       تدرب
                                     </button>
                                   </td>
@@ -474,7 +474,7 @@ async function getAnalyticalStatistics() {
                   fetchAnalyticalData()
                 }}
                 className="mt-3 bg-red-600 text-white px-4 py-2 rounded-md text-sm hover:bg-red-700 transition-colors"
-              >
+                type="button">
                 إعادة المحاولة
               </button>
             </div>
@@ -490,3 +490,86 @@ async function getAnalyticalStatistics() {
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+
+// import { useSelector } from 'react-redux';
+// import { RootState } from './lib/store';
+// import { useAnalyticalStatistics } from './hooks/useAnalyticalStatistics';
+// import { TestClassCard } from './TestClassCard';
+// import { LoadingSpinner } from './LoadingSpinner';
+// import { ErrorDisplay } from './ErrorDisplay';
+
+// export default function AssessmentSection() {
+//   const { analyticalData, loading, error, refetch } = useAnalyticalStatistics();
+//   const currentColor = useSelector((state: RootState) => state.background.name);
+
+//   const totalStats = analyticalData.reduce(
+//     (acc, testType) => {
+//       testType.testClasses.forEach((testClass) => {
+//         testClass.skillTestsStatistics.forEach((skill) => {
+//           acc.totalQuestions += skill.questionsCount;
+//           acc.totalAnswers += skill.correctAnswersCount;
+//         });
+//       });
+//       return acc;
+//     },
+//     { totalQuestions: 0, totalAnswers: 0 }
+//   );
+
+//   const filteredData = analyticalData.filter((testType) =>
+//     currentColor === "قدرات" ? testType.value === "Qudrat" : testType.value === "Tahsili"
+//   );
+
+//   if (loading) {
+//     return <LoadingSpinner />;
+//   }
+
+//   if (error) {
+//     return <ErrorDisplay error={error} onRetry={refetch} />;
+//   }
+
+//   if (analyticalData.length === 0) {
+//     return (
+//       <div className="text-center py-8 text-gray-500">
+//         <p>لا توجد إحصائيات متاحة</p>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="space-y-4">
+//       {filteredData.length > 0 ? (
+//         filteredData.map((testType) => (
+//           <div key={`${testType.value.toLowerCase()}-${testType.id}`} className="overflow-hidden">
+//             {testType.testClasses.map((testClass) => (
+//               <TestClassCard
+//                 key={`${testType.value.toLowerCase()}-class-${testClass.id}`}
+//                 testClass={testClass}
+//                 totalAnswers={totalStats.totalAnswers}
+//                 totalQuestions={totalStats.totalQuestions}
+//               />
+//             ))}
+//           </div>
+//         ))
+//       ) : (
+//         <div className="text-center py-8 text-gray-500">
+//           <p>
+//             لا توجد إحصائيات متاحة لـ {currentColor === "قدرات" ? "Qudrat" : "Tahsili"}
+//           </p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }

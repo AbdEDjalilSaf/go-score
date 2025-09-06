@@ -147,7 +147,7 @@ const handleClickOutside = () => {
                   ))}
                   <td className="px-6 py-4 whitespace-nowrap text-right text-xs sm:text-sm font-medium relative">
                     <div className="action-menu relative inline-block text-left">
-                      <button
+                      {/* <button
                         onClick={() => {
                           toggleMenu(index);
                           if (onDispatchData) onDispatchData(dispatch(changeUserId(item.id)));
@@ -155,8 +155,10 @@ const handleClickOutside = () => {
                         className="text-gray-400 hover:text-gray-600"
                         type="button">
                         <MoreVertical className="h-5 w-5 cursor-pointer" />
-                      </button>
-                      {activeMenu === index && (
+                      </button> */}
+
+                      
+                      {/* {activeMenu === index && (
                      
                         <div className="origin-top-right z-50 absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1  ring-opacity-5 ">
                           <div className="py-1 flex flex-col z-50 outline-none border-none">
@@ -197,7 +199,7 @@ const handleClickOutside = () => {
                             )}
                           </div>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </td>
                 </tr>

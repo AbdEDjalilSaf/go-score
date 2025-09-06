@@ -19,6 +19,14 @@ const router = useRouter();
 
   try {
     const token = Cookies.get('adminToken');
+    const secessRefreshToken = await refreshAuthToken();
+      if(secessRefreshToken){
+      router.push("/admin")
+      console.log("success update admin token ++++++++++",token)
+      // setTimeout(()=>{
+      //   window.location.reload()
+      // },2000)
+    }
     if(token){
         setIsLoggedIn(!!token); 
     }
