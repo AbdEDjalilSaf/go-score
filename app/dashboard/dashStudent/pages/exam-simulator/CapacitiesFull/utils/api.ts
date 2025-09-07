@@ -1,13 +1,13 @@
 import axios, { type AxiosResponse } from "axios"
 import Cookies from "js-cookie"
 import { refreshAuthToken } from "@/app/api/refreshAuthToken"
-import router from "next/router"
+import { useRouter } from "next/navigation"
 // import { headers } from "next/headers"
 
 interface QuestionCountRequest {
   skills: number[]
 }
-
+const router = useRouter()
 interface ApiResponse<T> {
   meta: null
   succeeded: boolean
@@ -15,7 +15,6 @@ interface ApiResponse<T> {
   errors: null
   data: T
 }
-
 // Create an axios instance with default configuration
 const apiClient = axios.create({
   baseURL: "/api",

@@ -1,109 +1,189 @@
 // "use client"
+// import React, { useState } from 'react';
+// import { Plus, FileText, TrendingUp, Archive } from 'lucide-react';
+// import { useBlogs } from '../hooks/useBlogs';
+// import { SearchFilters } from './SearchFilters';
+// import { BlogList } from './BlogList';
+// import { BlogForm } from './BlogForm';
+// import { Blog } from '../types/blog';
 
-// import type React from "react"
+// export const BlogAdmin: React.FC = () => {
+//   const {
+//     blogs,
+//     loading,
+//     filters,
+//     setFilters,
+//     createBlog,
+//     updateBlog,
+//     deleteBlog,
+//     deleteBlogs,
+//     categories,
+//     authors
+//   } = useBlogs();
 
-// import { useState } from "react"
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
-// import { Card, CardContent, CardHeader } from "@/components/ui/card"
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-// import DashStudent from "@/app/dashboard/dashStudent/dashStudent"
-// import { Mic, Smile, Paperclip, Send } from "lucide-react"
+//   const [showForm, setShowForm] = useState(false);
+//   const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
+//   const [formLoading, setFormLoading] = useState(false);
 
-// export default function SupportChat() {
-//   const [message, setMessage] = useState("")
-//   const [messages, setMessages] = useState<{ text: string; sender: "user" | "support" }[]>([])
+//   const handleCreateBlog = () => {
+//     setEditingBlog(null);
+//     setShowForm(true);
+//   };
 
-//   const handleSendMessage = () => {
-//     if (message.trim()) {
-//       setMessages([...messages, { text: message, sender: "user" }])
-//       setMessage("")
+//   const handleEditBlog = (blog: Blog) => {
+//     setEditingBlog(blog);
+//     setShowForm(true);
+//   };
+
+//   const handleFormSubmit = async (blogData: Omit<Blog, 'id' | 'created_at' | 'updated_at'>) => {
+//     setFormLoading(true);
+//     try {
+//       if (editingBlog) {
+//         await updateBlog(editingBlog.id, blogData);
+//       } else {
+//         await createBlog(blogData);
+//       }
+//       setShowForm(false);
+//       setEditingBlog(null);
+//     } finally {
+//       setFormLoading(false);
 //     }
-//   }
+//   };
 
-//   const handleKeyDown = (e: React.KeyboardEvent) => {
-//     if (e.key === "Enter" && !e.shiftKey) {
-//       e.preventDefault()
-//       handleSendMessage()
+//   const handleDeleteBlog = async (id: string) => {
+//     if (window.confirm('Are you sure you want to delete this blog post?')) {
+//       await deleteBlog(id);
 //     }
-//   }
+//   };
+
+//   const handleDeleteSelected = async (ids: string[]) => {
+//     if (window.confirm(`Are you sure you want to delete ${ids.length} blog posts?`)) {
+//       await deleteBlogs(ids);
+//     }
+//   };
+
+//   const handleSearch = () => {
+//     // Search is handled automatically by the useBlogs hook
+//     // This is just for explicit search button clicks
+//   };
+
+//   // Calculate stats
+//   const stats = {
+//     total: blogs.length,
+//     published: blogs.filter(b => b.status === 'published').length,
+//     drafts: blogs.filter(b => b.status === 'draft').length,
+//     archived: blogs.filter(b => b.status === 'archived').length
+//   };
 
 //   return (
-//     <DashStudent>
-//     <div  dir="rtl">
-//       <Card className="w-full max-w-3xl h-[600px] flex flex-col">
-//         <CardHeader className="border-b p-4">
-//           <div className="flex justify-center">
-//             <h2 className="text-xl font-bold text-purple-700">الدعم الفني</h2>
-//           </div>
-//         </CardHeader>
-
-//         <div className="flex items-center p-4 border-b">
-//           <div className="flex items-center gap-3 mr-auto">
-//             <span className="font-medium">nooduhk saf</span>
-//             <Avatar className="h-10 w-10">
-//               <AvatarImage src="/placeholder.svg" alt="User" />
-//               <AvatarFallback>NS</AvatarFallback>
-//             </Avatar>
+//     <div className="min-h-[90vh] bg-gray-50">
+//       {/* Header */}
+//       <div className=" border-b px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-full mx-auto py-6">
+//           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+//             <div>
+//               <h1 className="text-2xl font-bold text-gray-900">Blog Management</h1>
+//               <p className="text-gray-600 mt-1">Manage and organize your blog content</p>
+//             </div>
+//             <button
+//               onClick={handleCreateBlog}
+//               className="inline-flex items-center px-4 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium shadow-sm"
+//             type='button'>
+//               <Plus className="h-4 w-4 mr-2" />
+//               Create Blog
+//             </button>
 //           </div>
 //         </div>
+//       </div>
 
-//         <CardContent className="flex-1 overflow-auto p-4">
-//           {messages.length > 0 ? (
-//             <div className="space-y-4">
-//               {messages.map((msg, index) => (
-//                 <div key={index} className={`flex ${msg.sender === "user" ? "justify-start" : "justify-end"}`}>
-//                   <div
-//                     className={`max-w-[80%] rounded-lg p-3 ${
-//                       msg.sender === "user" ? "bg-blue-100 text-blue-900" : "bg-gray-100 text-gray-900"
-//                     }`}
-//                   >
-//                     {msg.text}
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           ) : (
-//             <div className="h-full flex items-center justify-center text-gray-400">
-//               <p>لا يوجد محادثات</p>
-//             </div>
-//           )}
-//         </CardContent>
-
-//         <div className="p-4 border-t">
-//           <div className="flex items-center gap-2">
-//             <Button variant="ghost" size="icon" className="text-blue-500">
-//               <Mic className="h-5 w-5" />
-//             </Button>
-
-//             <div className="relative flex-1">
-//               <Input
-//                 value={message}
-//                 onChange={(e) => setMessage(e.target.value)}
-//                 onKeyDown={handleKeyDown}
-//                 placeholder="كتابة رسالة"
-//                 className="pr-4 pl-20"
-//               />
-//               <div className="absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-//                 <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400">
-//                   <Smile className="h-5 w-5" />
-//                 </Button>
-//                 <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400">
-//                   <Paperclip className="h-5 w-5" />
-//                 </Button>
+//       {/* Main Content */}
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+//         {/* Stats Cards */}
+//         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+//           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600">Total Blogs</p>
+//                 <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+//               </div>
+//               <div className="p-2 bg-purple-100 rounded-lg">
+//                 <FileText className="h-6 w-6 text-purple-600" />
 //               </div>
 //             </div>
+//           </div>
 
-//             <Button onClick={handleSendMessage} size="icon" className="bg-gray-200 hover:bg-gray-300 text-gray-600">
-//               <Send className="h-5 w-5" />
-//             </Button>
+//           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600">Published</p>
+//                 <p className="text-2xl font-bold text-gray-900">{stats.published}</p>
+//               </div>
+//               <div className="p-2 bg-green-100 rounded-lg">
+//                 <TrendingUp className="h-6 w-6 text-green-600" />
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600">Drafts</p>
+//                 <p className="text-2xl font-bold text-gray-900">{stats.drafts}</p>
+//               </div>
+//               <div className="p-2 bg-yellow-100 rounded-lg">
+//                 <FileText className="h-6 w-6 text-yellow-600" />
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600">Archived</p>
+//                 <p className="text-2xl font-bold text-gray-900">{stats.archived}</p>
+//               </div>
+//               <div className="p-2 bg-gray-100 rounded-lg">
+//                 <Archive className="h-6 w-6 text-gray-600" />
+//               </div>
+//             </div>
 //           </div>
 //         </div>
-//       </Card>
+
+//         {/* Search and Filters */}
+//         <SearchFilters
+//           filters={filters}
+//           setFilters={setFilters}
+//           categories={categories}
+//           authors={authors}
+//           onSearch={handleSearch}
+//         />
+
+//         {/* Blog List */}
+//         <BlogList
+//           blogs={blogs}
+//           onEdit={handleEditBlog}
+//           onDelete={handleDeleteBlog}
+//           onDeleteSelected={handleDeleteSelected}
+//           loading={loading}
+//         />
+//       </div>
+
+//       {/* Blog Form Modal */}
+//       {showForm && (
+//         <BlogForm
+//           blog={editingBlog}
+//           onSubmit={handleFormSubmit}
+//           onClose={() => {
+//             setShowForm(false);
+//             setEditingBlog(null);
+//           }}
+//           loading={formLoading}
+//         />
+//       )}
 //     </div>
-//     </DashStudent>
-//   )
-// }
+//   );
+// };
+
 
 
 
@@ -118,116 +198,114 @@
 
 
 // "use client"
+// import React from 'react';
+// import Layout from '@/app/admin/Layout/Layout';
+// import { Plus, FileText, TrendingUp, Archive } from 'lucide-react';
 
-// import type React from "react"
-// import DashStudent from "@/app/dashboard/dashStudent/dashStudent"
-// import { useState } from "react"
-// import { Mic, Smile, Paperclip, Send } from "lucide-react"
 
-// export default function SupportChat() {
-//   const [message, setMessage] = useState("")
-//   const [messages, setMessages] = useState<{ text: string; sender: "user" | "support" }[]>([])
+// export default function Page() {
 
-//   const handleSendMessage = () => {
-//     if (message.trim()) {
-//       setMessages([...messages, { text: message, sender: "user" }])
-//       setMessage("")
-//     }
-//   }
-
-//   const handleKeyDown = (e: React.KeyboardEvent) => {
-//     if (e.key === "Enter" && !e.shiftKey) {
-//       e.preventDefault()
-//       handleSendMessage()
-//     }
-//   }
 
 //   return (
-//     <DashStudent>
-//     <div dir="rtl" className="flex justify-center p-4">
-//       <div className="w-full max-w-3xl h-[600px] flex flex-col bg-white rounded-lg shadow-sm border border-gray-200">
-//         {/* Header */}
-//         <div className="border-b border-gray-200 p-4">
-//           <div className="flex justify-center">
-//             <h2 className="text-xl font-bold text-purple-700">الدعم الفني</h2>
-//           </div>
-//         </div>
-
-//         {/* User Info */}
-//         <div className="flex items-center p-4 border-b border-gray-200">
-//           <div className="flex items-center gap-3 mr-auto">
-//             <span className="font-medium">nooduhk saf</span>
-//             <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-600">
-//               NS
+//     <Layout>
+//     <div className="min-h-[90vh] bg-gray-50" dir="rtl">
+//       {/* Header */}
+//       <div className="border-b px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-full mx-auto py-6">
+//           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+//             <div>
+//               <h1 className="text-2xl font-bold text-gray-900 font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]">
+//                   قسم الدعم
+//               </h1>
+//               <p className="text-gray-600 mt-1 font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]">
+//                 إدارة وتنظيم محتوى قسم الدعم
+//               </p>
 //             </div>
-//           </div>
-//         </div>
-
-//         {/* Messages Area */}
-//         <div className="flex-1 overflow-auto p-4">
-//           {messages.length > 0 ? (
-//             <div className="space-y-4">
-//               {messages.map((msg, index) => (
-//                 <div key={index} className={`flex ${msg.sender === "user" ? "justify-start" : "justify-end"}`}>
-//                   <div
-//                     className={`max-w-[80%] rounded-lg p-3 ${
-//                       msg.sender === "user" ? "bg-blue-100 text-blue-900" : "bg-gray-100 text-gray-900"
-//                     }`}
-//                   >
-//                     {msg.text}
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           ) : (
-//             <div className="h-full flex items-center justify-center text-gray-400">
-//               <p>لا يوجد محادثات</p>
-//             </div>
-//           )}
-//         </div>
-
-//         {/* Input Area */}
-//         <div className="p-4 border-t border-gray-200">
-//           <div className="flex items-center gap-2">
-//             {/* Mic Button */}
-//             <button className="p-2 text-blue-500 hover:bg-gray-100 rounded-md transition-colors" type="button">
-//               <Mic className="h-5 w-5" />
-//             </button>
-
-//             {/* Input Container */}
-//             <div className="relative flex-1">
-//               <input
-//                 type="text"
-//                 value={message}
-//                 onChange={(e) => setMessage(e.target.value)}
-//                 onKeyDown={handleKeyDown}
-//                 placeholder="كتابة رسالة"
-//                 className="w-full pr-4 pl-20 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-//               />
-//               <div className="absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-//                 <button className="p-1 text-gray-400 hover:bg-gray-100 rounded transition-colors" type="button">
-//                   <Smile className="h-5 w-5" />
-//                 </button>
-//                 <button className="p-1 text-gray-400 hover:bg-gray-100 rounded transition-colors" type="button">
-//                   <Paperclip className="h-5 w-5" />
-//                 </button>
-//               </div>
-//             </div>
-
-//             {/* Send Button */}
 //             <button
-//               onClick={handleSendMessage}
-//               className="p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md transition-colors"
-//             type="button">
-//               <Send className="h-5 w-5" />
+//               className="inline-flex items-center px-4 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium shadow-sm font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]"
+//               type='button'
+//             >
+//               <Plus className="h-4 w-4 ml-2" />
+//               إنشاء طلب دعم
 //             </button>
 //           </div>
 //         </div>
 //       </div>
+
+//       {/* Main Content */}
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+//         {/* Stats Cards */}
+//         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+//           <div className="bg-white w-full p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600 font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]">
+//                   إجمالي الطلبات
+//                 </p>
+//                 <p className="text-2xl font-bold text-gray-900">0</p>
+//               </div>
+//               <div className="p-2 bg-purple-100 rounded-lg">
+//                 <FileText className="h-6 w-6 text-purple-600" />
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="bg-white w-full p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600 font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]">
+//                   طلبات مكتملة
+//                 </p>
+//                 <p className="text-2xl font-bold text-gray-900">0</p>
+//               </div>
+//               <div className="p-2 bg-green-100 rounded-lg">
+//                 <TrendingUp className="h-6 w-6 text-green-600" />
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600 font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]">
+//                 طلبات معلقة
+//                 </p>
+//                 <p className="text-2xl font-bold text-gray-900">0</p>
+//               </div>
+//               <div className="p-2 bg-yellow-100 rounded-lg">
+//                 <FileText className="h-6 w-6 text-yellow-600" />
+//               </div>
+//             </div>
+//           </div> */}
+
+//           <div className="bg-white w-full p-6 rounded-lg shadow-sm border border-gray-200">
+//             <div className="flex items-center justify-between">
+//               <div>
+//                 <p className="text-sm font-medium text-gray-600 font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif]">
+//                 طلبات مفتوحة 
+//                 </p>
+//                 <p className="text-2xl font-bold text-gray-900">0</p>
+//               </div>
+//               <div className="p-2 bg-gray-100 rounded-lg">
+//                 <Archive className="h-6 w-6 text-gray-600" />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+
+
+
+
+
+
+
+
 //     </div>
-//     </DashStudent>
-//   )
-// }
+//     </Layout>
+//   );
+// };
 
 
 
@@ -244,12 +322,12 @@
 
 
 "use client"
-import React from 'react';
-import DashStudent from "@/app/dashboard/dashStudent/dashStudent"
-import { FileText,Plus, TrendingUp, Archive, Search, MoreVertical, CheckCircle, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import Layout from '@/app/admin/Layout/Layout';
+import { Plus, FileText, TrendingUp, Archive, Search, Filter, MoreVertical, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function App() {
-  // const [activeTab, setActiveTab] = useState('all');
+  const [activeTab, setActiveTab] = useState('all');
 
   // Mock data for demonstration
   const supportRequests = [
@@ -307,18 +385,18 @@ export default function App() {
     }
   };
 
-  // const getPriorityColor = (priority: string) => {
-  //   switch (priority) {
-  //     case 'high':
-  //       return 'bg-red-100 text-red-800 border-red-200';
-  //     case 'medium':
-  //       return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-  //     case 'low':
-  //       return 'bg-green-100 text-green-800 border-green-200';
-  //     default:
-  //       return 'bg-gray-100 text-gray-800 border-gray-200';
-  //   }
-  // };
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return 'bg-red-100 text-red-800 border-red-200';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      case 'low':
+        return 'bg-green-100 text-green-800 border-green-200';
+      default:
+        return 'bg-gray-100 text-gray-800 border-gray-200';
+    }
+  };
 
 //   const getPriorityText = (priority: string) => {
 //     switch (priority) {
@@ -334,11 +412,11 @@ export default function App() {
 //   };
 
   return (
-    <DashStudent>
-    <div className="min-h-[90vh" dir="rtl">
+    <Layout>
+    <div className="min-h-[90vh] bg-gray-50" dir="rtl">
       {/* Header */}
       <div className=" border-b">
-        <div className="px-1">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto py-4 sm:py-6">
             <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex-1 min-w-0">
@@ -349,19 +427,19 @@ export default function App() {
                   إدارة وتنظيم محتوى قسم الدعم
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+              {/* <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button className="inline-flex items-center justify-center px-3 sm:px-4 py-2 sm:py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all font-medium shadow-sm font-['Tajawal',_'Cairo',_'Noto_Sans_Arabic',_sans-serif] text-sm sm:text-base" type='button'>
                   <Plus className="h-4 w-4 ml-2" />
                   إنشاء طلب دعم
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-1  py-4 sm:py-6 lg:py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         
         {/* Stats Cards */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 mb-6 sm:mb-8">
@@ -593,6 +671,6 @@ export default function App() {
         </div> */}
       </div>
     </div>
-    </DashStudent>
+    </Layout>
   );
 }

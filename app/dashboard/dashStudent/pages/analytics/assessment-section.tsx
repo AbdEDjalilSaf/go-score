@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp, Lock } from "lucide-react"
 import Cookies from "js-cookie"
 import { useSelector } from 'react-redux';
 import { refreshAuthToken } from "@/app/api/refreshAuthToken"
-import router from "next/router"
+import { useRouter } from "next/navigation"
 
 interface SkillTestStatistic {
   id: number
@@ -43,7 +43,7 @@ export default function AssessmentSection() {
   const [analyticalData, setAnalyticalData] = useState<TestType[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
+  const router = useRouter()
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080"
   const currentColor = useSelector((state: { background: { name: string } }) => state.background.name);
 
@@ -93,7 +93,7 @@ async function getAnalyticalStatistics() {
       },
     })
 
-    if (response.data && response.data.data.testTypes) {
+    if (response.data.data.testTypes) {
       return response.data.data.testTypes
     } else {
       setError("No analytical statistics data received")

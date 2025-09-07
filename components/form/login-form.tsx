@@ -235,7 +235,7 @@ import { loginSchema } from "@/lib/validation"
 import Cookies from "js-cookie"
 import type * as z from "zod"
 import { refreshAuthToken } from "@/app/api/refreshAuthToken"
-import { useRouter } from "next/router" 
+import { useRouter } from "next/navigation" 
 // import { useRouter } from "next/navigation"
 
 // Infer the type from the schema

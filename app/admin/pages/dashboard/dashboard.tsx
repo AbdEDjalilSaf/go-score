@@ -392,7 +392,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { 
   Users, ShoppingBag, School, Clock, FolderTree, 
-  TrendingUp, DollarSign, CreditCard, MailPlus, Mails, GraduationCap, BookOpenText, ShoppingCart, AlertCircle,
+  TrendingUp,  CreditCard, MailPlus, Mails, GraduationCap, BookOpenText, ShoppingCart, AlertCircle,
   UserCheck, UserX
 } from 'lucide-react';
 import MetricCard from "../../Layout/MetricCard"
@@ -401,7 +401,7 @@ import { dashboardSummary } from './mockData';
 import StatusBadge from '../../Layout/StatusBadge';
 import { refreshAuthToken } from "@/app/admin/login/refreshAuthToken"
 import axios from 'axios';
-import router from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface Student {
   id: string;
@@ -439,7 +439,7 @@ const Dashboard: React.FC = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter()
   // Table columns for students
   const studentColumns = [
     { 

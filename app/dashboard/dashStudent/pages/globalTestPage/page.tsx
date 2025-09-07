@@ -223,7 +223,7 @@ import { changeTitleGlobal } from '@/features/auth/authSlice';
 import Link from "next/link"
 import Cookies from 'js-cookie';
 import axios from 'axios'; // Import Axios
-import router from 'next/router';
+import { useRouter } from 'next/navigation';
 import { refreshAuthToken } from '@/app/api/refreshAuthToken';
 
 interface SkillTestStatistic {
@@ -259,7 +259,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const currentTitle = useSelector((state: { background: { name: string } }) => state.background.name);
-
+  const router = useRouter()
   const makeCookies = (name: string) => {
     dispatch(changeTitleGlobal(name));
   }
@@ -279,14 +279,14 @@ function App() {
         setApiData(response.data);
       } catch (err) {
         let errorMessage = "Unknown error occurred";
-        
+        const refreshSuccess = await refreshAuthToken();
+
         // Fixed: Using 'err' instead of 'error'
         if (axios.isAxiosError(err)) {
           if (err.response) {
             switch (err.response.status) {
               case 401:
               case 403:
-                const refreshSuccess = await refreshAuthToken();
                 if (refreshSuccess) {
                   // Retry the request with new token
                   return fetchData();
