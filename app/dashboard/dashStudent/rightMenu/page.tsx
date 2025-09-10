@@ -143,13 +143,13 @@ console.log("fullName", fullName);
           <ArabicToggle />
 
             {menuData.userInfo.hasTraining && (
-              <Link className="w-full" href="/dashboard/dashStudent" onClick={() => makeCookies(menuData.userInfo.title)}>
+              <Link className="w-full" href="/dashboard/dashStudent/pages/smartTraining" onClick={() => makeCookies(menuData.userInfo.title)}>
               <Button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white w-full">
                 <Zap className="h-4 w-4 ml-2" />
                 تدرب بذكاء
               </Button>
               </Link>
-            )}
+            )} 
           </div>
 
           <div className="space-y-1">

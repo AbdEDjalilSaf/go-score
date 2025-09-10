@@ -80,7 +80,7 @@ export default function LoginForm() {
       if (validatedData.email !== "abde20303@gmail.com" || validatedData.password !== "Passw0rd#") {
         setErrors({
           email: "Invalid email or password",
-          password: "Invalid email or password",
+          password: "Invalid email or password", 
         })
         return
       }

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Timer, Star } from "lucide-react"
+// import DashStudent from "../dashStudent"
 import quizData from "./data.json"
 
 export default function QuizApp() {
@@ -102,6 +103,7 @@ export default function QuizApp() {
 
 
   return (
+    // <DashStudent>
     <div  ref={quizContainerRef} className="min-h-screen head bg-gray-100 font-sans" dir="rtl">
 
       <div className="max-w-7xl load mx-auto px-4 py-6">
@@ -152,7 +154,7 @@ export default function QuizApp() {
                         ? "bg-green-500 hover:bg-green-600 text-white"
                         : "bg-white hover:bg-gray-50 text-red-500 border border-red-200"
                     }`}
-                  >
+                    type="button">
                     {tool.text}
                   </button>
                 ))}
@@ -161,16 +163,24 @@ export default function QuizApp() {
 
             {/* Action Buttons */}
             <div className="space-y-3 w-full">
-              <button onClick={handleExitAttempt} className="w-full px-4 py-2 bg-white border border-purple-200 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors flex items-center justify-center">
+              <button onClick={handleExitAttempt} className="w-full px-4 py-2 bg-white border border-purple-200 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors flex items-center justify-center" type="button">
                 <span className="ml-2">➕</span>
                 {quizData.navigation.pauseTraining}
               </button>
-              <button name="jeek" onClick={handleReportError} className="w-full px-4 py-2 aiid bg-white border border-orange-200 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors flex items-center justify-center">
+              <button name="jeek" onClick={handleReportError} className="w-full px-4 py-2 aiid bg-white border border-orange-200 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors flex items-center justify-center" type="button">
                 <span className="ml-2">⚠️</span>
                 {quizData.navigation.reportError}
               </button>
             </div>
           </div>
+
+
+
+
+
+
+
+
 
           {/* Main Content */}
           <div className="lg:col-span-3 h-[100vh]">
@@ -182,7 +192,7 @@ export default function QuizApp() {
                     <span className="ml-2"><Timer /></span>
                     <span  className="font-bold text-xl">{timeRemaining}</span>
                   </div>
-                  <button name="kfol" className="bg-gray-600  hover:bg-gray-500 px-3 py-1 rounded-lg flex items-center transition-colors">
+                  <button name="kfol" className="bg-gray-600  hover:bg-gray-500 px-3 py-1 rounded-lg flex items-center transition-colors" type="button">
                     <span className="ml-1"><Star /></span>
                     <span>مميز</span>
                   </button>
@@ -211,7 +221,7 @@ export default function QuizApp() {
                           ? "border-purple-500 bg-purple-50 text-purple-700"
                           : "border-gray-200 hover:border-gray-300 bg-gray-50 hover:bg-gray-100"
                       }`}
-                    >
+                      type="button">
                       <span className="text-lg">{option}</span>
                     </button>
                   ))}
@@ -219,7 +229,7 @@ export default function QuizApp() {
 
                 {/* Navigation */}
                 <div className="flex justify-between items-center flex-wrap gap-4">
-                  <button name="lwad" className="px-6 py-2  bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                  <button name="lwad" className="px-6 py-2  bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors" type="button">
                      {quizData.navigation.next} ←
                   </button>
                   <button
@@ -231,7 +241,7 @@ export default function QuizApp() {
                         ? "bg-gray-600 hover:bg-gray-700 text-white"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }`}
-                  >
+                    type="button">
                     {quizData.navigation.confirmAnswer}
                   </button>
                 </div>
@@ -249,7 +259,7 @@ export default function QuizApp() {
             {/* Modal Header */}
             <div className="bg-orange-500 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
               <h3 className="text-lg font-semibold">{quizData.modal.reportError.title}</h3>
-              <button name="jhnb" onClick={handleCloseModal} className="text-white hover:text-gray-200 transition-colors">
+              <button name="jhnb" onClick={handleCloseModal} className="text-white hover:text-gray-200 transition-colors" type="button">
                 <span className="text-3xl">×</span>
               </button>
             </div>
@@ -259,9 +269,9 @@ export default function QuizApp() {
               <p className="text-gray-700 mb-4 leading-relaxed">{quizData.modal.reportError.description}</p>
 
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <h3 className="block text-sm font-medium text-gray-700 mb-2">
                   <span className="text-red-500">*</span> {quizData.modal.reportError.placeholder}
-                </label>
+                </h3>
                 <textarea
                   value={errorText}
                   onChange={(e) => setErrorText(e.target.value)}
@@ -277,7 +287,7 @@ export default function QuizApp() {
                 name="fgsd"
                   onClick={handleCloseModal}
                   className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
-                >
+                  type="button">
                   {quizData.modal.reportError.cancel}
                 </button>
                 <button
@@ -289,7 +299,7 @@ export default function QuizApp() {
                       ? "bg-orange-500 hover:bg-orange-600 text-white"
                       : "bg-gray-300 text-gray-500 cursor-not-allowed"
                   }`}
-                >
+                  type="button">
                   {quizData.modal.reportError.send}
                 </button>
               </div>
@@ -326,7 +336,7 @@ export default function QuizApp() {
                     router.back();
                   }}
                   className="px-8 py-3 bg-white border-2 border-pink-400 text-pink-500 rounded-lg hover:bg-pink-50 transition-colors font-medium"
-                >
+                  type="button">
                   {quizData.modal.exitConfirmation.exit}
                 </button>
                 <button
@@ -336,7 +346,7 @@ export default function QuizApp() {
                     
                   }}
                   className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium"
-                >
+                  type="button">
                   {quizData.modal.exitConfirmation.continue}
                 </button>
               </div>
@@ -346,5 +356,6 @@ export default function QuizApp() {
       )}
 
     </div>
+    // </DashStudent>
   )
 }

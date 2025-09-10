@@ -371,7 +371,7 @@ function App() {
               <div className="p-6 md:w-[40%]">
                 <h3 className="text-2xl font-bold text-pink-600 mb-4">{data.hero.title}</h3>
                 <p className="text-gray-600 mb-4">{data.hero.description}</p>
-                <Link className="w-full" href="/dashboard/dashStudent" onClick={() => makeCookies('تدرب بذكاء')}>
+                <Link className="w-full" href="/dashboard/dashStudent/pages/smartTraining" onClick={() => makeCookies('تدرب بذكاء')}>
                   <button className="w-full py-2 px-4 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition-colors" type='button'>
                     {data.hero.buttonText}
                   </button>

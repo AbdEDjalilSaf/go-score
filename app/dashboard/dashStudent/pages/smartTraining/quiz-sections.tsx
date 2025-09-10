@@ -194,6 +194,7 @@ export default function Component({ title, categories, id }: QuizSectionsProps) 
           className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
             selectAll ? "bg-green-600 border-green-600 text-white" : "border-gray-300 bg-white hover:border-gray-400"
           }`}
+          type="button"
         >
           {selectAll && <Check className="w-4 h-4" />}
         </button>
@@ -215,6 +216,7 @@ export default function Component({ title, categories, id }: QuizSectionsProps) 
                   : "bg-white text-black border-gray-200 hover:border-purple-300 hover:bg-purple-50"
               }`}
               dir="rtl"
+              type="button"
             >
               {item.text}
             </button>

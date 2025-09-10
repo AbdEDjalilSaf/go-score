@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     { name: 'قسم الدعم', icon: <BadgeAlert />, path: '/admin/pages/support' },
     { name: 'المدونة', icon: <SquarePen />, path: '/admin/pages/blog' },
     { name: 'باقات الاشتراكات', icon: <CircleDollarSign />, path: '/admin/pages/subscribes' },
-    { name: 'طلبات الاشتراكات', icon: <MailPlus />, path: '/admin/pages/subscribesٌRequests' },
+    { name: 'طلبات الاشتراكات', icon: <MailPlus />, path: '/admin/pages/subscribesRequests' },
   ];
 
   return (
