@@ -809,6 +809,7 @@ export default function TeacherSpecialtyManagement() {
   const handleDeleteSpecialty = async (id: number) => {
     setActionLoading(`delete-${id}`)
     const token = Cookies.get("adminToken")
+    console.log("id=========",id)
     try {
       // Simulate API call for deleting specialty
       // In real implementation, you would call an API endpoint like `/api/TeacherSpecialty/DeleteTeacherSpecialty`

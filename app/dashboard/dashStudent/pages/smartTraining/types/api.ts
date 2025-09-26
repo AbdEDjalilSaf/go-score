@@ -155,7 +155,10 @@ export interface SkillTestStatistic {
 
 
 
-
+  export interface Skill {
+    id: number;
+    value: string;
+  }
 
 // Existing interfaces
 export interface TestClass {

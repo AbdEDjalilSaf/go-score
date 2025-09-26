@@ -15,14 +15,9 @@
     },
     "helpTools": [
       {
-        "text": "عرض الحل",
+        "text": "تسهيل الحل",
         "type": "solution",
         "color": "green"
-      },
-      {
-        "text": "حذف إجابة",
-        "type": "eliminate",
-        "color": "red"
       }
     ]
   },

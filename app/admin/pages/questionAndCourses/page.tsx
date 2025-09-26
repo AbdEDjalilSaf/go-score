@@ -8808,7 +8808,14 @@ export default function AdminDashboard() {
     const fetchQuestions = async () => {
       try {
         setQuestionsLoading(true)
-        const response = await axios.get<ApiResponse<Question[]>>(`${BASE_URL}/api/Question/GetAllQuestions`)
+        const response = await axios.get<ApiResponse<Question[]>>(`${BASE_URL}/api/Question/GetAllQuestions`,
+          {
+              headers: {
+              Authorization: `Bearer ${Cookies.get("adminToken")}`,
+              "Content-Type": "application/json",
+              },
+          }
+        )
         if (response.data.succeeded) {
           setQuestions(response.data.data)
           const skillIds = new Set(response.data.data.map((q) => q.skillId))
@@ -9081,6 +9088,7 @@ export default function AdminDashboard() {
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("adminToken")}`,
+            "Content-Type": "application/json",
           },
         },
       )
@@ -9153,6 +9161,7 @@ export default function AdminDashboard() {
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("adminToken")}`,
+            "Content-Type": "application/json",
           },
         },
       )

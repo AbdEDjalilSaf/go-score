@@ -5879,7 +5879,7 @@ export default function GetAllSkills() {
                         }
                       </div>
                       <div className="text-xs sm:text-sm text-gray-500">
-                        آخر تحديث: {new Date().toLocaleDateString("ar-SA")}
+                        آخر تحديث: {new Date().toLocaleDateString("ar-US")}
                       </div>
                     </div>
                   </div>
@@ -6097,7 +6097,7 @@ export default function GetAllSkills() {
                         إجمالي المهارات: {skills.length} | المحمية: {referencedSkillIds.size} | المتاحة للحذف:{" "}
                         {skills.length - referencedSkillIds.size}
                       </div>
-                      <div className="text-sm text-gray-500">آخر تحديث: {new Date().toLocaleDateString("ar-SA")}</div>
+                      <div className="text-sm text-gray-500">آخر تحديث: {new Date().toLocaleDateString("ar-US")}</div>
                     </div>
                   </div>
                 </div>
@@ -7395,7 +7395,7 @@ export default function GetAllSkills() {
 //                         }
 //                       </div>
 //                       <div className="text-xs sm:text-sm text-gray-500">
-//                         آخر تحديث: {new Date().toLocaleDateString("ar-SA")}
+//                         آخر تحديث: {new Date().toLocaleDateString("ar-US")}
 //                       </div>
 //                     </div>
 //                   </div>

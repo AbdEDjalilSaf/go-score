@@ -607,7 +607,7 @@ const StudentDetails: React.FC = () => {
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ar-SA", {
+    return new Date(dateString).toLocaleDateString("ar-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -689,7 +689,7 @@ const handleDeleteClick = () => {
   if (!student) {
     return (
       <Layout>
-        <div className="min-h-screen bg-gray-50 p-4 md:p-6">
+        <div className="min-h-[90vh] bg-gray-50 p-4 md:p-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center py-20">
               <div className="text-center">

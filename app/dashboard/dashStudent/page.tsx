@@ -120,7 +120,7 @@ interface RootState {
 }
 
 export default function Home() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   // Use properly typed selectors
   const currentTitleLocal = useSelector((state: RootState) => state.background.testExamlutorTitle)

@@ -113,7 +113,7 @@ const QuizSections: React.FC<QuizSectionsProps> = ({
               
               {category.questionsCount !== undefined && (
                 <div className="flex items-center gap-3 text-xs text-gray-500">
-                  <span>{category.questionsCount} سؤال</span>
+                  {/* <span>{category.questionsCount} سؤال</span>
                   {category.ratio !== undefined && (
                     <span className={`px-2 py-1 rounded-full ${
                       category.ratio >= 70 
@@ -124,7 +124,7 @@ const QuizSections: React.FC<QuizSectionsProps> = ({
                     }`}>
                       {Math.round(category.ratio)}%
                     </span>
-                  )}
+                  )} */}
                 </div>
               )}
             </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
 import axios from "axios"
@@ -51,7 +51,11 @@ export default function LoginForm() {
   const [apiError, setApiError] = useState<string>("")
   // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-
+useEffect(()=>{
+setTimeout(()=>{
+  window.location.reload()
+},500)
+},[])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

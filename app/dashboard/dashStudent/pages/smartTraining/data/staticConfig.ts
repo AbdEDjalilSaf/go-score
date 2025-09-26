@@ -144,7 +144,7 @@
 
 export const staticConfig = {
   header: {
-    title: "منصة التدريب التفاعلي",
+    title: "منصة التدريب الذكي",
     buttons: [
       { text: "ابدأ التدريب", type: "primary" },
       { text: "تحديث البيانات", type: "secondary" }

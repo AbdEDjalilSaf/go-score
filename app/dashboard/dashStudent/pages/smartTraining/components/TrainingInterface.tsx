@@ -3389,11 +3389,16 @@
 
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios"
-import { refreshAuthToken } from "@/app/api/refreshAuthToken"
-import QuizSections from "./QuizSections";
+import { useDispatch } from "react-redux";
+import { changeShowQuiz, changeQuizQuestions } from "@/features/auth/authSlice";
+// import axios from "axios"
+// import { refreshAuthToken } from "@/app/api/refreshAuthToken"
+// import { QuestionsResponse } from "../types/api"
+import Capabilities from "./capabalities";
+import QuizSectionAnalize from "./quizSectionAnalizise"
+// import QuizSections from "./QuizSections";
 import {
   X,
   Star,
@@ -3402,429 +3407,602 @@ import {
   Loader2,
   Database
 } from "lucide-react";
-import TestInfo from './TestInfo';
+// import Cookies from 'js-cookie';
+// import TestInfo from './TestInfo';
 import QuizInterface, { QuizResults } from './QuizInterface';
 import DashStudent from "@/app/dashboard/dashStudent/dashStudent"
-import { getAnalyticalStatistics, getFilteredQuestions, getAllQuestions, startTest, StartTestRequest } from '../services/api';
+// import { getAnalyticalStatistics, getFilteredQuestions, startTest, StartTestRequest } from '../services/api';
 import { staticConfig } from '../data/staticConfig';
-import { TestClass , TestType, TestClassWithQuestions, SkillWithQuestions } from "../types/api"
-import {  Question } from '../services/api';
+// import { TestClass , TestType, TestClassWithQuestions, SkillWithQuestions } from "../types/api"
+import { Question } from '../services/api';
 
-interface Setting {
-  id: string;
-  label: string;
-  description: string;
-  icon: string;
-  color: string;
-  defaultValue: boolean;
-}
+// interface Setting {
+//   id: string;
+//   label: string;
+//   description: string;
+//   icon: string;
+//   color: string;
+//   defaultValue: boolean;
+// }
 
-interface ToggleSwitchProps {
-  isOn: boolean;
-  onToggle: () => void;
-}
+// interface ToggleSwitchProps {
+//   isOn: boolean;
+//   onToggle: () => void;
+// }
 
-const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ isOn, onToggle }) => {
-  return (
-    <button
-      onClick={onToggle}
-      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ${
-        isOn ? 'bg-blue-500' : 'bg-gray-300'
-      }`}
-      type="button"
-    >
-      <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ${
-          isOn ? 'translate-x-6' : 'translate-x-1'
-        }`}
-      />
-    </button>
-  );
-};
+// const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ isOn, onToggle }) => {
+//   return (
+//     <button
+//       onClick={onToggle}
+//       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ${
+//         isOn ? 'bg-blue-500' : 'bg-gray-300'
+//       }`}
+//       type="button"
+//     >
+//       <span
+//         className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ${
+//           isOn ? 'translate-x-6' : 'translate-x-1'
+//         }`}
+//       />
+//     </button>
+//   );
+// };
 
-const IconComponent: React.FC<{ iconName: string; color: string }> = ({ iconName, color }) => {
-  const getIconColor = () => {
-    switch (color) {
-      case 'red': return 'text-red-500';
-      case 'blue': return 'text-blue-500';
-      case 'green': return 'text-green-500';
-      default: return 'text-gray-500';
-    }
-  };
+// const IconComponent: React.FC<{ iconName: string; color: string }> = ({ iconName, color }) => {
+//   const getIconColor = () => {
+//     switch (color) {
+//       case 'red': return 'text-red-500';
+//       case 'blue': return 'text-blue-500';
+//       case 'green': return 'text-green-500';
+//       default: return 'text-gray-500';
+//     }
+//   };
 
-  const iconProps = {
-    className: `w-4 h-4 ${getIconColor()}`
-  };
+//   const iconProps = {
+//     className: `w-4 h-4 ${getIconColor()}`
+//   };
 
-  switch (iconName) {
-    case 'x':
-      return <X {...iconProps} />;
-    case 'star':
-      return <Star {...iconProps} className={`w-4 h-4 ${getIconColor()} fill-current`} />;
-    case 'settings':
-      return <Settings {...iconProps} />;
-    default:
-      return null;
-  }
-};
+//   switch (iconName) {
+//     case 'x':
+//       return <X {...iconProps} />;
+//     case 'star':
+//       return <Star {...iconProps} className={`w-4 h-4 ${getIconColor()} fill-current`} />;
+//     case 'settings':
+//       return <Settings {...iconProps} />;
+//     default:
+//       return null;
+//   }
+// };
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080"
 
 export default function TrainingInterface() {
   // State management
-  const [qudratTestClasses, setQudratTestClasses] = useState<TestClassWithQuestions[]>([]);
-  const [tahsiliTestClasses, setTahsiliTestClasses] = useState<TestClassWithQuestions[]>([]);
-  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
-  const [allQuestionsFilter, setAllQuestionsFilter] = useState<Question[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [questionsLoading, setQuestionsLoading] = useState(false);
+  // const [qudratTestClasses, setQudratTestClasses] = useState<TestClassWithQuestions[]>([]);
+  // const [tahsiliTestClasses, setTahsiliTestClasses] = useState<TestClassWithQuestions[]>([]);
+  // const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+  // const [allQuestionsFilter, setAllQuestionsFilter] = useState<Question[]>([]);
+  // const [loading, setLoading] = useState(false);
+  // const [questionsLoading, setQuestionsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentValue, setCurrentValue] = useState(49);
-  const [currentVale, setCurrentVale] = useState(50);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [settings, setSettings] = useState<Record<string, boolean>>({});
-
+  const dispatch = useDispatch(); 
+  // const [currentValue, setCurrentValue] = useState(49);
+  // const [currentVale, setCurrentVale] = useState(50); 
+  // const [isRefreshing, setIsRefreshing] = useState(false);
+  // const [settings, setSettings] = useState<Record<string, boolean>>({});
+  
   // Quiz state
-  const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [startingTest, setStartingTest] = useState(false);
+  // const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
+  // const [showQuiz, setShowQuiz] = useState(false);
+  // const [startingTest, setStartingTest] = useState(false);
 
   // Selection tracking state
-  const [selectedCategories, setSelectedCategories] = useState<Record<string, string[]>>({});
-  const [selectedQuestionsCount, setSelectedQuestionsCount] = useState(0);
-  const [selectedCategoriesCount, setSelectedCategoriesCount] = useState(0);
-  const [availableQuestionsCount, setAvailableQuestionsCount] = useState(0);
+  // const [selectedCategories, setSelectedCategories] = useState<Record<string, string[]>>({});
+  // const [selectedQuestionsCount, setSelectedQuestionsCount] = useState(0);
+  // const [selectedCategoriesCount, setSelectedCategoriesCount] = useState(0);
+  // const [availableQuestionsCount, setAvailableQuestionsCount] = useState(0);
 
   // Get current title from Redux (assuming this exists)
   const currentTitle = useSelector((state: { background: { name: string } }) => state.background.name) || "قدرات";
+  const showQuiz = useSelector((state: { background: { showQuiz: boolean } }) => state.background.showQuiz);
+  const quizQuestions = useSelector((state: { background: { quizQuestions: Array<Question> } }) => state.background.quizQuestions);
 
-  // Initialize settings
-  useEffect(() => {
-    const initialSettings: Record<string, boolean> = {};
-    staticConfig.settings.forEach((setting) => {
-      initialSettings[setting.id] = setting.defaultValue;
-    });
-    setSettings(initialSettings);
-  }, []);
-
-  // Fetch questions data
-  const fetchQuestions = useCallback(async () => {
-    try {
-      setQuestionsLoading(true);
-      const questionsResponse = await getAllQuestions();
-      
-      if (questionsResponse.succeeded && questionsResponse.data) {
-        setAllQuestions(questionsResponse.data);
-        console.log('Questions loaded:', questionsResponse.data.length);
-      }
-    } catch (error: any) {
-      console.error('Error fetching questions:', error);
-    } finally {
-      setQuestionsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setQuestionsLoading(true);
-        const questionsResponse = await getFilteredQuestions();
-        
-        if (questionsResponse) {
-          setAllQuestionsFilter(questionsResponse);
-          console.log('Questions loaded:', questionsResponse.length);
-        }
-      } catch (error: any) {
-        console.error('Error fetching questions:', error);
-      } finally {
-        setQuestionsLoading(false);
-      }
-    }
-    fetchData()
-  }, [])
-
-  // Enhanced function to process test classes with questions
-  const processTestClassesWithQuestions = (testClasses: TestClass[], questions: Question[]): TestClassWithQuestions[] => {
-    const uniqueClasses = testClasses.filter((testClass, index, array) => {
-      return array.findIndex((c) => c.value === testClass.value) === index;
-    });
-
-    return uniqueClasses
-      .filter((testClass) => testClass.skillTestsStatistics && Array.isArray(testClass.skillTestsStatistics))
-      .map((testClass) => {
-        const uniqueSkills = testClass.skillTestsStatistics.filter((skill, index, array) => {
-          return skill?.value && array.findIndex((s) => s.value === skill.value) === index;
-        });
-
-        const processedSkills: SkillWithQuestions[] = uniqueSkills.map((skill) => {
-          const skillQuestions = questions.filter(q => q.skillId === skill.id);
-          
-          return {
-            ...skill,
-            selected: false,
-            questionsCount: skill.questionsCount || 0,
-            correctAnswersCount: skill.correctAnswersCount || 0,
-            ratio: skill.ratio || 0,
-            questions: skillQuestions,
-            availableQuestions: skillQuestions.length,
-          };
-        });
-
-        return {
-          ...testClass,
-          skillTestsStatistics: processedSkills,
-          selectAll: false,
-        };
-      })
-      .filter((testClass) => testClass.skillTestsStatistics.length > 0);
-  };
 
   // Calculate selected questions and categories count
-  const calculateSelectionStats = useCallback(() => {
-    const currentTestClasses = getCurrentTestClasses();
-    let totalQuestions = 0;
-    let totalCategories = 0;
-    let totalAvailableQuestions = 0;
+  // const calculateSelectionStats = useCallback(() => {
+  //   const currentTestClasses = getCurrentTestClasses(); 
+  //   let totalQuestions = 0;
+  //   let totalCategories = 0;
+  //   let totalAvailableQuestions = 0;
 
-    Object.entries(selectedCategories).forEach(([testClassId, categoryIds]) => {
-      if (categoryIds.length > 0) {
-        const testClass = currentTestClasses.find(tc => tc.id.toString() === testClassId);
-        if (testClass) {
-          categoryIds.forEach(categoryId => {
-            const skill = testClass.skillTestsStatistics.find((s:any)=> s.id.toString() === categoryId);
-            if (skill) {
-              totalQuestions += skill.questionsCount || 0;
-              totalCategories += 1;
-              totalAvailableQuestions += skill.availableQuestions || 0;
-            }
-          });
-        }
-      }
-    });
+  //   Object.entries(selectedCategories).forEach(([testClassId, categoryIds]) => {
+  //     if (categoryIds.length > 0) {
+  //       const testClass = currentTestClasses.find(tc => tc.id.toString() === testClassId);
+  //       if (testClass) {
+  //         categoryIds.forEach(categoryId => {
+  //           const skill = testClass.skillTestsStatistics.find((s:any)=> s.id.toString() === categoryId);
+  //           if (skill) {
+  //             totalQuestions += skill.questionsCount || 0;
+  //             totalCategories += 1;
+  //             totalAvailableQuestions += skill.availableQuestions || 0;
+  //           }
+  //         });
+  //       }
+  //     }
+  //   });
 
-    setSelectedQuestionsCount(totalQuestions);
-    setSelectedCategoriesCount(totalCategories);
-    setAvailableQuestionsCount(totalAvailableQuestions);
-  }, [selectedCategories, qudratTestClasses, tahsiliTestClasses, currentTitle]);
+  //   setSelectedQuestionsCount(totalQuestions);
+  //   setSelectedCategoriesCount(totalCategories);
+  //   setAvailableQuestionsCount(totalAvailableQuestions);
+  // }, [selectedCategories, qudratTestClasses, tahsiliTestClasses, currentTitle]);
 
-  // Update selection stats when selections change
-  useEffect(() => {
-    calculateSelectionStats();
-  }, [calculateSelectionStats]);
+  // // Initialize settings
+  // useEffect(() => {
+  //   const initialSettings: Record<string, boolean> = {};
+  //   staticConfig.settings.forEach((setting) => {
+  //     initialSettings[setting.id] = setting.defaultValue;
+  //   });
+  //   setSettings(initialSettings);
+  // }, []);
 
-  // Handle selection changes from QuizSections
-  const handleSelectionChange = (testClassId: string, selectedCategoryIds: string[]) => {
-    setSelectedCategories(prev => ({
-      ...prev,
-      [testClassId]: selectedCategoryIds
-    }));
-  };
+  
+  //   // Get selected skill IDs
+  //   const getSelectedSkillIds = useCallback((): number[] => {
+  //     const skillIds: number[] = [];
+  
+  //     Object.entries(selectedCategories).forEach(([testClassId, categoryIds]) => {
+  //       if (categoryIds.length > 0) {
+  //         categoryIds.forEach(categoryId => {
+  //           skillIds.push(parseInt(categoryId));
+  //         });
+  //       }
+  //     });
+  
+  //     return skillIds;
+  //   }, [selectedCategories]);
 
-  // Fetch data based on current title
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
 
-        const [analyticsResponse, questionsResponse] = await Promise.allSettled([
-          getAnalyticalStatistics(),
-          getAllQuestions()
-        ]);
-
-        if (analyticsResponse.status === 'fulfilled') {
-          const response = analyticsResponse.value;
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       try {
+  //         setLoading(true);
+  //         setError(null);
+  
+  //         // const [analyticsResponse, questionsResponse] = await Promise.allSettled([
+  //         //   getAnalyticalStatistics(),
+  //         //   getAllQuestions()
+  //         // ]);
+  
+  //         const [analyticsResponse] = await Promise.allSettled([
+  //           getAnalyticalStatistics()
           
-          if (!response.data?.testTypes || !Array.isArray(response.data.testTypes)) {
-            throw new Error("هيكل البيانات غير صحيح");
-          }
+  //         ]);
+  
+  //         if (analyticsResponse.status === 'fulfilled') {
+  //           const response = analyticsResponse.value;
+            
+  //           if (!response.data?.testTypes || !Array.isArray(response.data.testTypes)) {
+  //             throw new Error("هيكل البيانات غير صحيح");
+  //           }
+  
+  //           const testTypes = response.data.testTypes;
+  //           console.log("Analytics data is:", response.data);
+  
+  //           let questions: Question[] = [];
+  //           // if (questionsResponse.status === 'fulfilled' && questionsResponse.value.succeeded) {
+  //           //   questions = questionsResponse.value.data;
+  //           //   setAllQuestions(questions);
+  //           //   console.log("Questions loaded:", questions.length);
+  //           // } else {
+  //           //   console.warn("Questions loading failed, proceeding with empty questions array");
+  //           // }
+  
+  //           const qudratTestType = testTypes.find((testType: TestType) => 
+  //             testType?.value && testType.value.includes("Qudrat")
+  //           );
+  
+  //           if (qudratTestType?.testClasses) {
+  //             const processedQudratClasses = processTestClassesWithQuestions(qudratTestType.testClasses, questions);
+  //             setQudratTestClasses(processedQudratClasses);
+  //           }
+  
+  //           const tahsiliTestType = testTypes.find((testType: TestType) => 
+  //             testType?.value && testType.value.includes("Tahsili")
+  //           );
+  
+  //           if (tahsiliTestType?.testClasses) {
+  //             const processedTahsiliClasses = processTestClassesWithQuestions(tahsiliTestType.testClasses, questions);
+  //             setTahsiliTestClasses(processedTahsiliClasses);
+  //           }
+  
+  //           if (!qudratTestType && !tahsiliTestType) {
+  //             setError("لم يتم العثور على بيانات الاختبارات");
+  //           }
+  //         } else {
+  //           throw new Error("فشل في تحميل البيانات التحليلية");
+  //         }
+  
+  //       } catch (error: any) {
+  //         let errorMessage = "Unknown error occurred"
+  //         // const refreshSuccess = await refreshAuthToken()
+              
+  //                   if (axios.isAxiosError(error)) {
+  //                     if (error.response) {
+  //                       switch (error.response.status) {
+  //                         case 401:
+  //                           const refreshSuccess = await refreshAuthToken()
+  //                           if (refreshSuccess) {
+  //                             return fetchData()
+  //                           }
+  //                           errorMessage = "Authentication expired. Please log in again."
+  //                           window.location.href = "/login"
+  //                           break
+  //                         case 403:
+  //                           const refreshSuccess2 = await refreshAuthToken()
+  //                           if (refreshSuccess2) {
+  //                             return fetchData()
+  //                           }
+  //                           errorMessage = "Access denied. This could be due to expired authentication or insufficient permissions."
+  //                           window.location.href = "/login"
+  //                           break
+  //                         case 404:
+  //                           errorMessage = `API endpoint not found (404). Please check if the URL is correct: ${error.config?.url}`
+  //                           break
+  //                         case 500:
+  //                           errorMessage = "Server error (500). Please try again later."
+  //                           break
+  //                         default:
+  //                           errorMessage = `Server error (${error.response.status}): ${error.response.statusText}`
+  //                       }
+  //                     } else if (error.request) {
+  //                       errorMessage = "Network error. Please check your internet connection."
+  //                     } else {
+  //                       errorMessage = `Request error: ${error.message}`
+  //                     }
+  //                   } else { 
+  //                     errorMessage = error instanceof Error ? error.message : "Unknown error"
+  //                   }
+              
+  //                   console.error("Error fetching data:", error)
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     };
+  
+  //     fetchData();
+  //   }, []);
 
-          const testTypes = response.data.testTypes;
-          console.log("Analytics data is:", response.data);
 
-          let questions: Question[] = [];
-          if (questionsResponse.status === 'fulfilled' && questionsResponse.value.succeeded) {
-            questions = questionsResponse.value.data;
-            setAllQuestions(questions);
-            console.log("Questions loaded:", questions.length);
-          } else {
-            console.warn("Questions loading failed, proceeding with empty questions array");
-          }
+  //   useEffect(()=>{
+  //     const testClasses = currentTitle === "قدرات" ? qudratTestClasses : tahsiliTestClasses;
+  //     const testClass = testClasses.map(testClas => testClas.id);
+  //     console.log("testClasses ========",testClasses)
+  //     console.log("testClass  ++++++++",testClass)
+  //   },[currentTitle,qudratTestClasses,tahsiliTestClasses])
+   
 
-          const qudratTestType = testTypes.find((testType: TestType) => 
-            testType?.value && testType.value.includes("Qudrat")
-          );
 
-          if (qudratTestType?.testClasses) {
-            const processedQudratClasses = processTestClassesWithQuestions(qudratTestType.testClasses, questions);
-            setQudratTestClasses(processedQudratClasses);
-          }
+  //   // Fetch questions data
+  // const fetchQuestions = useCallback(async () => {
+  //   const testClasses = currentTitle === "قدرات" ? qudratTestClasses : tahsiliTestClasses;
+  //   const testClass = testClasses.map(testClas => testClas.id);
+  //   try {
+  //     setQuestionsLoading(true);
+  //     console.log("start fetch Question")
+  //     const questionsResponse = await axios.post<QuestionsResponse>(`${BASE_URL}/api/Question/GetQuestionsCountPossible`, 
+  //       {skills: testClass},
+  //       {
+  //         headers: {
+  //           'Authorization': `Bearer ${Cookies.get('accessToken')}`,
+  //           'Content-Type': 'application/json'
+  //         }
+  //       }
+  //     );
+  //     console.log("Done fetch Question -----------",questionsResponse.data)
+  //     if (questionsResponse.data) {
+  //       setAllQuestions(questionsResponse.data.data);
+  //       console.log('Questions loaded:', questionsResponse.data.data.length);
+  //     }
+  //   } catch (error: any) {
+  //     let errorMessage = "Unknown error occurred"
+  //     // const refreshSuccess = await refreshAuthToken()
+          
+  //               if (axios.isAxiosError(error)) {
+  //                 if (error.response) {
+  //                   switch (error.response.status) {
+  //                     case 401:
+  //                       const refreshSuccess = await refreshAuthToken()
+  //                       if (refreshSuccess) {
+  //                         return fetchQuestions()
+  //                       }
+  //                       errorMessage = "Authentication expired. Please log in again."
+  //                       window.location.href = "/login"
+  //                       break
+  //                     case 403:
+  //                       const refreshSuccess2 = await refreshAuthToken()
+  //                       if (refreshSuccess2) {
+  //                         return fetchQuestions()
+  //                       }
+  //                       errorMessage = "Access denied. This could be due to expired authentication or insufficient permissions."
+  //                       window.location.href = "/login"
+  //                       break
+  //                     case 404:
+  //                       errorMessage = `API endpoint not found (404). Please check if the URL is correct: ${error.config?.url}`
+  //                       break
+  //                     case 500:
+  //                       errorMessage = "Server error (500). Please try again later."
+  //                       break
+  //                     default:
+  //                       errorMessage = `Server error (${error.response.status}): ${error.response.statusText}`
+  //                   }
+  //                 } else if (error.request) {
+  //                   errorMessage = "Network error. Please check your internet connection."
+  //                 } else {
+  //                   errorMessage = `Request error: ${error.message}`
+  //                 }
+  //               } else { 
+  //                 errorMessage = error instanceof Error ? error.message : "Unknown error"
+  //               }
+          
+  //               console.error("Error fetching data:", error)
+  //                 } finally {
+  //     setQuestionsLoading(false);
+  //   }
+  // }, [currentTitle]);
 
-          const tahsiliTestType = testTypes.find((testType: TestType) => 
-            testType?.value && testType.value.includes("Tahsili")
-          );
 
-          if (tahsiliTestType?.testClasses) {
-            const processedTahsiliClasses = processTestClassesWithQuestions(tahsiliTestType.testClasses, questions);
-            setTahsiliTestClasses(processedTahsiliClasses);
-          }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const testClasses = currentTitle === "قدرات" ? qudratTestClasses : tahsiliTestClasses;
+  //     const testClass = testClasses.map(testClas => testClas.id);
+  //     try {
+  //       setQuestionsLoading(true);
+  //       const questionsResponse = await getFilteredQuestions(testClass,testClass);
+  //       console.log('Questions filtered ============',questionsResponse);
+  //       if (questionsResponse) {
+  //         setAllQuestionsFilter(questionsResponse);
+  //         console.log('Questions loaded:', questionsResponse.length);
+  //       }
+  //     } catch (error: any) {
+  //       let errorMessage = "Unknown error occurred"
+  //       // const refreshSuccess = await refreshAuthToken()
+            
+  //                 if (axios.isAxiosError(error)) {
+  //                   if (error.response) {
+  //                     switch (error.response.status) {
+  //                       case 401:
+  //                         const refreshSuccess = await refreshAuthToken()
+  //                         if (refreshSuccess) {
+  //                           return fetchData()
+  //                         }
+  //                         errorMessage = "Authentication expired. Please log in again."
+  //                         window.location.href = "/login"
+  //                         break
+  //                       case 403:
+  //                         const refreshSuccess2 = await refreshAuthToken()
+  //                         if (refreshSuccess2) {
+  //                           return fetchData()
+  //                         }
+  //                         errorMessage = "Access denied. This could be due to expired authentication or insufficient permissions."
+  //                         window.location.href = "/login"
+  //                         break
+  //                       case 404:
+  //                         errorMessage = `API endpoint not found (404). Please check if the URL is correct: ${error.config?.url}`
+  //                         break
+  //                       case 500:
+  //                         errorMessage = "Server error (500). Please try again later."
+  //                         break
+  //                       default:
+  //                         errorMessage = `Server error (${error.response.status}): ${error.response.statusText}`
+  //                     }
+  //                   } else if (error.request) {
+  //                     errorMessage = "Network error. Please check your internet connection."
+  //                   } else {
+  //                     errorMessage = `Request error: ${error.message}`
+  //                   }
+  //                 } else { 
+  //                   errorMessage = error instanceof Error ? error.message : "Unknown error"
+  //                 }
+            
+  //                 console.error("Error fetching data:", error)
+  //     } finally {
+  //       setQuestionsLoading(false);
+  //     }
+  //   }
+  //   fetchData()
+  // }, [currentTitle])
 
-          if (!qudratTestType && !tahsiliTestType) {
-            setError("لم يتم العثور على بيانات الاختبارات");
-          }
-        } else {
-          throw new Error("فشل في تحميل البيانات التحليلية");
-        }
+  // // Enhanced function to process test classes with questions
+  // const processTestClassesWithQuestions = (testClasses: TestClass[], questions: Question[]): TestClassWithQuestions[] => {
+  //   const uniqueClasses = testClasses.filter((testClass, index, array) => {
+  //     return array.findIndex((c) => c.value === testClass.value) === index;
+  //   });
 
-      } catch (error: any) {
-        console.error('Error fetching data:', error);
-        setError(error.message || "حدث خطأ في تحميل البيانات");
-      } finally {
-        setLoading(false);
-      }
-    };
+  //   return uniqueClasses
+  //     .filter((testClass) => testClass.skillTestsStatistics && Array.isArray(testClass.skillTestsStatistics))
+  //     .map((testClass) => {
+  //       const uniqueSkills = testClass.skillTestsStatistics.filter((skill, index, array) => {
+  //         return skill?.value && array.findIndex((s) => s.value === skill.value) === index;
+  //       });
 
-    fetchData();
-  }, []);
+  //       const processedSkills: SkillWithQuestions[] = uniqueSkills.map((skill) => {
+  //         const skillQuestions = questions.filter(q => q.skillId === skill.id);
+          
+  //         return {
+  //           ...skill,
+  //           selected: false,
+  //           questionsCount: skill.questionsCount || 0,
+  //           correctAnswersCount: skill.correctAnswersCount || 0,
+  //           ratio: skill.ratio || 0,
+  //           questions: skillQuestions,
+  //           availableQuestions: skillQuestions.length,
+  //         };
+  //       });
 
-  // Event handlers
-  const handleRefresh = async () => {
-    setIsRefreshing(true);
-    await Promise.allSettled([
-      fetchQuestions(),
-      new Promise(resolve => setTimeout(resolve, 1500))
-    ]);
-    setIsRefreshing(false);
-  };
+  //       return {
+  //         ...testClass,
+  //         skillTestsStatistics: processedSkills,
+  //         selectAll: false,
+  //       };
+  //     })
+  //     .filter((testClass) => testClass.skillTestsStatistics.length > 0);
+  // };
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentValue(parseInt(e.target.value));
-  };
 
-  const handleSliderHardChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentVale(parseInt(e.target.value));
-  };
 
-  const toggleSetting = (id: string) => {
-    setSettings(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+  // // Update selection stats when selections change
+  // useEffect(() => {
+  //   calculateSelectionStats();
+  // }, [calculateSelectionStats]);
 
-  const resetSettings = () => {
-    const resetValues: Record<string, boolean> = {};
-    staticConfig.settings.forEach((setting) => {
-      resetValues[setting.id] = setting.defaultValue;
-    });
-    setSettings(resetValues);
-    setSelectedCategories({});
-  };
+  // // Handle selection changes from QuizSections
+  // const handleSelectionChange = (testClassId: string, selectedCategoryIds: string[]) => {
+  //   setSelectedCategories(prev => ({
+  //     ...prev,
+  //     [testClassId]: selectedCategoryIds
+  //   }));
+  // };
 
-  // Get current test classes based on selected title
-  const getCurrentTestClasses = () => {
-    return currentTitle === "قدرات" ? qudratTestClasses : tahsiliTestClasses;
-  };
+  // // Fetch data based on current title
+ 
 
-  // Get selected skill IDs
-  const getSelectedSkillIds = useCallback((): number[] => {
-    const skillIds: number[] = [];
+  // // Event handlers
+  // const handleRefresh = async () => {
+  //   setIsRefreshing(true);
+  //   await Promise.allSettled([
+  //     fetchQuestions(),
+  //     new Promise(resolve => setTimeout(resolve, 1500))
+  //   ]);
+  //   setIsRefreshing(false);
+  // };
 
-    Object.entries(selectedCategories).forEach(([testClassId, categoryIds]) => {
-      if (categoryIds.length > 0) {
-        categoryIds.forEach(categoryId => {
-          skillIds.push(parseInt(categoryId));
-        });
-      }
-    });
+  // const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setCurrentValue(parseInt(e.target.value));
+  // };
 
-    return skillIds;
-  }, [selectedCategories]);
+  // const handleSliderHardChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setCurrentVale(parseInt(e.target.value));
+  // };
 
-  // Handle starting training
-  const handleStartTraining = async () => {
-    try {
-      setStartingTest(true);
+  // const toggleSetting = (id: string) => {
+  //   setSettings(prev => ({
+  //     ...prev,
+  //     [id]: !prev[id]
+  //   }));
+  // };
+
+  // const resetSettings = () => {
+  //   const resetValues: Record<string, boolean> = {};
+  //   staticConfig.settings.forEach((setting) => {
+  //     resetValues[setting.id] = setting.defaultValue;
+  //   });
+  //   setSettings(resetValues);
+  //   setSelectedCategories({});
+  // };
+
+  // // Get current test classes based on selected title
+  // const getCurrentTestClasses = () => {
+  //   return currentTitle === "قدرات" ? qudratTestClasses : tahsiliTestClasses;
+  // };
+
+
+
+  // // Handle starting training
+  // const handleStartTraining = async () => {
+  //   try {
+  //     setStartingTest(true);
       
-      const skillIds = getSelectedSkillIds();
-      console.log('Selected skill IDs:', skillIds);
+  //     const skillIds = getSelectedSkillIds();
+  //     console.log('Selected skill IDs:', skillIds);
 
-      if (skillIds.length === 0) {
-        alert('يرجى اختيار المهارات أولاً');
-        return;
-      }
+  //     if (skillIds.length === 0) {
+  //       alert('يرجى اختيار المهارات أولاً');
+  //       return;
+  //     }
 
-      const requestData: StartTestRequest = {
-        skillIds: skillIds,
-        count: allQuestionsFilter.length // Use filtered questions count or default to 20
-      };
+  //     const requestData: StartTestRequest = {
+  //       skillIds: skillIds,
+  //       count: allQuestions.length // Use filtered questions count or default to 20
+  //     };
 
-      console.log('Starting test with request:', requestData);
+  //     console.log('Starting test with request:', requestData);
 
-      const response = await startTest(requestData);
+  //     const response = await startTest(requestData);
       
-      if (response.succeeded && response.data) {
-        setQuizQuestions(response.data);
-        setShowQuiz(true);
-        console.log('Quiz started with questions:', response.data);
-      } else {
-        throw new Error(response.message || 'فشل في بدء الاختبار');
-      }
-    } catch (error: any) {
-       let errorMessage = "Unknown error occurred"
-      const refreshSuccess = await refreshAuthToken()
+  //     if (response.succeeded && response.data) {
+  //       setQuizQuestions(response.data);
+  //       setShowQuiz(true);
+  //       console.log('Quiz started with questions:', response.data);
+  //     } else {
+  //       throw new Error(response.message || 'فشل في بدء الاختبار');
+  //     }
+  //   } catch (error: any) {
+  //      let errorMessage = "Unknown error occurred"
+  //     // const refreshSuccess = await refreshAuthToken()
           
-                if (axios.isAxiosError(error)) {
-                  if (error.response) {
-                    switch (error.response.status) {
-                      case 401:
-                        if (refreshSuccess) {
-                          return handleStartTraining()
-                        }
-                        errorMessage = "Authentication expired. Please log in again."
-                        window.location.href = "/login"
-                        break
-                      case 403:
-                        if (refreshSuccess) {
-                          return handleStartTraining()
-                        }
-                        errorMessage = "Access denied. This could be due to expired authentication or insufficient permissions."
-                        window.location.href = "/login"
-                        break
-                      case 404:
-                        errorMessage = `API endpoint not found (404). Please check if the URL is correct: ${error.config?.url}`
-                        break
-                      case 500:
-                        errorMessage = "Server error (500). Please try again later."
-                        break
-                      default:
-                        errorMessage = `Server error (${error.response.status}): ${error.response.statusText}`
-                    }
-                  } else if (error.request) {
-                    errorMessage = "Network error. Please check your internet connection."
-                  } else {
-                    errorMessage = `Request error: ${error.message}`
-                  }
-                } else { 
-                  errorMessage = error instanceof Error ? error.message : "Unknown error"
-                }
+  //               if (axios.isAxiosError(error)) {
+  //                 if (error.response) {
+  //                   switch (error.response.status) {
+  //                     case 401:
+  //                       const refreshSuccess = await refreshAuthToken()
+  //                       if (refreshSuccess) {
+  //                         return handleStartTraining()
+  //                       }
+  //                       errorMessage = "Authentication expired. Please log in again."
+  //                       window.location.href = "/login"
+  //                       break
+  //                     case 403:
+  //                       const refreshSuccess2 = await refreshAuthToken()
+  //                       if (refreshSuccess2) {
+  //                         return handleStartTraining()
+  //                       }
+  //                       errorMessage = "Access denied. This could be due to expired authentication or insufficient permissions."
+  //                       window.location.href = "/login"
+  //                       break
+  //                     case 404:
+  //                       errorMessage = `API endpoint not found (404). Please check if the URL is correct: ${error.config?.url}`
+  //                       break
+  //                     case 500:
+  //                       errorMessage = "Server error (500). Please try again later."
+  //                       break
+  //                     default:
+  //                       errorMessage = `Server error (${error.response.status}): ${error.response.statusText}`
+  //                   }
+  //                 } else if (error.request) {
+  //                   errorMessage = "Network error. Please check your internet connection."
+  //                 } else {
+  //                   errorMessage = `Request error: ${error.message}`
+  //                 }
+  //               } else { 
+  //                 errorMessage = error instanceof Error ? error.message : "Unknown error"
+  //               }
           
-                console.error("Error fetching data:", error)
-    } finally {
-      setStartingTest(false);
-    }
-  };
+  //               console.error("Error fetching data:", error)
+  //   } finally {
+  //     setStartingTest(false);
+  //   }
+  // };
+
+useEffect(()=>{
+console.log("quizQuestions",quizQuestions);
+console.log("showQuiz",showQuiz);
+},[quizQuestions,showQuiz])
+
 
   // Handle quiz completion
   const handleQuizComplete = (results: QuizResults) => {
     console.log('Quiz completed with results:', results);
-    setShowQuiz(false);
-    setQuizQuestions([]);
+    // setShowQuiz(false);
+    dispatch(changeShowQuiz(false));
+    dispatch(changeQuizQuestions([]));
     // You can add logic here to save results, show detailed analysis, etc.
   };
 
   // Handle quiz exit
   const handleQuizExit = () => {
-    setShowQuiz(false);
-    setQuizQuestions([]);
+    // setShowQuiz(false);
+    dispatch(changeShowQuiz(false));
+    dispatch(changeQuizQuestions([]));
   };
 
   if (showQuiz) {
@@ -3837,18 +4015,18 @@ export default function TrainingInterface() {
     );
   }
 
-  if (loading) {
-    return (
-      <DashStudent>
-        <div className="flex items-center justify-center min-h-64">
-          <div className="flex items-center gap-3 text-purple-600">
-            <Loader2 className="w-6 h-6 animate-spin" />
-            <span className="text-lg font-medium">جاري تحميل البيانات...</span>
-          </div>
-        </div>
-      </DashStudent>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <DashStudent>
+  //       <div className="flex items-center justify-center min-h-64">
+  //         <div className="flex items-center gap-3 text-purple-600">
+  //           <Loader2 className="w-6 h-6 animate-spin" />
+  //           <span className="text-lg font-medium">جاري تحميل البيانات...</span>
+  //         </div>
+  //       </div>
+  //     </DashStudent>
+  //   );
+  // }
 
   if (error) {
     return (
@@ -3875,7 +4053,7 @@ export default function TrainingInterface() {
                 <h1 className="text-xl md:text-2xl font-bold text-purple-800 mb-2">
                   {staticConfig.header.title}
                 </h1>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                {/* <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Database className="w-4 h-4" />
                   <span>
                     {questionsLoading ? (
@@ -3887,10 +4065,10 @@ export default function TrainingInterface() {
                       `تم تحميل ${allQuestionsFilter.length} سؤال`
                     )}
                   </span>
-                </div>
+                </div> */}
               </div>
               <div className="flex gap-3 justify-center items-center md:justify-start order-1 lg:order-2">
-                <button
+                {/* <button
                   className="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors disabled:opacity-50"
                   onClick={handleRefresh}
                   disabled={isRefreshing || questionsLoading}
@@ -3901,7 +4079,7 @@ export default function TrainingInterface() {
                   ) : (
                     staticConfig.header.buttons[1].text
                   )}
-                </button>
+                </button> */}
               </div>
             </div>
 
@@ -3914,8 +4092,10 @@ export default function TrainingInterface() {
               ))}
             </div>
 
-            {/* Subject Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+{currentTitle === "قدرات" ?  <Capabilities /> : <QuizSectionAnalize />}
+
+
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {getCurrentTestClasses().map((testClass) => (
                 <QuizSections
                   key={testClass.id}
@@ -3935,11 +4115,12 @@ export default function TrainingInterface() {
                   }
                 />
               ))}
-            </div>
+            </div> */}
+
+
           </div>
 
-          {/* Updated TestInfo with dynamic data including questions */}
-          <TestInfo 
+          {/* <TestInfo 
             testInfo={staticConfig.testInfo}
             selectedQuestionsCount={allQuestionsFilter.length}
             selectedCategoriesCount={selectedCategoriesCount}
@@ -3947,10 +4128,10 @@ export default function TrainingInterface() {
             isLoading={loading || startingTest}
             questionsLoading={questionsLoading || startingTest}
             onStartTraining={handleStartTraining}
-          />
+          /> */}
         </div>
 
-        <style jsx global>{`
+        {/* <style jsx global>{`
           @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
           * {
             font-family: 'Tajawal', sans-serif;
@@ -3977,7 +4158,7 @@ export default function TrainingInterface() {
           input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.1);
           }
-        `}</style>
+        `}</style> */}
       </div>
     </DashStudent>
   );

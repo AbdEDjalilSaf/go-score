@@ -3,10 +3,13 @@
 // src/features/background/backgroundSlice.js
 // import AchievementSection from '@/app/dashboard/dashStudent/pages/analytics/achievement-section';
 import { createSlice } from '@reduxjs/toolkit';
+import { flightRouterStateSchema } from 'next/dist/server/app-render/types';
 
 const initialState = {
   name: 'قدرات', // default white background
   titleGlobal: 'الرئيسية',
+  showQuiz: false,
+  quizQuestions: [],
   titleLogin: 'تسجيل الدخول',
   userClassType: 'الطلاب',
   skillOrSection: 'المهارات',
@@ -36,6 +39,12 @@ export const backgroundSlice = createSlice({
     },
     changeTitleGlobal: (state, action) => {
       state.titleGlobal = action.payload;
+    },
+    changeShowQuiz: (state, action) => {
+      state.showQuiz = action.payload;
+    },
+    changeQuizQuestions: (state, action) => {
+      state.quizQuestions = action.payload;
     },
     changeTitleLogin: (state, action) => {
       state.titleLogin = action.payload;
@@ -98,6 +107,8 @@ export const { changeBackground } = backgroundSlice.actions;
 export const { changeTitleGlobal } = backgroundSlice.actions;
 export const { changeTitleLogin } = backgroundSlice.actions;
 export const { changeTestExamlutor } = backgroundSlice.actions;
+export const { changeShowQuiz } = backgroundSlice.actions;
+export const { changeQuizQuestions } = backgroundSlice.actions;
 
 export const { changeCapacitiesFullCheck } = backgroundSlice.actions;
 export const { changeCapacitiesPartCheck } = backgroundSlice.actions;

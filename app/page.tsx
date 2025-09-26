@@ -354,10 +354,10 @@ const page = () => {
   const returnToken = async() =>{
     const token = Cookies.get("accessToken");
     console.log("token +++++++",token)
-    console.log("good token ================")
 
     const refreshSuccess = await refreshAuthToken()
-                if (refreshSuccess) {
+    console.log("refreshSuccess ================",refreshSuccess)
+                if (refreshSuccess) { 
                 console.log("success update token +++",token)
                 setTimeout(()=>{
                   window.location.reload()

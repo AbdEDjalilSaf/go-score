@@ -264,6 +264,7 @@ function App() {
     dispatch(changeTitleGlobal(name));
   }
 
+
   useEffect(() => {
     const fetchData = async () => {
       const token = Cookies.get("accessToken") || ""
