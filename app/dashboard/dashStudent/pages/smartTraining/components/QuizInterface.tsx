@@ -3458,7 +3458,7 @@ const QuizInterface: React.FC<QuizInterfaceProps> = ({ questions, onComplete, on
         </div>
       </div>
       
-      {/* Report Error Modal */}
+      {/* Report Error Modal */} 
       {isReportErrorModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">

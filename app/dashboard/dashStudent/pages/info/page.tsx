@@ -4092,7 +4092,7 @@ const StudentProfilePage = () => {
 
           {/* Footer */}
           <div className="text-center mt-8">
-            <p className="text-gray-500 text-sm">آخر تحديث: {new Date().toLocaleDateString("ar-US")}</p>
+            <p className="text-gray-500 text-sm">آخر تحديث: {new Date().toLocaleDateString("en-US")}</p>
           </div>
         </div>
       </div>

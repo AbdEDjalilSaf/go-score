@@ -4601,7 +4601,7 @@
 //   });
 
 //   const formatDate = (dateString: string) => {
-//     return new Date(dateString).toLocaleDateString("ar-US", {
+//     return new Date(dateString).toLocaleDateString("en-US", {
 //       year: "numeric",
 //       month: "long",
 //       day: "numeric",
@@ -5944,7 +5944,7 @@ console.log("payload =======",payload)
   });
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ar-US", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",

@@ -875,7 +875,7 @@ export default function Home() {
       if (response.data.succeeded) {
         console.log("Test started successfully:", response.data)
         dispatch(changeResponseTestLength(response.data.data))
-        router.push("/dashboard/dashStudent/examGlobalTest")
+        router.push(`/dashboard/dashStudent/examGlobalTest?testId=${response.data.data}`)
       } else {
         setTestStartError(response.data.message || "فشل في بدء الاختبار")
       }

@@ -11,6 +11,7 @@ const initialState = {
   showQuiz: false,
   quizQuestions: [],
   titleLogin: 'تسجيل الدخول',
+  isTimingStop:false,
   userClassType: 'الطلاب',
   skillOrSection: 'المهارات',
   testExamlutorTitle: 'اختبار كامل',
@@ -42,6 +43,9 @@ export const backgroundSlice = createSlice({
     },
     changeShowQuiz: (state, action) => {
       state.showQuiz = action.payload;
+    },
+    changeIsTimingStop: (state, action) => {
+      state.isTimingStop = action.payload;
     },
     changeQuizQuestions: (state, action) => {
       state.quizQuestions = action.payload;
@@ -112,6 +116,7 @@ export const { changeQuizQuestions } = backgroundSlice.actions;
 
 export const { changeCapacitiesFullCheck } = backgroundSlice.actions;
 export const { changeCapacitiesPartCheck } = backgroundSlice.actions;
+export const { changeIsTimingStop } = backgroundSlice.actions;
 export const { changeAchievementChemistryCheck } = backgroundSlice.actions;
 export const { changeAchievementBiologyCheck } = backgroundSlice.actions;
 export const { changeAchievementMathCheck } = backgroundSlice.actions;

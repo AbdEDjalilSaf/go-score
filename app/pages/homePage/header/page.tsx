@@ -226,11 +226,34 @@ if(token){
 
         {/* Desktop Button */}
         <div className="hidden md:flex items-center gap-2">
-          <Link href="/dashboard/dashStudent" >
-            <Button size="lg" className="bg-primary rounded-full text-base px-6 py-3 h-auto" >
-              {isLoggedIn ? deviceHeader.button.textLogin : header.button.text}
-            </Button>
-          </Link>
+        {titleLogin ? 
+                <Link href="/dashboard/dashStudent" >
+                  <Button
+                    size="lg"
+                    className="bg-primary  rounded-full text-base px-6 py-3 h-auto "
+                    onClick={() =>{ setOpen(false)
+                      dispatch(changeTitleGlobal(''));
+                    }
+                    }
+                  >
+                    {/* {isLoggedIn ? header.button.text : deviceHeader.button.textLogin} */}
+                    لوحتي التعليمية
+                  </Button>
+                </Link>
+                : 
+                <Link href="/dashboard/dashStudent" >
+                <Button
+                  size="lg"
+                  className="bg-primary  rounded-full text-base px-6 py-3 h-auto "
+                  onClick={() =>{ setOpen(false)
+                    dispatch(changeTitleGlobal(''));
+                  }
+                  }
+                >
+                  {/* {isLoggedIn ? header.button.text : deviceHeader.button.textLogin} */}
+                  تسجيل الدخول
+                </Button>
+              </Link>}
         </div>
 
         {/* Mobile Menu */}

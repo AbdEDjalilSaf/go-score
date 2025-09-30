@@ -51,11 +51,11 @@ export default function LoginForm() {
   const [apiError, setApiError] = useState<string>("")
   // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-useEffect(()=>{
-setTimeout(()=>{
-  window.location.reload()
-},500)
-},[])
+// useEffect(()=>{
+// setTimeout(()=>{
+//   window.location.reload()
+// },500)
+// },[])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

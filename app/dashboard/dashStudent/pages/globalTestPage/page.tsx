@@ -219,7 +219,7 @@ import { LockIcon } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { useSelector, useDispatch } from 'react-redux';
 import DashStudent from "@/app/dashboard/dashStudent/dashStudent"
-import { changeTitleGlobal } from '@/features/auth/authSlice';
+import { changeTitleGlobal,changeTitleLogin } from '@/features/auth/authSlice';
 import Link from "next/link"
 import Cookies from 'js-cookie';
 import axios from 'axios'; // Import Axios
@@ -264,6 +264,13 @@ function App() {
     dispatch(changeTitleGlobal(name));
   }
 
+useEffect(() => {
+dispatch(changeTitleLogin("لوحتي التعليمية"))
+},[])
+
+// setTimeout(()=>{
+//   window.location.reload()
+// },500)
 
   useEffect(() => {
     const fetchData = async () => {
