@@ -12,6 +12,7 @@ const initialState = {
   quizQuestions: [],
   titleLogin: 'تسجيل الدخول',
   isTimingStop:false,
+  teacherShowDetailsID: "",
   userClassType: 'الطلاب',
   skillOrSection: 'المهارات',
   testExamlutorTitle: 'اختبار كامل',
@@ -55,6 +56,9 @@ export const backgroundSlice = createSlice({
     },
     changeTestExamlutor: (state, action) => {
       state.testExamlutorTitle = action.payload;
+    },
+    changeTeacherShowDetailsID: (state, action) => {
+      state.teacherShowDetailsID = action.payload;
     },
     changeCapacitiesFullCheck: (state, action) => {
       state.capacitiesFullCheck = action.payload;
@@ -108,6 +112,7 @@ export const backgroundSlice = createSlice({
 });
 
 export const { changeBackground } = backgroundSlice.actions;
+export const { changeTeacherShowDetailsID } = backgroundSlice.actions;
 export const { changeTitleGlobal } = backgroundSlice.actions;
 export const { changeTitleLogin } = backgroundSlice.actions;
 export const { changeTestExamlutor } = backgroundSlice.actions;

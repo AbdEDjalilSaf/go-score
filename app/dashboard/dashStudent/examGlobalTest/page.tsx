@@ -2611,6 +2611,7 @@ const questionNumbers = Array.from({ length: Number( Number(questionCountTest) >
   // All other hooks
   const router = useRouter()
   const examContainerRef = useRef<HTMLDivElement>(null)
+  const exitContainerRef = useRef<HTMLDivElement>(null)
 
   // Check if current question is the last one
   const isLastQuestion = currentQuestion === data.length - 1
@@ -2628,6 +2629,20 @@ const questionNumbers = Array.from({ length: Number( Number(questionCountTest) >
       document.removeEventListener("click", handleDocumentClick)
     }
   }, [])
+
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (exitContainerRef.current && !exitContainerRef.current.contains(e.target as Node)) {
+        handleExitAttemptStop()
+      }
+    }
+
+    document.addEventListener("click", handleDocumentClick)
+    return () => {
+      document.removeEventListener("click", handleDocumentClick)
+    }
+  }, [])
+  
 
   useEffect(() => {
     try {
@@ -2705,6 +2720,12 @@ const questionNumbers = Array.from({ length: Number( Number(questionCountTest) >
   const handleExitAttempt = () => {
     setShowExitModal(true)
   }
+  const handleExitAttemptStop = () => {
+    console.log("not yet ================")
+    setShowExitModal(false)
+    console.log("yes ================")
+  }
+  
 
   const getAuthToken = () => {
     return Cookies.get("accessToken")
@@ -3019,7 +3040,7 @@ const handleQuestionJumpFromHeader = (questionIndex: number) => {
               </div>
 
               {/* Answer Options */}
-              <div className={`flex  ${(currentQuestionIndex + 1) % 2 === 0 ? 'flex-col md:flex-row' : 'flex-col-reverse md:flex-row-reverse'} gap-1 mb-8 flex-wrap max-w-md  mx-auto`}>
+              <div className={`flex  ${(currentQuestionIndex + 1) % 2 === 0 ? 'flex-col md:flex-row' : 'flex-col-reverse md:flex-row-reverse'} gap-1 mb-8  max-w-md   mx-auto`}>
                 {data[currentQuestion].choiceResponses.map((option, index) => (
                     <button
                       key={index} 
@@ -3034,7 +3055,7 @@ const handleQuestionJumpFromHeader = (questionIndex: number) => {
                     {option.value}
                     </button> 
                   ))}
-                  <div className={`w-full`}>
+                  <div className={`w-full`}> 
                    <button
                      key={data[currentQuestion].answer}
                      onClick={() => handleAnswerSelect(data[currentQuestion].answer)}
@@ -3092,8 +3113,8 @@ const handleQuestionJumpFromHeader = (questionIndex: number) => {
       </div>
 
       {/* Exit Confirmation Modal */}
-      {showExitModal && (
-        <div className="fixed inset-0 flex items-center justify-center p-4 z-50">
+      {showExitModal ? (
+        <div ref={exitContainerRef} className="fixed inset-0 flex items-center justify-center p-4 z-50">
           <div className="bg-white flex items-center justify-center rounded-lg shadow-xl w-full max-w-3xl h-[400px] mx-auto">
             <div className="p-8 text-center" dir="rtl">
               {/* Warning Icon */}
@@ -3122,7 +3143,7 @@ const handleQuestionJumpFromHeader = (questionIndex: number) => {
                   خروج
                 </button>
                 <button
-                  onClick={() => setShowExitModal(false)}
+                  onClick={() => handleExitAttemptStop()}
                   className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium"
                   type="button"
                 >
@@ -3132,7 +3153,7 @@ const handleQuestionJumpFromHeader = (questionIndex: number) => {
             </div>
           </div>
         </div>
-      )}
+      ): ""}
     </div>
   )
 }
